@@ -27,19 +27,19 @@ type ClientManager struct {
 	Lock       sync.RWMutex    // 读写锁
 	Unregister chan *Client    // 断开连接处理程序
 	Login      chan *Client
-	Broadcast  chan *model.Message // 广播 向全部成员发送数据
+	Broadcast  chan *model.WsMessage // 广播 向全部成员发送数据
 
-	TagBroadcast  chan *model.Message
-	UserBroadcast chan *model.Message
+	TagBroadcast  chan *model.WsMessage
+	UserBroadcast chan *model.WsMessage
 }
 
 func NewClientManager() (clientManager *ClientManager) {
 	clientManager = &ClientManager{
 		Clients:       make(map[int]*Client),
 		Unregister:    make(chan *Client, 1000),
-		Broadcast:     make(chan *model.Message, 1000),
-		TagBroadcast:  make(chan *model.Message, 1000),
-		UserBroadcast: make(chan *model.Message, 1000),
+		Broadcast:     make(chan *model.WsMessage, 1000),
+		TagBroadcast:  make(chan *model.WsMessage, 1000),
+		UserBroadcast: make(chan *model.WsMessage, 1000),
 	}
 	return
 }
@@ -151,16 +151,16 @@ func (manager *ClientManager) start(ctx context.Context) {
 }
 
 // SendToAll 发送全部客户端
-func SendToAll(response *model.Message) {
+func SendToAll(response *model.WsMessage) {
 	Manager.Broadcast <- response
 }
 
 // SendToUser 发送单个用户
-func SendToUser(response *model.Message) {
+func SendToUser(response *model.WsMessage) {
 	Manager.UserBroadcast <- response
 }
 
 // SendToTag 发送某个标签
-func SendToTag(response *model.Message) {
+func SendToTag(response *model.WsMessage) {
 	Manager.TagBroadcast <- response
 }

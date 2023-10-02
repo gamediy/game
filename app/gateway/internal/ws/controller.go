@@ -1,9 +1,10 @@
 package ws
 
 import (
+	"context"
 	"game/model"
 )
 
 type Controller interface {
-	Controller(client *Client, msg *model.Message) (*model.Message, error)
+	Controller(ctx context.Context, client *Client, msg *model.WsMessage) (*model.WsMessage, error)
 }

@@ -10,7 +10,7 @@ up: cli.install
 build: cli.install
 	@gf build -ew
 
-# Parse api and generate controller/sdk.
+# Parse api and generate svc/sdk.
 .PHONY: ctrl
 ctrl: cli.install
 	@gf gen ctrl

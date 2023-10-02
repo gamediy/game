@@ -1,6 +1,7 @@
 package ws
 
 import (
+	"context"
 	"fmt"
 	"game/model"
 )
@@ -9,25 +10,29 @@ import (
 type LoginController struct {
 }
 
-// 心跳
-type HeartbeatController struct {
-}
-
-func (LoginController) Controller(client *Client, msg *model.Message) (*model.Message, error) {
+func (LoginController) Controller(ctx context.Context, client *Client, msg *model.WsMessage) (*model.WsMessage, error) {
 
 	Manager.AddUsers(client)
-	return &model.Message{
+	return &model.WsMessage{
 		Event: Login,
 		Data:  "login success",
 	}, nil
 }
-func (HeartbeatController) Controller(client *Client, msg *model.Message) (*model.Message, error) {
+
+// 心跳
+type HeartbeatController struct {
+}
+
+func (HeartbeatController) Controller(ctx context.Context, client *Client, msg *model.WsMessage) (*model.WsMessage, error) {
 
 	fmt.Println("心跳设置")
 	client.Heartbeat()
-	return &model.Message{
+	return &model.WsMessage{
 		Event: Heartbeat,
 		Data:  "ping",
 	}, nil
 
+}
+
+type RegisterController struct {
 }

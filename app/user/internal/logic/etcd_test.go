@@ -2,7 +2,7 @@ package logic
 
 import (
 	"context"
-	"game/utility/xetcd"
+	"game/utility/utils/xetcd"
 	"testing"
 )
 

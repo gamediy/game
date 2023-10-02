@@ -26,7 +26,7 @@ func init() {
 	controller["heartbeat"] = HeartbeatController{}
 }
 func Router(ctx context.Context, client *Client, msg []byte) {
-	message := model.Message{}
+	message := model.WsMessage{}
 	err := json.Unmarshal(msg, &message)
 	if err != nil {
 		return
@@ -35,7 +35,7 @@ func Router(ctx context.Context, client *Client, msg []byte) {
 	if !ok {
 		return
 	}
-	m, e := c.Controller(client, &message)
+	m, e := c.Controller(ctx, client, &message)
 	if e != nil {
 		g.Log().Error(ctx, e)
 		return

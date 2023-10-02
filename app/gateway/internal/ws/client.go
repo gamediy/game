@@ -15,7 +15,7 @@ type Client struct {
 	Addr     string
 	Sid      string
 	Socket   *websocket.Conn
-	WriteChn chan *model.Message
+	WriteChn chan *model.WsMessage
 
 	Uid           int
 	Account       string
@@ -36,7 +36,7 @@ func NewClient(addr string, uid int, account string, socket *websocket.Conn) (cl
 		Uid:           uid,
 		Account:       account,
 		Socket:        socket,
-		WriteChn:      make(chan *model.Message, 100),
+		WriteChn:      make(chan *model.WsMessage, 100),
 		SendClose:     false,
 		LoginTime:     gtime.Now(),
 		HeartbeatTime: gtime.Now(),
@@ -97,7 +97,7 @@ func (c *Client) Write(ctx context.Context) {
 }
 
 // SendMsg 发送数据
-func (c *Client) WriterMsg(ctx context.Context, msg *model.Message) {
+func (c *Client) WriterMsg(ctx context.Context, msg *model.WsMessage) {
 	if c == nil || c.SendClose {
 		return
 	}

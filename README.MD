@@ -1,5 +1,1 @@
-# GoFrame Template For MonoRepo
-
-Quick Start: 
-- https://goframe.org/pages/viewpage.action?pageId=1114399
-- https://goframe.org/pages/viewpage.action?pageId=87246764
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative user.proto

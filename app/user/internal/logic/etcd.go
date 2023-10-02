@@ -3,7 +3,7 @@ package logic
 import (
 	"context"
 	"fmt"
-	"game/utility/xetcd"
+	"game/utility/utils/xetcd"
 )
 
 func Test123(ctx context.Context) {

@@ -2,9 +2,13 @@ package cmd
 
 import (
 	"context"
+	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
 	"game/app/gateway/internal/ws"
-	"game/utility/xetcd"
+	"game/app/user/api/user/user"
+
+	"game/model"
+	"game/utility/utils/xetcd"
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/frame/g"
@@ -22,6 +26,8 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			xetcd.InitEtcd(ctx)
 			grpcx.Resolver.Register(etcd.NewWithClient(xetcd.Client))
+			user_svc.UserClientInit()
+
 			g.Log().Info(ctx, `gateway start`)
 			s := g.Server()
 			ws.StartWebSocket(ctx)
@@ -46,9 +52,24 @@ var (
 				go client.Write(ctx)
 
 			})
-			s.BindHandler("/login", func(r *ghttp.Request) {
+			s.BindHandler("/api/login", func(r *ghttp.Request) {
 			})
-			s.BindHandler("/register", func(r *ghttp.Request) {})
+			s.BindHandler("/api/register", func(r *ghttp.Request) {
+				// 设置一个超时上下文
+
+				request := user.RegRequest{}
+				err := r.Parse(&request)
+				if err != nil {
+					r.Response.WriteJsonExit(model.WrapHttpMessage(nil, err))
+				}
+				request.Ip = r.GetClientIp()
+				request.ClientAgent = r.GetHeader("User-Agent")
+				err = user_svc.Service.Register(ctx, &request)
+
+				message := model.WrapHttpMessage(nil, err)
+				r.Response.Write(message)
+			})
+			s.SetPort(5000)
 			s.Run()
 			return nil
 		},
