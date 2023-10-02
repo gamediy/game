@@ -12,8 +12,6 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/grand"
 	"path/filepath"
-	"star_net/db/dao"
-	"star_net/db/model/entity"
 )
 
 type CloudFlare struct {
@@ -107,27 +105,11 @@ func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 		Body:        f,
 		ContentType: &contentType,
 	})
-
 	if err != nil {
-		return "", err
-	}
-	if err = x.SaveToDB(ctx, group, fileName); err != nil {
 		return "", err
 	}
 
 	return fileName, nil
-}
-
-func (x CloudFlare) SaveToDB(ctx context.Context, group int, name string) error {
-	d := entity.File{
-		Group:  group,
-		Url:    name,
-		Status: 1,
-	}
-	if _, err := dao.File.Ctx(ctx).Insert(&d); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (x CloudFlare) Del(ctx context.Context, file string) error {

@@ -2,10 +2,10 @@ package xcaptcha
 
 import (
 	"context"
+	"fmt"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/mojocn/base64Captcha"
 	captcha "github.com/mojocn/base64Captcha"
-	"star_net/consts"
 )
 
 var (
@@ -38,7 +38,7 @@ func Get(ctx context.Context, id string) (string, string, error) {
 }
 func Verify(id, answer string) error {
 	if !Store.Verify(id, answer, true) || id == "" || answer == "" {
-		return consts.ErrCaptcha
+		return fmt.Errorf("error ")
 	}
 	return nil
 }

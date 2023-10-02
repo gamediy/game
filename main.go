@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	withdraw_pb "game/app/user/pb/withdraw"
+	"game/app/user/api/withdraw/withdraw"
 	"google.golang.org/grpc"
 	"log"
 	"time"
@@ -18,14 +18,14 @@ func main() {
 	defer conn.Close()
 
 	// 使用连接初始化HelloService客户端
-	c := withdraw_pb.NewWithdrawServiceClient(conn)
+	c := withdraw.NewWithdrawServiceClient(conn)
 
 	// 设置一个超时上下文
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
 	// 调用SayHello方法
-	r, err := c.Submit(ctx, &withdraw_pb.SubmitRequest{
+	r, err := c.Submit(ctx, &withdraw.SubmitRequest{
 		Amount: 1,
 	})
 	if err != nil {

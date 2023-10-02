@@ -2,9 +2,9 @@ package xcrud
 
 import (
 	"context"
+	"fmt"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
-	"star_net/consts"
 )
 
 type Read struct {
@@ -23,7 +23,7 @@ func (my *Read) Exec(pointer interface{}) error {
 		return err
 	}
 	if one.IsEmpty() {
-		return consts.ErrDataNotFound
+		return fmt.Errorf("not found")
 	}
 	if err = one.Struct(pointer); err != nil {
 		return err
