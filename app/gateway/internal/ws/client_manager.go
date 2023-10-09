@@ -159,6 +159,14 @@ func SendToAll(response *model.WsMessage) {
 func SendToUser(response *model.WsMessage) {
 	Manager.UserBroadcast <- response
 }
+func Send(response *model.WsMessage) {
+	if response.Uid == 0 {
+		Manager.Broadcast <- response
+	} else {
+		Manager.UserBroadcast <- response
+	}
+
+}
 
 // SendToTag 发送某个标签
 func SendToTag(response *model.WsMessage) {

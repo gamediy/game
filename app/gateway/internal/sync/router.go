@@ -2,32 +2,26 @@ package sync
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	sync_controller "game/app/gateway/internal/sync/controller"
-	"game/app/gateway/internal/sync/controller/lottery"
 	"game/app/gateway/internal/ws"
+	"game/model"
 	"game/utility/utils/xetcd"
+	"github.com/gogf/gf/v2/frame/g"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-func InitController() {
-	sync_controller.ControllerC = make(map[string]sync_controller.Controller, 10)
-	lottery.Init()
-}
 func Router(ctx context.Context) {
-	InitController()
 	fmt.Println("start sync watch")
 	go xetcd.Watch(ctx, "/sync/", true, func(response clientv3.WatchResponse) {
 		for _, event := range response.Events {
-			s, ok := sync_controller.ControllerC[string(event.Kv.Key)]
-			if !ok {
+			model := model.WsMessage{}
+			err := json.Unmarshal(event.Kv.Value, &model)
+			if err != nil {
 				continue
+				g.Log().Error(ctx, err)
 			}
-			message, err := s.Controller(event.Kv.Value)
-			if err == nil {
-				ws.SendToAll(message)
-			}
-
+			ws.Send(&model)
 		}
 		fmt.Println(response)
 	})

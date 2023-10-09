@@ -11,7 +11,7 @@ import (
 
 func MakeController() {
 
-	ControllerC = make(map[string]Controller, 100)
+	Ctrl = make(map[string]func(ctx context.Context, wsclient *Client, msg *model.WsMessage) (*model.WsMessage, error), 100)
 	UserControllerInit()
 }
 func Router(ctx context.Context, client *Client, msg []byte) {
@@ -21,11 +21,11 @@ func Router(ctx context.Context, client *Client, msg []byte) {
 	if err != nil {
 		return
 	}
-	c, ok := ControllerC[message.Event]
+	c, ok := Ctrl[message.Event]
 	if !ok {
 		return
 	}
-	m, e := c.Controller(ctx, client, &message)
+	m, e := c(ctx, client, &message)
 	if e != nil {
 		g.Log().Error(ctx, e)
 		return

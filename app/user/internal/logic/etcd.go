@@ -2,14 +2,15 @@ package logic
 
 import (
 	"context"
-	"fmt"
-	"game/utility/utils/xetcd"
+	"game/app/user/api/user/user"
+	"game/consts/ws_consts"
+	"game/model"
 )
 
 func Test123(ctx context.Context) {
-	put, err := xetcd.Client.Put(ctx, "/user/wallet", "wallet")
+	reply := user.WalletReply{}
+	reply.Balance = 3
 
-	if err == nil {
-		fmt.Println(put)
-	}
+	model.SyncWsMessage(ctx, model.WrapEventResponse(ws_consts.Wallet), 0, reply)
+
 }
