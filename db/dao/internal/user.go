@@ -44,6 +44,7 @@ type UserColumns struct {
 	PayPass      string // 交易密码
 	IsAgent      string // 是否代理1：是
 	Token        string // 登录成功生成的
+	DeviceId     string // 设备ID
 }
 
 // userColumns holds the columns for table u_user.
@@ -72,6 +73,7 @@ var userColumns = UserColumns{
 	PayPass:      "pay_pass",
 	IsAgent:      "is_agent",
 	Token:        "token",
+	DeviceId:     "device_id",
 }
 
 // NewUserDao creates and returns a new DAO object for table data access.

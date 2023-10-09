@@ -11,14 +11,14 @@ import (
 // internalBankDao is internal type for wrapping internal DAO implements.
 type internalBankDao = *internal.BankDao
 
-// bankDao is the data access object for table b_bank.
+// bankDao is the data access object for table u_bank.
 // You can define custom methods on it to extend its functionality as you wish.
 type bankDao struct {
 	internalBankDao
 }
 
 var (
-	// Bank is globally public accessible object for table b_bank operations.
+	// Bank is globally public accessible object for table u_bank operations.
 	Bank = bankDao{
 		internal.NewBankDao(),
 	}

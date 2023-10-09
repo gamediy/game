@@ -23,4 +23,5 @@ type Wallet struct {
 	TotalGift     float64     `json:"totalGift"     description:"总赠送"`
 	CreatedAt     *gtime.Time `json:"createdAt"     description:""`
 	UpdatedAt     *gtime.Time `json:"updatedAt"     description:""`
+	Pid           int64       `json:"pid"           description:""`
 }

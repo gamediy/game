@@ -20,8 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_Reg_FullMethodName   = "/user.UserService/Reg"
-	UserService_Login_FullMethodName = "/user.UserService/Login"
+	UserService_Reg_FullMethodName      = "/user.UserService/Reg"
+	UserService_Login_FullMethodName    = "/user.UserService/Login"
+	UserService_UserInfo_FullMethodName = "/user.UserService/UserInfo"
+	UserService_Wallet_FullMethodName   = "/user.UserService/Wallet"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -30,6 +32,8 @@ const (
 type UserServiceClient interface {
 	Reg(ctx context.Context, in *RegRequest, opts ...grpc.CallOption) (*RegReply, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
+	UserInfo(ctx context.Context, in *UserInfoRequest, opts ...grpc.CallOption) (*UserInfoReply, error)
+	Wallet(ctx context.Context, in *WalletRequest, opts ...grpc.CallOption) (*WalletReply, error)
 }
 
 type userServiceClient struct {
@@ -58,12 +62,32 @@ func (c *userServiceClient) Login(ctx context.Context, in *LoginRequest, opts ..
 	return out, nil
 }
 
+func (c *userServiceClient) UserInfo(ctx context.Context, in *UserInfoRequest, opts ...grpc.CallOption) (*UserInfoReply, error) {
+	out := new(UserInfoReply)
+	err := c.cc.Invoke(ctx, UserService_UserInfo_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) Wallet(ctx context.Context, in *WalletRequest, opts ...grpc.CallOption) (*WalletReply, error) {
+	out := new(WalletReply)
+	err := c.cc.Invoke(ctx, UserService_Wallet_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
 	Reg(context.Context, *RegRequest) (*RegReply, error)
 	Login(context.Context, *LoginRequest) (*LoginReply, error)
+	UserInfo(context.Context, *UserInfoRequest) (*UserInfoReply, error)
+	Wallet(context.Context, *WalletRequest) (*WalletReply, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -76,6 +100,12 @@ func (UnimplementedUserServiceServer) Reg(context.Context, *RegRequest) (*RegRep
 }
 func (UnimplementedUserServiceServer) Login(context.Context, *LoginRequest) (*LoginReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedUserServiceServer) UserInfo(context.Context, *UserInfoRequest) (*UserInfoReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserInfo not implemented")
+}
+func (UnimplementedUserServiceServer) Wallet(context.Context, *WalletRequest) (*WalletReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Wallet not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -126,6 +156,42 @@ func _UserService_Login_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_UserInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UserInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_UserInfo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UserInfo(ctx, req.(*UserInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_Wallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WalletRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).Wallet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_Wallet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).Wallet(ctx, req.(*WalletRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -140,6 +206,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _UserService_Login_Handler,
+		},
+		{
+			MethodName: "UserInfo",
+			Handler:    _UserService_UserInfo_Handler,
+		},
+		{
+			MethodName: "Wallet",
+			Handler:    _UserService_Wallet_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

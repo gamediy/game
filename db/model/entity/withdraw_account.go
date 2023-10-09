@@ -9,7 +9,7 @@ type WithdrawAccount struct {
 	Id       int64  `json:"id"       description:""`
 	Net      string `json:"net"      description:""`
 	Protocol string `json:"protocol" description:""`
-	Uid      int    `json:"uid"      description:""`
+	Uid      int64  `json:"uid"      description:""`
 	Account  string `json:"account"  description:""`
 	Address  string `json:"address"  description:""`
 	Currency string `json:"currency" description:"currency"`

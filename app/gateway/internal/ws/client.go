@@ -17,8 +17,7 @@ type Client struct {
 	Socket   *websocket.Conn
 	WriteChn chan *model.WsMessage
 
-	Uid           int
-	Account       string
+	UserInfo      *model.UserInfo
 	LoginTime     *gtime.Time
 	HeartbeatTime *gtime.Time
 	SendClose     bool            // 发送是否关闭
@@ -30,11 +29,10 @@ var (
 )
 
 // NewClient 初始化
-func NewClient(addr string, uid int, account string, socket *websocket.Conn) (client *Client) {
+func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (client *Client) {
 	client = &Client{
 		Addr:          addr,
-		Uid:           uid,
-		Account:       account,
+		UserInfo:      userInfo,
 		Socket:        socket,
 		WriteChn:      make(chan *model.WsMessage, 100),
 		SendClose:     false,
@@ -82,7 +80,7 @@ func (c *Client) Write(ctx context.Context) {
 		select {
 		case message := <-c.WriteChn:
 			if message != nil {
-				fmt.Println("uid ", c.Uid)
+				fmt.Println("uid ", c.UserInfo.Uid)
 				fmt.Println("writer msg ", message)
 				err := c.Socket.WriteJSON(message)
 				if err != nil {
@@ -130,7 +128,7 @@ func (c *Client) IsHeartbeatTimeout(currentTime *gtime.Time) (timeout bool) {
 // 关闭客户端
 func (c *Client) Close() {
 
-	fmt.Println("客户端关闭：", c.Uid)
+	fmt.Println("客户端关闭：", c.UserInfo.Uid)
 	if c.SendClose {
 		return
 	}

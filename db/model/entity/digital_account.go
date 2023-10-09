@@ -17,7 +17,7 @@ type DigitalAccount struct {
 	CountDeposit int         `json:"countDeposit" description:"充值次数"`
 	PrivateKey   string      `json:"privateKey"   description:"私密"`
 	TotalDeposit int64       `json:"totalDeposit" description:"总充值"`
-	Uid          int64       `json:"uid"          description:""`
+	Uid          int         `json:"uid"          description:""`
 	Account      string      `json:"account"      description:"账户"`
 	CreatedAt    *gtime.Time `json:"createdAt"    description:""`
 	UpdatedAt    *gtime.Time `json:"updatedAt"    description:""`

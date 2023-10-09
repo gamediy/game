@@ -23,9 +23,9 @@ func StartWebSocket(ctx context.Context) {
 }
 
 type ClientManager struct {
-	Clients    map[int]*Client // 全部的连接
-	Lock       sync.RWMutex    // 读写锁
-	Unregister chan *Client    // 断开连接处理程序
+	Clients    map[int64]*Client // 全部的连接
+	Lock       sync.RWMutex      // 读写锁
+	Unregister chan *Client      // 断开连接处理程序
 	Login      chan *Client
 	Broadcast  chan *model.WsMessage // 广播 向全部成员发送数据
 
@@ -35,7 +35,7 @@ type ClientManager struct {
 
 func NewClientManager() (clientManager *ClientManager) {
 	clientManager = &ClientManager{
-		Clients:       make(map[int]*Client),
+		Clients:       make(map[int64]*Client),
 		Unregister:    make(chan *Client, 1000),
 		Broadcast:     make(chan *model.WsMessage, 1000),
 		TagBroadcast:  make(chan *model.WsMessage, 1000),
@@ -47,7 +47,7 @@ func NewClientManager() (clientManager *ClientManager) {
 func (manager *ClientManager) InClient(client *Client) (ok bool) {
 	manager.Lock.RLock()
 	defer manager.Lock.RUnlock()
-	_, ok = manager.Clients[client.Uid]
+	_, ok = manager.Clients[client.UserInfo.Uid]
 	return
 }
 
@@ -59,16 +59,16 @@ func (manager *ClientManager) GetClientsLen() (clientsLen int) {
 func (manager *ClientManager) AddUsers(client *Client) {
 	manager.Lock.Lock()
 	defer manager.Lock.Unlock()
-	manager.Clients[client.Uid] = client
-	fmt.Println("add client uid ", client.Uid)
+	manager.Clients[client.UserInfo.Uid] = client
+	fmt.Println("add client uid ", client.UserInfo.Uid)
 	fmt.Println("当前在线：", manager.GetClientsLen())
 }
 
 func (manager *ClientManager) DelUsers(client *Client) {
 	manager.Lock.Lock()
 	defer manager.Lock.Unlock()
-	if _, ok := manager.Clients[client.Uid]; ok {
-		delete(manager.Clients, client.Uid)
+	if _, ok := manager.Clients[client.UserInfo.Uid]; ok {
+		delete(manager.Clients, client.UserInfo.Uid)
 	}
 
 }
@@ -99,7 +99,7 @@ func (manager *ClientManager) clearTimeoutConnections() {
 	time := gtime.Now()
 	for _, client := range manager.Clients {
 		if client.IsHeartbeatTimeout(time) {
-			fmt.Println("心跳时间超时 关闭连接", client.Addr, client.Uid, client.LoginTime, client.HeartbeatTime)
+			fmt.Println("心跳时间超时 关闭连接", client.Addr, client.UserInfo.Uid, client.LoginTime, client.HeartbeatTime)
 			client.Close()
 		}
 	}
@@ -140,7 +140,7 @@ func (manager *ClientManager) start(ctx context.Context) {
 			// 用户广播事件
 
 			for _, conn := range manager.Clients {
-				if conn.Uid == message.Uid {
+				if conn.UserInfo.Uid == message.Uid {
 					conn.WriterMsg(ctx, message)
 				}
 			}

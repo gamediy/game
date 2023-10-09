@@ -3,27 +3,23 @@ package sync
 import (
 	"context"
 	"fmt"
-	"game/app/gateway/internal/sync/controller"
+	sync_controller "game/app/gateway/internal/sync/controller"
 	"game/app/gateway/internal/sync/controller/lottery"
 	"game/app/gateway/internal/ws"
 	"game/utility/utils/xetcd"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-var (
-	lottery_controller map[string]sync_controller.Controller
-)
-
-func init() {
-	lottery_controller = make(map[string]sync_controller.Controller, 10)
-	lottery_controller["/lottery_svc/openresult"] = lottery.OpenResultController{}
+func InitController() {
+	sync_controller.ControllerC = make(map[string]sync_controller.Controller, 10)
+	lottery.Init()
 }
 func Router(ctx context.Context) {
-
+	InitController()
 	fmt.Println("start sync watch")
-	xetcd.Watch(ctx, "/lottery_svc/", true, func(response clientv3.WatchResponse) {
+	go xetcd.Watch(ctx, "/sync/", true, func(response clientv3.WatchResponse) {
 		for _, event := range response.Events {
-			s, ok := lottery_controller[string(event.Kv.Key)]
+			s, ok := sync_controller.ControllerC[string(event.Kv.Key)]
 			if !ok {
 				continue
 			}
@@ -35,13 +31,5 @@ func Router(ctx context.Context) {
 		}
 		fmt.Println(response)
 	})
-	xetcd.Watch(ctx, "/solt_svc/", true, func(response clientv3.WatchResponse) {
-		for _, event := range response.Events {
-			fmt.Println(string(event.Kv.Key), string(event.Kv.Value))
-		}
-		fmt.Println(response)
-	})
-	xetcd.Watch(ctx, "/user_svc/", true, func(response clientv3.WatchResponse) {
-		fmt.Println(response)
-	})
+
 }

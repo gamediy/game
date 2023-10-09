@@ -7,31 +7,21 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-const (
-	Error     = "error"
-	Login     = "login"
-	Join      = "join"
-	Quit      = "quit"
-	Heartbeat = "heartbeat"
-	Enter     = "enter"
-)
+// event path
 
-var (
-	controller map[string]Controller
-)
+func MakeController() {
 
-func init() {
-	controller = make(map[string]Controller)
-	controller["login"] = LoginController{}
-	controller["heartbeat"] = HeartbeatController{}
+	ControllerC = make(map[string]Controller, 100)
+	UserControllerInit()
 }
 func Router(ctx context.Context, client *Client, msg []byte) {
+
 	message := model.WsMessage{}
 	err := json.Unmarshal(msg, &message)
 	if err != nil {
 		return
 	}
-	c, ok := controller[message.Event]
+	c, ok := ControllerC[message.Event]
 	if !ok {
 		return
 	}

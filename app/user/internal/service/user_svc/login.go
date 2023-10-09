@@ -11,20 +11,44 @@ import (
 )
 
 type Login struct {
-	Account  string `json:"account" v:"required|length:6,30#请输入账号|账号长度为:{min}到:{max}位"`
-	Password string `dc:"密码" json:"password" v:"required|length:6,30#请输入密码|密码长度不够"`
-	Ip       string
+	Account     string `json:"account" v:"required|length:6,30#请输入账号|账号长度为:{min}到:{max}位"`
+	Password    string `dc:"密码" json:"password" v:"required|length:6,30#请输入密码|密码长度不够"`
+	Ip          string
+	DeviceId    string `json:"deviceId"`
+	ClientAgent string `json:"clientAgent"`
+	Xid         string `json:"xid"`
 }
 
 func (s *Login) Exec(ctx context.Context) (token string, err error) {
 	var user entity.User
-	_ = dao.User.Ctx(ctx).Scan(&user, "account", s.Account)
-	if user.Id == 0 {
-		return "", fmt.Errorf("用户不存在")
+	if s.DeviceId == "" {
+		_ = dao.User.Ctx(ctx).Scan(&user, "account", s.Account)
+		if user.Id == 0 {
+			return "", fmt.Errorf("用户不存在")
+		}
+		if !xpwd.ComparePassword(user.Password, s.Password) {
+			return "", fmt.Errorf("密码错误")
+		}
+	} else {
+		dao.User.Ctx(ctx).Scan(&user, dao.User.Columns().DeviceId, s.DeviceId)
+		if user.Id == 0 {
+			register := Register{}
+			register.Account = ""
+			register.Ip = s.Ip
+			register.ClientAgent = s.ClientAgent
+			register.DeviceId = s.DeviceId
+			register.Xid = s.Xid
+			register.Password = "star_net_" + s.DeviceId
+			token, err := register.Exec(ctx)
+			if token != "" {
+				dao.User.Ctx(ctx).Data(g.Map{
+					"token": token,
+				}).Where("device_id=?", s.DeviceId).Update()
+			}
+			return token, err
+		}
 	}
-	if !xpwd.ComparePassword(user.Password, s.Password) {
-		return "", fmt.Errorf("密码错误")
-	}
+
 	d := entity.UserLoginLog{}
 	d.Account = s.Account
 	d.Uid = uint64(user.Id)

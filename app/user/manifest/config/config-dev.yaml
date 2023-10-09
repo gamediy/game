@@ -20,7 +20,7 @@ database:
 redis:
   default:
     address: "8.219.177.71:63790"
-    db: 1
+    db: 3
     pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 grpc:
   name:             "user_svc"  # 服务名称

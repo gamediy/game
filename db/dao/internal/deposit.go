@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// DepositDao is the data access object for table o_deposit.
+// DepositDao is the data access object for table u_deposit.
 type DepositDao struct {
 	table   string         // table is the underlying table name of the DAO.
 	group   string         // group is the database configuration group name of current DAO.
 	columns DepositColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// DepositColumns defines and stores column names for table o_deposit.
+// DepositColumns defines and stores column names for table u_deposit.
 type DepositColumns struct {
 	OrderNo         string // 订单号
 	Account         string // 账号
@@ -43,7 +43,7 @@ type DepositColumns struct {
 	TransferImg     string // 用户转账图片
 }
 
-// depositColumns holds the columns for table o_deposit.
+// depositColumns holds the columns for table u_deposit.
 var depositColumns = DepositColumns{
 	OrderNo:         "order_no",
 	Account:         "account",
@@ -72,7 +72,7 @@ var depositColumns = DepositColumns{
 func NewDepositDao() *DepositDao {
 	return &DepositDao{
 		group:   "default",
-		table:   "o_deposit",
+		table:   "u_deposit",
 		columns: depositColumns,
 	}
 }

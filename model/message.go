@@ -2,19 +2,24 @@ package model
 
 type WsMessage struct {
 	Event string      `json:"event"`
-	Data  interface{} `json:"data"`
+	Body  *Message    `json:"body"`
+	Query interface{} `json:"query"`
 	Tag   string      `json:"tag"`
-	Uid   int         `json:"_"`
+	Uid   int64       `json:"_"`
 }
 
-type HttpMessage struct {
+func WrapEventResponse(string string) string {
+	return string + "_response"
+}
+
+type Message struct {
 	Code int         `json:"code"`
 	Msg  string      `json:"msg"`
 	Data interface{} `json:"data"`
 }
 
-func WrapHttpMessage(data interface{}, err error) *HttpMessage {
-	message := HttpMessage{}
+func WrapMessage(data interface{}, err error) *Message {
+	message := Message{}
 	if err != nil {
 		message.Code = 50
 		message.Msg = err.Error()

@@ -33,7 +33,7 @@ type CasbinColumns struct {
 var casbinColumns = CasbinColumns{
 	Ptype: "ptype",
 	V0:    "v0",
-	V1:    "user",
+	V1:    "v1",
 	V2:    "v2",
 	V3:    "v3",
 	V4:    "v4",

@@ -34,4 +34,5 @@ type User struct {
 	PayPass      string      `json:"payPass"      description:"交易密码"`
 	IsAgent      int         `json:"isAgent"      description:"是否代理1：是"`
 	Token        string      `json:"token"        description:"登录成功生成的"`
+	DeviceId     string      `json:"deviceId"     description:"设备ID"`
 }

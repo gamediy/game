@@ -7,7 +7,7 @@ import (
 )
 
 func Test123(ctx context.Context) {
-	put, err := xetcd.Client.Put(ctx, "/game/1000/openresult", "game open")
+	put, err := xetcd.Client.Put(ctx, "/user/wallet", "wallet")
 
 	if err == nil {
 		fmt.Println(put)

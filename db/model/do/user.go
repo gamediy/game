@@ -36,4 +36,5 @@ type User struct {
 	PayPass      interface{} // 交易密码
 	IsAgent      interface{} // 是否代理1：是
 	Token        interface{} // 登录成功生成的
+	DeviceId     interface{} // 设备ID
 }

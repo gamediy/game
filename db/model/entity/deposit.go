@@ -12,8 +12,8 @@ import (
 type Deposit struct {
 	OrderNo         int64       `json:"orderNo"         description:"订单号"`
 	Account         string      `json:"account"         description:"账号"`
-	Uid             int64       `json:"uid"             description:"UID"`
-	Pid             int64       `json:"pid"             description:"上级ID"`
+	Uid             int         `json:"uid"             description:"UID"`
+	Pid             int         `json:"pid"             description:"上级ID"`
 	Status          int         `json:"status"          description:"状态"`
 	FinishAt        *gtime.Time `json:"finishAt"        description:"完成时间"`
 	Detail          string      `json:"detail"          description:"详情"`
