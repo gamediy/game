@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.23.4
-// source: user/user/user.proto
+// source: lottery/lottery/lottery.proto
 
 package user
 
@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_Reg_FullMethodName      = "/user.UserService/Reg"
-	UserService_Login_FullMethodName    = "/user.UserService/Login"
-	UserService_UserInfo_FullMethodName = "/user.UserService/UserInfo"
-	UserService_Wallet_FullMethodName   = "/user.UserService/Wallet"
+	UserService_Reg_FullMethodName      = "/lottery.UserService/Reg"
+	UserService_Login_FullMethodName    = "/lottery.UserService/Login"
+	UserService_UserInfo_FullMethodName = "/lottery.UserService/UserInfo"
+	UserService_Wallet_FullMethodName   = "/lottery.UserService/Wallet"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -196,7 +196,7 @@ func _UserService_Wallet_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
+	ServiceName: "lottery.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -217,5 +217,5 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "user/user/user.proto",
+	Metadata: "lottery/lottery/lottery.proto",
 }

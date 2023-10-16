@@ -20,7 +20,6 @@ type WalletDao struct {
 
 // WalletColumns defines and stores column names for table u_wallet.
 type WalletColumns struct {
-	Id            string //
 	Uid           string //
 	Balance       string // 余额
 	TotalBet      string // 总投注
@@ -38,7 +37,6 @@ type WalletColumns struct {
 
 // walletColumns holds the columns for table u_wallet.
 var walletColumns = WalletColumns{
-	Id:            "id",
 	Uid:           "uid",
 	Balance:       "balance",
 	TotalBet:      "total_bet",

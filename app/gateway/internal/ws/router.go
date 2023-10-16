@@ -5,14 +5,19 @@ import (
 	"encoding/json"
 	"game/model"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 )
 
 // event path
+var (
+	Ctrl map[string]func(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error)
+)
 
 func MakeController() {
 
-	Ctrl = make(map[string]func(ctx context.Context, wsclient *Client, msg *model.WsMessage) (*model.WsMessage, error), 100)
+	Ctrl = make(map[string]func(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error), 100)
 	UserControllerInit()
+	SlotControllerInit()
 }
 func Router(ctx context.Context, client *Client, msg []byte) {
 
@@ -25,10 +30,10 @@ func Router(ctx context.Context, client *Client, msg []byte) {
 	if !ok {
 		return
 	}
-	m, e := c(ctx, client, &message)
+	m2 := gconv.Map(message.Query)
+	m, e := c(ctx, client, m2)
 	if e != nil {
 		g.Log().Error(ctx, e)
-		return
 	}
 	if m != nil {
 		client.WriteChn <- m

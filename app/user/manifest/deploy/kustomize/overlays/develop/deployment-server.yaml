@@ -1,4 +1,4 @@
-apiVersion: apps/user
+apiVersion: apps/lottery
 kind: Deployment
 metadata:
   name: eros-template

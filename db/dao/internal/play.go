@@ -11,44 +11,44 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// PlayDao is the data access object for table p_play.
+// PlayDao is the data access object for table g_play.
 type PlayDao struct {
 	table   string      // table is the underlying table name of the DAO.
 	group   string      // group is the database configuration group name of current DAO.
 	columns PlayColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// PlayColumns defines and stores column names for table p_play.
+// PlayColumns defines and stores column names for table g_play.
 type PlayColumns struct {
-	Id       string //
-	TypeCode string //
-	EnName   string //
-	Status   string //
-	TypeName string //
-	Code     string //
-	Sort     string //
-	ZhName   string //
-	VdName   string //
+	Code          string // 玩法编号
+	Name          string // 玩法名
+	Status        string // 状态
+	Odds          string // 赔率
+	Probabilities string // 概率
+	PlayType      string // 玩法类型
+	BetMin        string // 最小投注金额
+	BetMax        string // 最大投注金额
+	Number        string //
 }
 
-// playColumns holds the columns for table p_play.
+// playColumns holds the columns for table g_play.
 var playColumns = PlayColumns{
-	Id:       "id",
-	TypeCode: "type_code",
-	EnName:   "en_name",
-	Status:   "status",
-	TypeName: "type_name",
-	Code:     "code",
-	Sort:     "sort",
-	ZhName:   "zh_name",
-	VdName:   "vd_name",
+	Code:          "code",
+	Name:          "name",
+	Status:        "status",
+	Odds:          "odds",
+	Probabilities: "probabilities",
+	PlayType:      "play_type",
+	BetMin:        "bet_min",
+	BetMax:        "bet_max",
+	Number:        "number",
 }
 
 // NewPlayDao creates and returns a new DAO object for table data access.
 func NewPlayDao() *PlayDao {
 	return &PlayDao{
 		group:   "default",
-		table:   "p_play",
+		table:   "g_play",
 		columns: playColumns,
 	}
 }

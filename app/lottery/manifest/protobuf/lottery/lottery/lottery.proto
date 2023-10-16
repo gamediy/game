@@ -1,0 +1,15 @@
+syntax="proto3";
+option go_package = ".;lottery";
+package lottery;
+message BetReq{
+  int32  gameCode=1;
+  double amount=2;
+  int64  uid=3;
+  int32 playCode=4;
+}
+message BetRes{
+  int64  orderNo=1;
+}
+service LotteryService{
+  rpc Bet(BetReq) returns(BetRes);
+}

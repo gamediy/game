@@ -1,4 +1,4 @@
-apiVersion: user
+apiVersion: lottery
 kind: ConfigMap
 metadata:
   name: eros-template-configmap

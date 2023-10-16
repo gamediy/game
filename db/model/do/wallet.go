@@ -12,7 +12,6 @@ import (
 // Wallet is the golang structure of table u_wallet for DAO operations like Where/Data.
 type Wallet struct {
 	g.Meta        `orm:"table:u_wallet, do:true"`
-	Id            interface{} //
 	Uid           interface{} //
 	Balance       interface{} // 余额
 	TotalBet      interface{} // 总投注

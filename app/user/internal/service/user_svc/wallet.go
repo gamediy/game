@@ -9,6 +9,7 @@ import (
 func Wallet(ctx context.Context, req *user.WalletRequest) (reply *user.WalletReply, err error) {
 	reply = &user.WalletReply{}
 	err = dao.Wallet.Ctx(ctx).Where("uid", req.Uid).Scan(reply)
+	reply.Balance = reply.Balance / 1000
 	return reply, err
 
 }

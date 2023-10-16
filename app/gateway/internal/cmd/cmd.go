@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"game/app/gateway/internal/svc/slot_svc"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
 	"game/app/gateway/internal/ws"
@@ -27,7 +28,9 @@ var (
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			xetcd.InitEtcd(ctx)
 			grpcx.Resolver.Register(etcd.NewWithClient(xetcd.Client))
+
 			user_svc.UserClientInit()
+			slot_svc.SlotClientInit()
 
 			g.Log().Info(ctx, `gateway start`)
 			s := g.Server()

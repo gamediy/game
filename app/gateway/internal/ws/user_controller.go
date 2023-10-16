@@ -7,10 +7,7 @@ import (
 	"game/app/user/api/user/user"
 	"game/consts/ws_consts"
 	"game/model"
-)
-
-var (
-	Ctrl map[string]func(ctx context.Context, wsclient *Client, msg *model.WsMessage) (*model.WsMessage, error)
+	"github.com/gogf/gf/v2/frame/g"
 )
 
 func UserControllerInit() {
@@ -20,7 +17,7 @@ func UserControllerInit() {
 }
 
 // 登录
-func login(ctx context.Context, wsclient *Client, msg *model.WsMessage) (*model.WsMessage, error) {
+func login(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
 
 	Manager.AddUsers(wsclient)
 	wallet, _ := user_svc.Service.Wallet(ctx, &user.WalletRequest{
@@ -41,7 +38,7 @@ func login(ctx context.Context, wsclient *Client, msg *model.WsMessage) (*model.
 
 // 心跳
 
-func heartbeat(ctx context.Context, client *Client, msg *model.WsMessage) (*model.WsMessage, error) {
+func heartbeat(ctx context.Context, client *Client, query g.Map) (*model.WsMessage, error) {
 
 	fmt.Println("心跳设置")
 	client.Heartbeat()
@@ -53,7 +50,7 @@ func heartbeat(ctx context.Context, client *Client, msg *model.WsMessage) (*mode
 }
 
 // 钱包
-func wallet(ctx context.Context, client *Client, msg *model.WsMessage) (*model.WsMessage, error) {
+func wallet(ctx context.Context, client *Client, query g.Map) (*model.WsMessage, error) {
 
 	wallet, err := user_svc.Service.Wallet(ctx, &user.WalletRequest{
 		Uid: client.UserInfo.Uid,

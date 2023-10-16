@@ -11,14 +11,14 @@ import (
 // internalPlayDao is internal type for wrapping internal DAO implements.
 type internalPlayDao = *internal.PlayDao
 
-// playDao is the data access object for table p_play.
+// playDao is the data access object for table g_play.
 // You can define custom methods on it to extend its functionality as you wish.
 type playDao struct {
 	internalPlayDao
 }
 
 var (
-	// Play is globally public accessible object for table p_play operations.
+	// Play is globally public accessible object for table g_play operations.
 	Play = playDao{
 		internal.NewPlayDao(),
 	}

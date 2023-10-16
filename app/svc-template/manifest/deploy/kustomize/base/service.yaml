@@ -1,4 +1,4 @@
-apiVersion: user
+apiVersion: lottery
 kind: Service
 metadata:
   name: eros-template

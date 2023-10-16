@@ -10,7 +10,6 @@ import (
 
 // Wallet is the golang structure for table wallet.
 type Wallet struct {
-	Id            int64       `json:"id"            description:""`
 	Uid           int64       `json:"uid"           description:""`
 	Balance       int64       `json:"balance"       description:"余额"`
 	TotalBet      float64     `json:"totalBet"      description:"总投注"`

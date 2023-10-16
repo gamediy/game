@@ -11,38 +11,32 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// PlayTypeDao is the data access object for table p_play_type.
+// PlayTypeDao is the data access object for table g_play_type.
 type PlayTypeDao struct {
 	table   string          // table is the underlying table name of the DAO.
 	group   string          // group is the database configuration group name of current DAO.
 	columns PlayTypeColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// PlayTypeColumns defines and stores column names for table p_play_type.
+// PlayTypeColumns defines and stores column names for table g_play_type.
 type PlayTypeColumns struct {
-	Id     string //
 	Code   string //
-	EnName string //
-	ZhName string //
+	Name   string //
 	Status string //
-	Class  string //
 }
 
-// playTypeColumns holds the columns for table p_play_type.
+// playTypeColumns holds the columns for table g_play_type.
 var playTypeColumns = PlayTypeColumns{
-	Id:     "id",
 	Code:   "code",
-	EnName: "en_name",
-	ZhName: "zh_name",
+	Name:   "name",
 	Status: "status",
-	Class:  "class",
 }
 
 // NewPlayTypeDao creates and returns a new DAO object for table data access.
 func NewPlayTypeDao() *PlayTypeDao {
 	return &PlayTypeDao{
 		group:   "default",
-		table:   "p_play_type",
+		table:   "g_play_type",
 		columns: playTypeColumns,
 	}
 }

@@ -11,14 +11,14 @@ import (
 // internalPlayTypeDao is internal type for wrapping internal DAO implements.
 type internalPlayTypeDao = *internal.PlayTypeDao
 
-// playTypeDao is the data access object for table p_play_type.
+// playTypeDao is the data access object for table g_play_type.
 // You can define custom methods on it to extend its functionality as you wish.
 type playTypeDao struct {
 	internalPlayTypeDao
 }
 
 var (
-	// PlayType is globally public accessible object for table p_play_type operations.
+	// PlayType is globally public accessible object for table g_play_type operations.
 	PlayType = playTypeDao{
 		internal.NewPlayTypeDao(),
 	}

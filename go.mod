@@ -3,6 +3,7 @@ module game
 go 1.20
 
 require (
+	github.com/avast/retry-go/v4 v4.5.0
 	github.com/aws/aws-sdk-go-v2 v1.21.0
 	github.com/aws/aws-sdk-go-v2/config v1.18.42
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.40

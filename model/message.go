@@ -4,14 +4,16 @@ import (
 	"context"
 	"encoding/json"
 	"game/utility/utils/xetcd"
+	"github.com/gogf/gf/v2/frame/g"
+	"google.golang.org/grpc/status"
 )
 
 type WsMessage struct {
-	Event string      `json:"event"`
-	Body  *Message    `json:"body"`
-	Query interface{} `json:"query"`
-	Tag   string      `json:"tag"`
-	Uid   int64       `json:"_"`
+	Event string   `json:"event"`
+	Body  *Message `json:"body"`
+	Query g.Map    `json:"query"`
+	Tag   string   `json:"tag"`
+	Uid   int64    `json:"_"`
 }
 
 func SyncWsMessage(ctx context.Context, event string, uid int64, data interface{}) {
@@ -36,8 +38,14 @@ type Message struct {
 func WrapMessage(data interface{}, err error) *Message {
 	message := Message{}
 	if err != nil {
-		message.Code = 50
-		message.Msg = err.Error()
+		if s, ok := status.FromError(err); ok {
+			message.Code = int(s.Code())
+			message.Msg = s.Message()
+		} else {
+			message.Code = 1
+			message.Msg = err.Error()
+		}
+
 	}
 	message.Data = data
 	return &message
