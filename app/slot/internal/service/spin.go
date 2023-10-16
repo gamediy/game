@@ -25,7 +25,7 @@ func Spin(ctx context.Context, request *slot.SpinReq) (res *slot.SpinRes, err er
 		return res, status.Errorf(1, "没有此游戏")
 	}
 	play := []entity.Play{}
-	dao.Play.Ctx(ctx).Where("game_code", request.GetGameCode()).OrderAsc("probabilities").Scan(&play)
+	dao.Play.Ctx(ctx).Where("play_type", game.PlayType).OrderAsc("probabilities").Scan(&play)
 	if len(play) == 0 {
 		return nil, status.Errorf(1, "没有玩法")
 	}

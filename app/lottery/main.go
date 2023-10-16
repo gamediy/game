@@ -1,8 +1,7 @@
 package main
 
 import (
-	_ "game/app/gateway/internal/packed"
-
+	"game/app/lottery/internal/cmd"
 	"github.com/gogf/gf/v2/os/gctx"
 )
 

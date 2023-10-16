@@ -9,6 +9,6 @@ const (
 	Wallet    = "/user/wallet"
 	Enter     = "/game/enter"
 
-	SlotSpin     = "/lottery/spin"
-	SlotCheckWon = "/lottery/checkWon"
+	SlotSpin     = "/slot/spin"
+	SlotCheckWon = "/slot/checkWon"
 )
