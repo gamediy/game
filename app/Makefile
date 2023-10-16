@@ -5,7 +5,7 @@ GO = go
 GOCMD = $(GO) run
 
 # Go 源文件
-APP1_SOURCE_FILES = gameway/main.go
+APP1_SOURCE_FILES = gateway/main.go
 APP2_SOURCE_FILES = slot/main.go
 APP3_SOURCE_FILES = user/main.go
 
