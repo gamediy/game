@@ -17,12 +17,12 @@ all: start-app1 start-app2 start-app3
 
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
-	$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS)
+	nohup $(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 &
 
 # 启动应用程序 2
 start-app2: $(APP2_SOURCE_FILES)
-	$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS)
+	nohup $(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 &
 
 # 启动应用程序 3
 start-app3: $(APP3_SOURCE_FILES)
-	$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS)
+	nohup $(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 &
