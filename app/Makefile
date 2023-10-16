@@ -12,6 +12,7 @@ APP3_SOURCE_FILES = user/main.go
 # 默认目标，启动所有三个应用程序
 all: start-app1 start-app2 start-app3
 
+
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
 	$(GOCMD) $(APP1_SOURCE_FILES)
