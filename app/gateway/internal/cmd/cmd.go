@@ -91,6 +91,13 @@ var (
 				message := model.WrapMessage(token, err)
 				r.Response.Write(message)
 			})
+			//第三方游戏
+			s.Group("/api/third", func(group *ghttp.RouterGroup) {
+				group.GET("/check_account", func(r *ghttp.Request) {
+
+				})
+			})
+
 			s.SetPort(5000)
 			s.Run()
 			return nil

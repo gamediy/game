@@ -2,8 +2,9 @@ package dict
 
 import (
 	"context"
+	"game/db/dao"
 	"github.com/gogf/gf/v2/database/gdb"
-	"star_net/db/dao"
+
 	"time"
 )
 

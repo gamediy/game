@@ -1,8 +1,9 @@
 package report
 
 import (
+	"game/db/model/entity"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
-	"star_net/db/model/entity"
+
 	"testing"
 )
 
@@ -30,9 +31,8 @@ func TestReport_PutReport(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			this := &Report{
-				User:        tt.fields.User,
-				Amount:      tt.fields.Amount,
-				BalanceCode: tt.fields.BalanceCode,
+				User:   tt.fields.User,
+				Amount: tt.fields.Amount,
 			}
 			if err := this.PutReport(); (err != nil) != tt.wantErr {
 				t.Errorf("PutReport() error = %v, wantErr %v", err, tt.wantErr)
