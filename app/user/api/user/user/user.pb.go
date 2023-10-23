@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v4.23.4
-// source: lottery/lottery/lottery.proto
+// source: user/user/user.proto
 
 package user
 
@@ -643,24 +643,24 @@ func file_user_user_user_proto_rawDescGZIP() []byte {
 
 var file_user_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_user_user_user_proto_goTypes = []interface{}{
-	(*LoginRequest)(nil),    // 0: lottery.LoginRequest
-	(*RegRequest)(nil),      // 1: lottery.RegRequest
-	(*RegReply)(nil),        // 2: lottery.RegReply
-	(*LoginReply)(nil),      // 3: lottery.LoginReply
-	(*UserInfoRequest)(nil), // 4: lottery.UserInfoRequest
-	(*UserInfoReply)(nil),   // 5: lottery.UserInfoReply
-	(*WalletRequest)(nil),   // 6: lottery.WalletRequest
-	(*WalletReply)(nil),     // 7: lottery.WalletReply
+	(*LoginRequest)(nil),    // 0: user.LoginRequest
+	(*RegRequest)(nil),      // 1: user.RegRequest
+	(*RegReply)(nil),        // 2: user.RegReply
+	(*LoginReply)(nil),      // 3: user.LoginReply
+	(*UserInfoRequest)(nil), // 4: user.UserInfoRequest
+	(*UserInfoReply)(nil),   // 5: user.UserInfoReply
+	(*WalletRequest)(nil),   // 6: user.WalletRequest
+	(*WalletReply)(nil),     // 7: user.WalletReply
 }
 var file_user_user_user_proto_depIdxs = []int32{
-	1, // 0: lottery.UserService.Reg:input_type -> lottery.RegRequest
-	0, // 1: lottery.UserService.Login:input_type -> lottery.LoginRequest
-	4, // 2: lottery.UserService.UserInfo:input_type -> lottery.UserInfoRequest
-	6, // 3: lottery.UserService.Wallet:input_type -> lottery.WalletRequest
-	2, // 4: lottery.UserService.Reg:output_type -> lottery.RegReply
-	3, // 5: lottery.UserService.Login:output_type -> lottery.LoginReply
-	5, // 6: lottery.UserService.UserInfo:output_type -> lottery.UserInfoReply
-	7, // 7: lottery.UserService.Wallet:output_type -> lottery.WalletReply
+	1, // 0: user.UserService.Reg:input_type -> user.RegRequest
+	0, // 1: user.UserService.Login:input_type -> user.LoginRequest
+	4, // 2: user.UserService.UserInfo:input_type -> user.UserInfoRequest
+	6, // 3: user.UserService.Wallet:input_type -> user.WalletRequest
+	2, // 4: user.UserService.Reg:output_type -> user.RegReply
+	3, // 5: user.UserService.Login:output_type -> user.LoginReply
+	5, // 6: user.UserService.UserInfo:output_type -> user.UserInfoReply
+	7, // 7: user.UserService.Wallet:output_type -> user.WalletReply
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
