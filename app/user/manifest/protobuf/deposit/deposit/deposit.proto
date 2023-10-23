@@ -1,0 +1,103 @@
+syntax = "proto3";
+option go_package = ".;deposit";
+package deposit;
+
+message DepositAmountItemsReq {}
+message DepositAmountItemsRes {
+  message Id {
+    int32 value = 1;
+  }
+
+  message Title {
+    string value = 1;
+  }
+
+  message Status {
+    int32 value = 1;
+  }
+
+  message Detail {
+    string value = 1;
+  }
+
+  message AmountCategoryId {
+    int32 value = 1;
+  }
+
+  message Net {
+    string value = 1;
+  }
+
+  message Min {
+    int64 value = 1;
+  }
+
+  message Max {
+    int64 value = 1;
+  }
+
+  message Fee {
+    int64 value = 1;
+  }
+
+  message Type {
+    string value = 1;
+  }
+
+  message Logo {
+    string value = 1;
+  }
+
+  message Sort {
+    int32 value = 1;
+  }
+
+  message Country {
+    string value = 1;
+  }
+
+  message Currency {
+    string value = 1;
+  }
+
+  message Protocol {
+    string value = 1;
+  }
+
+  message CreatedAt {
+    string value = 1;
+  }
+
+  message UpdatedAt {
+    string value = 1;
+  }
+
+  message Address {
+    string value = 1;
+  }
+
+  message UAmountItemEntry {
+    Id id = 1;
+    Title title = 2;
+    Status status = 3;
+    Detail detail = 4;
+    AmountCategoryId amount_category_id = 5;
+    Net net = 6;
+    Min min = 7;
+    Max max = 8;
+    Fee fee = 9;
+    Type type = 10;
+    Logo logo = 11;
+    Sort sort = 12;
+    Country country = 13;
+    Currency currency = 14;
+    Protocol protocol = 15;
+    CreatedAt created_at = 16;
+    UpdatedAt updated_at = 17;
+    Address address = 18;
+  }
+  repeated UAmountItemEntry entries = 1;
+}
+service DepositSvc{
+  rpc ListDepositAmountItems(DepositAmountItemsReq) returns(DepositAmountItemsRes);
+}

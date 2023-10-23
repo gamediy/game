@@ -1,0 +1,21 @@
+### register
+POST {{url}}/api/register
+Content-Type: application/json
+
+{
+}
+
+### login
+POST {{url}}/api/login
+Content-Type: application/json
+
+{
+  "account": "user_5k"
+}
+
+> {%
+    client.global.set("token", "Bearer " + response.body.data.token);
+%}
+
+### userinfo
+WEBSOCKET {{url}}/socket?token={{token}}
