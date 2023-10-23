@@ -1,0 +1,10 @@
+apiVersion: apps/lottery
+kind: Deployment
+metadata:
+  name: eros-template
+spec:
+  template:
+    spec:
+      containers:
+        - name : main
+          image: eros-template:develop
