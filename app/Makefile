@@ -45,7 +45,8 @@ PORTS = 5000 5001 5002
 # 停止应用程序
 stop:
 	@for PORT in $(PORTS); do \
-		PID=$( lsof -ti :$PORT); \
+		PID=$( lsof -ti :$$PORT); \
+		echo $PID
 		if [ -n "$$PID" ]; then \
 			kill -9 "$$PID"; \
 			echo "Process with PID $$PID on port $$PORT has been stopped."; \
