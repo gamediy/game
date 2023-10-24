@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"game/app/gateway/internal/controller"
 	"game/app/gateway/internal/svc/slot_svc"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
@@ -35,7 +36,7 @@ var (
 			g.Log().Info(ctx, `gateway start`)
 			s := g.Server()
 			ws.StartWebSocket(ctx)
-			ws.MakeController()
+
 			sync.Router(ctx)
 			s.BindMiddlewareDefault(func(r *ghttp.Request) {
 				r.Response.CORSDefault()
@@ -64,7 +65,19 @@ var (
 					r.Exit()
 				}
 				client := ws.NewClient(r.GetClientIp(), userInfo, socket.Conn)
-				go client.Read(ctx)
+				go client.Read(ctx, func(ctx context.Context, msg *model.WsMessage, wsclient *ws.Client, query g.Map) {
+					c, ok := controller.Ctrl[msg.Event]
+					if ok {
+						m, e := c(ctx, client, query)
+						if e != nil {
+							g.Log().Error(ctx, e)
+						}
+						if m != nil {
+							client.WriteChn <- m
+						}
+					}
+
+				})
 				go client.Write(ctx)
 
 			})

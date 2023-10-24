@@ -1,10 +1,12 @@
-package user_controller
+package user
 
 import (
 	"context"
 	"fmt"
+	"game/app/gateway/internal/controller"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/ws"
+
 	"game/app/user/api/user/user"
 	"game/consts/event/user_event"
 	"game/consts/event/user_event/mailbox_event"
@@ -15,13 +17,13 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-func UserControllerInit() {
-	ws.Ctrl[user_event.Login] = login
-	ws.Ctrl[user_event.Heartbeat] = heartbeat
-	ws.Ctrl[wallet_event.Wallet] = wallet
-	ws.Ctrl[wallet_event.DepositAmountItems] = DepositAmountItems
-	ws.Ctrl[mailbox_event.ListMailBox] = listMailBox
-	ws.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
+func init() {
+	controller.Ctrl[user_event.Login] = login
+	controller.Ctrl[user_event.Heartbeat] = heartbeat
+	controller.Ctrl[wallet_event.Wallet] = wallet
+	controller.Ctrl[wallet_event.DepositAmountItems] = DepositAmountItems
+	controller.Ctrl[mailbox_event.ListMailBox] = listMailBox
+	controller.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
 }
 
 func countMailBoxTotal(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {

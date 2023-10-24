@@ -2,10 +2,13 @@ package ws
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"game/model"
 	"github.com/gogf/gf/v2/container/garray"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
+	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gorilla/websocket"
 	"runtime/debug"
 	"time"
@@ -42,7 +45,7 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (c
 	client.Heartbeat()
 	return
 }
-func (c *Client) Read(ctx context.Context) {
+func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Println("write stop", string(debug.Stack()), r)
@@ -61,7 +64,13 @@ func (c *Client) Read(ctx context.Context) {
 		}
 		// 处理程序
 		fmt.Println(string(message))
-		Router(ctx, c, message)
+		msg := model.WsMessage{}
+		err = json.Unmarshal(message, &msg)
+		if err != nil {
+			return
+		}
+		m2 := gconv.Map(msg.Query)
+		ctrl(ctx, &msg, c, m2)
 	}
 }
 
