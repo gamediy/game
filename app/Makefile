@@ -1,5 +1,5 @@
 # Makefile 示例
-SHELL = /bin/bash
+
 # Go 编译器和参数
 GO = go
 GOCMD = $(GO) run
@@ -15,41 +15,30 @@ APP_ARGS = --gf.gcfg.file=config-dev.yaml
 # 默认目标，启动所有三个应用程序
 all: start-app1 start-app2 start-app3
 
-# 用于检查应用程序是否已经在运行
-APP1_PIDFILE = app1.pid
-APP2_PIDFILE = app2.pid
-APP3_PIDFILE = app3.pid
-
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
-	@if [ ! -e $(APP1_PIDFILE) ]; then \
-		$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 & \
-		echo $$! > $(APP1_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 &
 
 # 启动应用程序 2
 start-app2: $(APP2_SOURCE_FILES)
-	@if [ ! -e $(APP2_PIDFILE) ]; then \
-		$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 & \
-		echo $$! > $(APP2_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 &
 
 # 启动应用程序 3
 start-app3: $(APP3_SOURCE_FILES)
-	@if [ ! -e $(APP3_PIDFILE) ]; then \
-		$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 & \
-		echo $$! > $(APP3_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) >app3.log 2>&1 &
+
 # 端口列表
-PORTS = 5000 5001 5002
-# 停止应用程序
+PORTS := 5000 5001 5002
+
 stop:
-	@for PORT in $(PORTS); do \
-		PID=$( lsof -ti :$$PORT); \
-		if [ -n "$$PID" ]; then \
-			kill -9 "$$PID"; \
-			echo "Process with PID $$PID on port $$PORT has been stopped."; \
-		else \
-			echo "No process found listening on port $$PORT."; \
-		fi; \
-	done
+	@echo "Stopping programs on ports $(PORTS)..."
+	@for port in $(PORTS); do \
+        pid=$$(lsof -t -i :$$port); \
+        if [ -n "$$pid" ]; then \
+            echo "Stopping program on port $$port (Process ID: $$pid)..."; \
+            kill $$pid; \
+            echo "Program on port $$port has been stopped."; \
+        else \
+            echo "No running program found on port $$port."; \
+        fi \
+    done

@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_Reg_FullMethodName         = "/user.UserService/Reg"
-	UserService_Login_FullMethodName       = "/user.UserService/Login"
-	UserService_UserInfo_FullMethodName    = "/user.UserService/UserInfo"
-	UserService_Wallet_FullMethodName      = "/user.UserService/Wallet"
-	UserService_ListMailBox_FullMethodName = "/user.UserService/ListMailBox"
+	UserService_Reg_FullMethodName                     = "/user.UserService/Reg"
+	UserService_Login_FullMethodName                   = "/user.UserService/Login"
+	UserService_UserInfo_FullMethodName                = "/user.UserService/UserInfo"
+	UserService_Wallet_FullMethodName                  = "/user.UserService/Wallet"
+	UserService_ListMailBox_FullMethodName             = "/user.UserService/ListMailBox"
+	UserService_CountMailBoxTotalUnRead_FullMethodName = "/user.UserService/CountMailBoxTotalUnRead"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -36,6 +37,7 @@ type UserServiceClient interface {
 	UserInfo(ctx context.Context, in *UserInfoRequest, opts ...grpc.CallOption) (*UserInfoReply, error)
 	Wallet(ctx context.Context, in *WalletRequest, opts ...grpc.CallOption) (*WalletReply, error)
 	ListMailBox(ctx context.Context, in *ListMailBoxReq, opts ...grpc.CallOption) (*ListMailBoxRes, error)
+	CountMailBoxTotalUnRead(ctx context.Context, in *MailBoxTotalUnReadReq, opts ...grpc.CallOption) (*MailBoxTotalUnReadRes, error)
 }
 
 type userServiceClient struct {
@@ -91,6 +93,15 @@ func (c *userServiceClient) ListMailBox(ctx context.Context, in *ListMailBoxReq,
 	return out, nil
 }
 
+func (c *userServiceClient) CountMailBoxTotalUnRead(ctx context.Context, in *MailBoxTotalUnReadReq, opts ...grpc.CallOption) (*MailBoxTotalUnReadRes, error) {
+	out := new(MailBoxTotalUnReadRes)
+	err := c.cc.Invoke(ctx, UserService_CountMailBoxTotalUnRead_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -100,6 +111,7 @@ type UserServiceServer interface {
 	UserInfo(context.Context, *UserInfoRequest) (*UserInfoReply, error)
 	Wallet(context.Context, *WalletRequest) (*WalletReply, error)
 	ListMailBox(context.Context, *ListMailBoxReq) (*ListMailBoxRes, error)
+	CountMailBoxTotalUnRead(context.Context, *MailBoxTotalUnReadReq) (*MailBoxTotalUnReadRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -121,6 +133,9 @@ func (UnimplementedUserServiceServer) Wallet(context.Context, *WalletRequest) (*
 }
 func (UnimplementedUserServiceServer) ListMailBox(context.Context, *ListMailBoxReq) (*ListMailBoxRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMailBox not implemented")
+}
+func (UnimplementedUserServiceServer) CountMailBoxTotalUnRead(context.Context, *MailBoxTotalUnReadReq) (*MailBoxTotalUnReadRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CountMailBoxTotalUnRead not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -225,6 +240,24 @@ func _UserService_ListMailBox_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_CountMailBoxTotalUnRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MailBoxTotalUnReadReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CountMailBoxTotalUnRead(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CountMailBoxTotalUnRead_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CountMailBoxTotalUnRead(ctx, req.(*MailBoxTotalUnReadReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -251,6 +284,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListMailBox",
 			Handler:    _UserService_ListMailBox_Handler,
+		},
+		{
+			MethodName: "CountMailBoxTotalUnRead",
+			Handler:    _UserService_CountMailBoxTotalUnRead_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
