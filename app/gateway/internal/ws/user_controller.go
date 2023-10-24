@@ -8,6 +8,7 @@ import (
 	"game/consts/ws_consts"
 	"game/model"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 )
 
 func UserControllerInit() {
@@ -15,6 +16,27 @@ func UserControllerInit() {
 	Ctrl[ws_consts.Heartbeat] = heartbeat
 	Ctrl[ws_consts.Wallet] = wallet
 	Ctrl[ws_consts.DepositAmountItems] = depositAmountItems
+	Ctrl[ws_consts.ListMailBox] = listMailBox
+}
+
+func listMailBox(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+	req := user.ListMailBoxReq{}
+	if query == nil {
+		query = g.Map{"size": 1, "page": "10"}
+	}
+	req.Size = gconv.Int64(query["size"])
+	req.Page = gconv.Int64(query["page"])
+	req.Read = gconv.String(query["read"])
+	req.Receiver = gconv.String(query["receiver"])
+	res, err := user_svc.Service.ListMailBox(ctx, &req)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(ws_consts.ListMailBox),
+		Body:  model.WrapMessage(res, nil),
+	}, nil
 }
 
 func depositAmountItems(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {

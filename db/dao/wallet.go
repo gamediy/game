@@ -11,14 +11,14 @@ import (
 // internalWalletDao is internal type for wrapping internal DAO implements.
 type internalWalletDao = *internal.WalletDao
 
-// walletDao is the data access object for table u_wallet.
+// walletDao is the data access object for table w_wallet.
 // You can define custom methods on it to extend its functionality as you wish.
 type walletDao struct {
 	internalWalletDao
 }
 
 var (
-	// Wallet is globally public accessible object for table u_wallet operations.
+	// Wallet is globally public accessible object for table w_wallet operations.
 	Wallet = walletDao{
 		internal.NewWalletDao(),
 	}

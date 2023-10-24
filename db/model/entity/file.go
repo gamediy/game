@@ -12,7 +12,7 @@ import (
 type File struct {
 	Id        uint64      `json:"id"        description:""`
 	Url       string      `json:"url"       description:""`
-	Group     int         `json:"group"     description:""`
+	Group     int64       `json:"group"     description:""`
 	Status    int         `json:"status"    description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`

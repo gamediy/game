@@ -10,9 +10,11 @@ import (
 
 // Role is the golang structure for table role.
 type Role struct {
-	Id        int         `json:"id"        description:""`
-	Name      string      `json:"name"      description:"名称"`
-	Status    int         `json:"status"    description:"状态"`
+	Id        int64       `json:"id"        description:""`
+	Name      string      `json:"name"      description:""`
+	NameZh    string      `json:"nameZh"    description:""`
+	NameJa    string      `json:"nameJa"    description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`
+	Class     string      `json:"class"     description:""`
 }

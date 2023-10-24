@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// WalletDao is the data access object for table u_wallet.
+// WalletDao is the data access object for table w_wallet.
 type WalletDao struct {
 	table   string        // table is the underlying table name of the DAO.
 	group   string        // group is the database configuration group name of current DAO.
 	columns WalletColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// WalletColumns defines and stores column names for table u_wallet.
+// WalletColumns defines and stores column names for table w_wallet.
 type WalletColumns struct {
 	Uid           string //
 	Balance       string // 余额
@@ -35,7 +35,7 @@ type WalletColumns struct {
 	Pid           string //
 }
 
-// walletColumns holds the columns for table u_wallet.
+// walletColumns holds the columns for table w_wallet.
 var walletColumns = WalletColumns{
 	Uid:           "uid",
 	Balance:       "balance",
@@ -56,7 +56,7 @@ var walletColumns = WalletColumns{
 func NewWalletDao() *WalletDao {
 	return &WalletDao{
 		group:   "default",
-		table:   "u_wallet",
+		table:   "w_wallet",
 		columns: walletColumns,
 	}
 }

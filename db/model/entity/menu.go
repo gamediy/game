@@ -10,18 +10,16 @@ import (
 
 // Menu is the golang structure for table menu.
 type Menu struct {
-	Id         int         `json:"id"         description:""`
-	Pid        int         `json:"pid"        description:""`
-	Icon       string      `json:"icon"       description:""`
-	BgImg      string      `json:"bgImg"      description:""`
-	Name       string      `json:"name"       description:""`
-	Path       string      `json:"path"       description:""`
-	Sort       float64     `json:"sort"       description:""`
-	Type       int         `json:"type"       description:"1normal 2menu 3 button"`
-	Desc       string      `json:"desc"       description:""`
-	FilePath   string      `json:"filePath"   description:""`
-	Status     int         `json:"status"     description:""`
-	CreatedAt  *gtime.Time `json:"createdAt"  description:""`
-	UpdatedAt  *gtime.Time `json:"updatedAt"  description:""`
-	Permission string      `json:"permission" description:"权限标识"`
+	Id        int64       `json:"id"        description:""`
+	Pid       int64       `json:"pid"       description:""`
+	Name      string      `json:"name"      description:""`
+	NameZh    string      `json:"nameZh"    description:""`
+	NameJa    string      `json:"nameJa"    description:""`
+	Url       string      `json:"url"       description:""`
+	Desc      string      `json:"desc"      description:""`
+	Sort      float64     `json:"sort"      description:""`
+	Type      int64       `json:"type"      description:"1 group 2 menu"`
+	Status    int64       `json:"status"    description:""`
+	CreatedAt *gtime.Time `json:"createdAt" description:""`
+	UpdatedAt *gtime.Time `json:"updatedAt" description:""`
 }

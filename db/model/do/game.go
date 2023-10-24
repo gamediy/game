@@ -28,4 +28,6 @@ type Game struct {
 	RandomRange     interface{} // 随机范围
 	CloseSeconds    interface{} // 封盘秒数
 	PlayType        interface{} // 玩法类型
+	ThirdId         interface{} //
+	ThirdGameCode   interface{} //
 }

@@ -20,15 +20,13 @@ type RoleMenuDao struct {
 
 // RoleMenuColumns defines and stores column names for table s_role_menu.
 type RoleMenuColumns struct {
-	Id     string //
-	RoleId string //
+	Rid    string //
 	MenuId string //
 }
 
 // roleMenuColumns holds the columns for table s_role_menu.
 var roleMenuColumns = RoleMenuColumns{
-	Id:     "id",
-	RoleId: "role_id",
+	Rid:    "rid",
 	MenuId: "menu_id",
 }
 

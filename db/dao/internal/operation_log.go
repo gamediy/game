@@ -22,28 +22,30 @@ type OperationLogDao struct {
 type OperationLogColumns struct {
 	Id        string //
 	Uid       string //
-	Content   string //
-	Response  string //
+	Account   string //
+	RoleName  string //
+	Req       string //
+	Res       string //
 	Method    string //
 	Uri       string //
 	Ip        string //
 	UseTime   string //
 	CreatedAt string //
-	MenuName  string //
 }
 
 // operationLogColumns holds the columns for table s_operation_log.
 var operationLogColumns = OperationLogColumns{
 	Id:        "id",
 	Uid:       "uid",
-	Content:   "content",
-	Response:  "response",
+	Account:   "account",
+	RoleName:  "role_name",
+	Req:       "req",
+	Res:       "res",
 	Method:    "method",
 	Uri:       "uri",
 	Ip:        "ip",
 	UseTime:   "use_time",
 	CreatedAt: "created_at",
-	MenuName:  "menu_name",
 }
 
 // NewOperationLogDao creates and returns a new DAO object for table data access.

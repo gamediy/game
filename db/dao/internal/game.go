@@ -36,6 +36,8 @@ type GameColumns struct {
 	RandomRange     string // 随机范围
 	CloseSeconds    string // 封盘秒数
 	PlayType        string // 玩法类型
+	ThirdId         string //
+	ThirdGameCode   string //
 }
 
 // gameColumns holds the columns for table g_game.
@@ -56,6 +58,8 @@ var gameColumns = GameColumns{
 	RandomRange:     "random_range",
 	CloseSeconds:    "close_seconds",
 	PlayType:        "play_type",
+	ThirdId:         "third_id",
+	ThirdGameCode:   "third_game_code",
 }
 
 // NewGameDao creates and returns a new DAO object for table data access.

@@ -20,38 +20,34 @@ type MenuDao struct {
 
 // MenuColumns defines and stores column names for table s_menu.
 type MenuColumns struct {
-	Id         string //
-	Pid        string //
-	Icon       string //
-	BgImg      string //
-	Name       string //
-	Path       string //
-	Sort       string //
-	Type       string // 1normal 2menu 3 button
-	Desc       string //
-	FilePath   string //
-	Status     string //
-	CreatedAt  string //
-	UpdatedAt  string //
-	Permission string // 权限标识
+	Id        string //
+	Pid       string //
+	Name      string //
+	NameZh    string //
+	NameJa    string //
+	Url       string //
+	Desc      string //
+	Sort      string //
+	Type      string // 1 group 2 menu
+	Status    string //
+	CreatedAt string //
+	UpdatedAt string //
 }
 
 // menuColumns holds the columns for table s_menu.
 var menuColumns = MenuColumns{
-	Id:         "id",
-	Pid:        "pid",
-	Icon:       "icon",
-	BgImg:      "bg_img",
-	Name:       "name",
-	Path:       "path",
-	Sort:       "sort",
-	Type:       "type",
-	Desc:       "desc",
-	FilePath:   "file_path",
-	Status:     "status",
-	CreatedAt:  "created_at",
-	UpdatedAt:  "updated_at",
-	Permission: "permission",
+	Id:        "id",
+	Pid:       "pid",
+	Name:      "name",
+	NameZh:    "name_zh",
+	NameJa:    "name_ja",
+	Url:       "url",
+	Desc:      "desc",
+	Sort:      "sort",
+	Type:      "type",
+	Status:    "status",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
 }
 
 // NewMenuDao creates and returns a new DAO object for table data access.

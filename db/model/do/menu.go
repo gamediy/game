@@ -11,19 +11,17 @@ import (
 
 // Menu is the golang structure of table s_menu for DAO operations like Where/Data.
 type Menu struct {
-	g.Meta     `orm:"table:s_menu, do:true"`
-	Id         interface{} //
-	Pid        interface{} //
-	Icon       interface{} //
-	BgImg      interface{} //
-	Name       interface{} //
-	Path       interface{} //
-	Sort       interface{} //
-	Type       interface{} // 1normal 2menu 3 button
-	Desc       interface{} //
-	FilePath   interface{} //
-	Status     interface{} //
-	CreatedAt  *gtime.Time //
-	UpdatedAt  *gtime.Time //
-	Permission interface{} // 权限标识
+	g.Meta    `orm:"table:s_menu, do:true"`
+	Id        interface{} //
+	Pid       interface{} //
+	Name      interface{} //
+	NameZh    interface{} //
+	NameJa    interface{} //
+	Url       interface{} //
+	Desc      interface{} //
+	Sort      interface{} //
+	Type      interface{} // 1 group 2 menu
+	Status    interface{} //
+	CreatedAt *gtime.Time //
+	UpdatedAt *gtime.Time //
 }

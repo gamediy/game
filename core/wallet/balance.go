@@ -70,7 +70,7 @@ func (this *Balance) Update(ctx context.Context, fc func(ctx context.Context, tx
 }
 func (this *Balance) updateExec(ctx context.Context, fc func(ctx context.Context, tx gdb.TX) error) error {
 	this.Amount = math.Abs(float64(this.Amount))
-	realAmouont := int64(this.Amount * precision)
+	realAmouont := this.Amount
 	if this.Amount == 0 || realAmouont == 0 {
 		return fmt.Errorf("error amount")
 	}

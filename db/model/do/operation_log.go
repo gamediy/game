@@ -14,12 +14,13 @@ type OperationLog struct {
 	g.Meta    `orm:"table:s_operation_log, do:true"`
 	Id        interface{} //
 	Uid       interface{} //
-	Content   interface{} //
-	Response  interface{} //
+	Account   interface{} //
+	RoleName  interface{} //
+	Req       interface{} //
+	Res       interface{} //
 	Method    interface{} //
 	Uri       interface{} //
 	Ip        interface{} //
 	UseTime   interface{} //
 	CreatedAt *gtime.Time //
-	MenuName  interface{} //
 }

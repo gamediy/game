@@ -13,8 +13,10 @@ import (
 type Role struct {
 	g.Meta    `orm:"table:s_role, do:true"`
 	Id        interface{} //
-	Name      interface{} // 名称
-	Status    interface{} // 状态
+	Name      interface{} //
+	NameZh    interface{} //
+	NameJa    interface{} //
 	CreatedAt *gtime.Time //
 	UpdatedAt *gtime.Time //
+	Class     interface{} //
 }

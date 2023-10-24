@@ -27,6 +27,7 @@ var (
 			user.Register(s)
 			withdraw.Register(s)
 			deposit.Register(s)
+
 			s.Run()
 			return
 		},
