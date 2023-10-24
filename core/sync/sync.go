@@ -3,14 +3,11 @@ package sync
 import (
 	"context"
 	"encoding/json"
+	"game/model"
 	"game/utility/utils/xetcd"
 )
 
-type SyncInfo struct {
-	WsMessage interface{}
-}
-
-func (s *SyncInfo) Put(ctx context.Context) {
-	marshal, _ := json.Marshal(s)
+func Put(ctx context.Context, msg model.WsMessage) {
+	marshal, _ := json.Marshal(msg)
 	xetcd.Client.Put(ctx, "/sync/", string(marshal))
 }
