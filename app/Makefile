@@ -15,14 +15,43 @@ APP_ARGS = --gf.gcfg.file=config-dev.yaml
 # 默认目标，启动所有三个应用程序
 all: start-app1 start-app2 start-app3
 
+# 用于检查应用程序是否已经在运行
+APP1_PIDFILE = app1.pid
+APP2_PIDFILE = app2.pid
+APP3_PIDFILE = app3.pid
+
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
-	nohup $(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 &
+	@if [ ! -e $(APP1_PIDFILE) ]; then \
+		$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 & \
+		echo $$! > $(APP1_PIDFILE); \
+	fi
 
 # 启动应用程序 2
 start-app2: $(APP2_SOURCE_FILES)
-	nohup $(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 &
+	@if [ ! -e $(APP2_PIDFILE) ]; then \
+		$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 & \
+		echo $$! > $(APP2_PIDFILE); \
+	fi
 
 # 启动应用程序 3
 start-app3: $(APP3_SOURCE_FILES)
-	nohup $(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 &
+	@if [ ! -e $(APP3_PIDFILE) ]; then \
+		$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 & \
+		echo $$! > $(APP3_PIDFILE); \
+	fi
+
+# 停止应用程序
+stop:
+	@if [ -e $(APP1_PIDFILE) ]; then \
+		kill `cat $(APP1_PIDFILE)`; \
+		rm -f $(APP1_PIDFILE); \
+	fi
+	@if [ -e $(APP2_PIDFILE) ]; then \
+		kill `cat $(APP2_PIDFILE)`; \
+		rm -f $(APP2_PIDFILE); \
+	fi
+	@if [ -e $(APP3_PIDFILE) ]; then \
+		kill `cat $(APP3_PIDFILE)`; \
+		rm -f $(APP3_PIDFILE); \
+	fi
