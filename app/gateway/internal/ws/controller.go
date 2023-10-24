@@ -4,7 +4,8 @@ import (
 	"context"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/user/api/user/user"
-	"game/consts/ws_consts"
+	"game/consts/event/user_event/wallet_event"
+
 	"game/model"
 )
 
@@ -13,7 +14,7 @@ func SendWallet(ctx context.Context, client *Client) {
 		Uid: client.UserInfo.Uid,
 	})
 	msg := model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.Wallet),
+		Event: model.WrapEventResponse(wallet_event.Wallet),
 		Body:  model.WrapMessage(wallet, err),
 	}
 	client.WriteChn <- &msg

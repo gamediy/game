@@ -1,37 +1,41 @@
-package ws
+package user_controller
 
 import (
 	"context"
 	"fmt"
 	"game/app/gateway/internal/svc/user_svc"
+	"game/app/gateway/internal/ws"
 	"game/app/user/api/user/user"
-	"game/consts/ws_consts"
+	"game/consts/event/user_event"
+	"game/consts/event/user_event/mailbox_event"
+	"game/consts/event/user_event/wallet_event"
+
 	"game/model"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
 func UserControllerInit() {
-	Ctrl[ws_consts.Login] = login
-	Ctrl[ws_consts.Heartbeat] = heartbeat
-	Ctrl[ws_consts.Wallet] = wallet
-	Ctrl[ws_consts.DepositAmountItems] = depositAmountItems
-	Ctrl[ws_consts.ListMailBox] = listMailBox
-	Ctrl[ws_consts.MailBoxTotal] = countMailBoxTotal
+	ws.Ctrl[user_event.Login] = login
+	ws.Ctrl[user_event.Heartbeat] = heartbeat
+	ws.Ctrl[wallet_event.Wallet] = wallet
+	ws.Ctrl[wallet_event.DepositAmountItems] = DepositAmountItems
+	ws.Ctrl[mailbox_event.ListMailBox] = listMailBox
+	ws.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
 }
 
-func countMailBoxTotal(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+func countMailBoxTotal(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	read, err := user_svc.Service.CountMailBoxUnRead(ctx, wsclient.UserInfo.Uid)
 	if err != nil {
 		return nil, err
 	}
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.MailBoxTotal),
+		Event: model.WrapEventResponse(mailbox_event.MailBoxTotal),
 		Body:  model.WrapMessage(read, nil),
 	}, nil
 }
 
-func listMailBox(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+func listMailBox(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	req := user.ListMailBoxReq{}
 	if query == nil {
 		query = g.Map{"size": 1, "page": "10"}
@@ -46,27 +50,27 @@ func listMailBox(ctx context.Context, wsclient *Client, query g.Map) (*model.WsM
 	}
 
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.ListMailBox),
+		Event: model.WrapEventResponse(mailbox_event.ListMailBox),
 		Body:  model.WrapMessage(res, nil),
 	}, nil
 }
 
-func depositAmountItems(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+func depositAmountItems(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	items, err := user_svc.Service.ListDepositAmountItems(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.DepositAmountItems),
+		Event: model.WrapEventResponse(wallet_event.DepositAmountItems),
 		Body:  model.WrapMessage(items, nil),
 	}, nil
 }
 
 // 登录
-func login(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+func login(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 
-	Manager.AddUsers(wsclient)
+	ws.Manager.AddUsers(wsclient)
 	wallet, _ := user_svc.Service.Wallet(ctx, &user.WalletRequest{
 		Uid: wsclient.UserInfo.Uid,
 	})
@@ -78,32 +82,32 @@ func login(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage
 		Wallet:   wallet,
 	}
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.Login),
+		Event: model.WrapEventResponse(user_event.Login),
 		Body:  model.WrapMessage(data, nil),
 	}, nil
 }
 
 // 心跳
 
-func heartbeat(ctx context.Context, client *Client, query g.Map) (*model.WsMessage, error) {
+func heartbeat(ctx context.Context, client *ws.Client, query g.Map) (*model.WsMessage, error) {
 
 	fmt.Println("心跳设置")
 	client.Heartbeat()
 	return &model.WsMessage{
-		Event: ws_consts.Heartbeat,
+		Event: user_event.Heartbeat,
 		Body:  model.WrapMessage("ping", nil),
 	}, nil
 
 }
 
 // 钱包
-func wallet(ctx context.Context, client *Client, query g.Map) (*model.WsMessage, error) {
+func wallet(ctx context.Context, client *ws.Client, query g.Map) (*model.WsMessage, error) {
 
 	wallet, err := user_svc.Service.Wallet(ctx, &user.WalletRequest{
 		Uid: client.UserInfo.Uid,
 	})
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(ws_consts.Wallet),
+		Event: model.WrapEventResponse(wallet_event.Wallet),
 		Body:  model.WrapMessage(wallet, err),
 	}, nil
 }

@@ -3,6 +3,7 @@ package ws
 import (
 	"context"
 	"encoding/json"
+	"game/app/gateway/internal/ws/user_controller"
 	"game/model"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -16,7 +17,7 @@ var (
 func MakeController() {
 
 	Ctrl = make(map[string]func(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error), 100)
-	UserControllerInit()
+	user_controller.UserControllerInit()
 	SlotControllerInit()
 }
 func Router(ctx context.Context, client *Client, msg []byte) {
