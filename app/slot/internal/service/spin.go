@@ -42,9 +42,9 @@ func Spin(ctx context.Context, request *slot.SpinReq) (res *slot.SpinRes, err er
 	}
 	balance := wallet.Balance{}
 	balance.Uid = request.Uid
-	balance.BalanceCode = wallet.Bet
+	balance.TransCode = wallet.Bet
 	balance.Amount = request.Amount
-	balance.OrderNoRelation = xuuid.GetsnowflakeUUID().Int64()
+	balance.OrderNoRelation = xuuid.GenSnowflakeUUID().Int64()
 	balance.Note = fmt.Sprintf("Spin %d", game.Code)
 	err = balance.Update(ctx, func(ctx context.Context, tx gdb.TX) error {
 		f, ok := logic.GameSpin[int32(game.PlayType)]
@@ -104,7 +104,7 @@ func CheckWon(ctx context.Context, req *slot.CheckWonReq) (res *slot.CheckWonRes
 
 		balance := wallet.Balance{}
 		balance.Uid = req.Uid
-		balance.BalanceCode = wallet.Profit
+		balance.TransCode = wallet.Profit
 		balance.Note = "Spin won"
 		balance.Amount = order.Profit + order.Amount
 		err := balance.Update(ctx, func(ctx context.Context, tx gdb.TX) error {

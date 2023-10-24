@@ -11,44 +11,39 @@ import (
 )
 
 type Report struct {
-	User              entity.User
-	Amount            float64
-	BalanceCodeEntity entity.BalanceCode
+	User      entity.User
+	Amount    float64
+	TransType *entity.TransactionType
 }
 
-func (this *Report) PutReport() error {
-	err := retry.Do(func() error {
-		date := gtime.Now().Format("Y-m-d")
-		ctx := context.TODO()
-		entity := entity.ReportWalletDay{}
-		dao.ReportWalletDay.Ctx(ctx).Where("date=? and uid=? and balance_code=?", date, this.User.Id, this.BalanceCodeEntity.Code).Scan(&entity)
-		if entity.Id == 0 {
-			entity.Amount = this.Amount
-			entity.Id = xuuid.GetsnowflakeUUID().Int64()
-			entity.BalanceCode = this.BalanceCodeEntity.Code
-			entity.ParentPath = this.User.ParentPath
-			entity.Pid = this.User.Pid
-			entity.Account = this.User.Account
-			entity.Uid = this.User.Id
-			entity.Count = 1
-			entity.Title = this.BalanceCodeEntity.Title
-			entity.Date = gtime.NewFromStr(date)
-			_, err := dao.ReportWalletDay.Ctx(ctx).Insert(&entity)
-			if err != nil {
+func (m *Report) Exec() error {
+	return retry.Do(func() error {
+		var (
+			log   entity.WalletReportDay
+			today = gtime.Now().Format("Y-m-d")
+			ctx   = context.Background()
+		)
+		_ = dao.WalletReportDay.Ctx(ctx).Scan(&log, "date = ? and uid = ? and trans_code = ?", today, m.User.Id, m.TransType.Code)
+		if log.Id == 0 {
+			log.Uid = m.User.Id
+			log.Account = m.User.Account
+			log.TransCode = m.TransType.Code
+			log.Date = gtime.NewFromStr(today)
+			log.Count = 1
+			log.Title = m.TransType.Title
+			log.Amount = m.Amount
+			log.Id = xuuid.GenSnowflakeUUID().Int64()
+			if _, err := dao.WalletReportDay.Ctx(ctx).Insert(log); err != nil {
 				g.Log().Error(ctx, err)
 				return err
 			}
 		} else {
-			entity.Amount += this.Amount
-			entity.Count += 1
-			_, err := dao.ReportWalletDay.Ctx(ctx).Update(&entity, dao.ReportWalletDay.Columns().Id, entity.Id)
-			if err != nil {
-				g.Log().Error(ctx, err)
+			log.Amount += m.Amount
+			log.Count += 1
+			if _, err := dao.WalletReportDay.Ctx(ctx).Update(&log, "id", log.Id); err != nil {
 				return err
 			}
 		}
 		return nil
 	}, retry.Attempts(3))
-	return err
-
 }

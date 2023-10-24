@@ -6,7 +6,7 @@ import (
 
 const base34Digits = "123456789qwertyuipasdfghjklzxcvbnm"
 
-func GetsnowflakeUUID() snowflake.ID {
+func GenSnowflakeUUID() snowflake.ID {
 	node, err := snowflake.NewNode(1)
 	if err != nil {
 		return 0
