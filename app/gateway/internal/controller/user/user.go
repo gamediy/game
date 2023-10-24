@@ -17,7 +17,7 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-func init() {
+func UserControllerInit() {
 	controller.Ctrl[user_event.Login] = login
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
 	controller.Ctrl[wallet_event.Wallet] = wallet

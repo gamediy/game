@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"game/app/gateway/internal/controller"
+	user2 "game/app/gateway/internal/controller/user"
 	"game/app/gateway/internal/svc/slot_svc"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
@@ -38,6 +39,7 @@ var (
 			ws.StartWebSocket(ctx)
 
 			sync.Router(ctx)
+			user2.UserControllerInit()
 			s.BindMiddlewareDefault(func(r *ghttp.Request) {
 				r.Response.CORSDefault()
 				r.Middleware.Next()
