@@ -3,10 +3,9 @@ package deposit
 import (
 	"context"
 	"game/app/user/api/deposit/deposit"
+	"game/app/user/internal/service/user_svc"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 type Controller struct {
@@ -18,5 +17,6 @@ func Register(s *grpcx.GrpcServer) {
 }
 
 func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	items := user_svc.ListDepositAmountItems(ctx)
+	return items, nil
 }

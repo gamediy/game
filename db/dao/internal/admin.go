@@ -21,25 +21,27 @@ type AdminDao struct {
 // AdminColumns defines and stores column names for table s_admin.
 type AdminColumns struct {
 	Id        string //
-	Rid       string // 角色ID
-	Uname     string //
-	Pwd       string //
+	Rid       string //
+	Account   string //
+	Pass      string //
 	Nickname  string //
+	Desc      string //
 	Email     string //
 	Phone     string //
 	Status    string //
 	CreatedAt string //
 	UpdatedAt string //
-	KeySecret string //
+	KeySecret string // Google-Authenticator key secret
 }
 
 // adminColumns holds the columns for table s_admin.
 var adminColumns = AdminColumns{
 	Id:        "id",
 	Rid:       "rid",
-	Uname:     "uname",
-	Pwd:       "pwd",
+	Account:   "account",
+	Pass:      "pass",
 	Nickname:  "nickname",
+	Desc:      "desc",
 	Email:     "email",
 	Phone:     "phone",
 	Status:    "status",

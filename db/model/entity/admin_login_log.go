@@ -10,8 +10,8 @@ import (
 
 // AdminLoginLog is the golang structure for table admin_login_log.
 type AdminLoginLog struct {
-	Id        int         `json:"id"        description:""`
-	Uid       int         `json:"uid"       description:""`
+	Id        int64       `json:"id"        description:""`
+	Uid       int64       `json:"uid"       description:""`
 	Account   string      `json:"account"   description:""`
 	Ip        string      `json:"ip"        description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`

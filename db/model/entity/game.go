@@ -26,4 +26,6 @@ type Game struct {
 	RandomRange     int         `json:"randomRange"     description:"随机范围"`
 	CloseSeconds    int         `json:"closeSeconds"    description:"封盘秒数"`
 	PlayType        int         `json:"playType"        description:"玩法类型"`
+	ThirdId         int         `json:"thirdId"         description:""`
+	ThirdGameCode   int         `json:"thirdGameCode"   description:""`
 }

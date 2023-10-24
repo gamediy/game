@@ -2,6 +2,7 @@ package user_svc
 
 import (
 	"context"
+	"game/app/user/api/deposit/deposit"
 	"game/app/user/api/user/user"
 	"game/app/user/api/withdraw/withdraw"
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
@@ -17,12 +18,14 @@ var (
 	conn           *grpc.ClientConn
 	userClient     user.UserServiceClient
 	withdrawClient withdraw.WithdrawServiceClient
+	depositClient  deposit.DepositSvcClient
 )
 
 func UserClientInit() {
 	conn = grpcx.Client.MustNewGrpcClientConn("user_svc", grpcx.Balancer.WithRandom())
 	userClient = user.NewUserServiceClient(conn)
 	withdrawClient = withdraw.NewWithdrawServiceClient(conn)
+	depositClient = deposit.NewDepositSvcClient(conn)
 }
 
 type userSvc struct {

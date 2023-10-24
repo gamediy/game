@@ -9,9 +9,9 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Wallet is the golang structure of table u_wallet for DAO operations like Where/Data.
+// Wallet is the golang structure of table w_wallet for DAO operations like Where/Data.
 type Wallet struct {
-	g.Meta        `orm:"table:u_wallet, do:true"`
+	g.Meta        `orm:"table:w_wallet, do:true"`
 	Uid           interface{} //
 	Balance       interface{} // 余额
 	TotalBet      interface{} // 总投注

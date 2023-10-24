@@ -13,14 +13,15 @@ import (
 type Admin struct {
 	g.Meta    `orm:"table:s_admin, do:true"`
 	Id        interface{} //
-	Rid       interface{} // 角色ID
-	Uname     interface{} //
-	Pwd       interface{} //
+	Rid       interface{} //
+	Account   interface{} //
+	Pass      interface{} //
 	Nickname  interface{} //
+	Desc      interface{} //
 	Email     interface{} //
 	Phone     interface{} //
 	Status    interface{} //
 	CreatedAt *gtime.Time //
 	UpdatedAt *gtime.Time //
-	KeySecret interface{} //
+	KeySecret interface{} // Google-Authenticator key secret
 }

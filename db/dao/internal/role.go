@@ -21,19 +21,23 @@ type RoleDao struct {
 // RoleColumns defines and stores column names for table s_role.
 type RoleColumns struct {
 	Id        string //
-	Name      string // 名称
-	Status    string // 状态
+	Name      string //
+	NameZh    string //
+	NameJa    string //
 	CreatedAt string //
 	UpdatedAt string //
+	Class     string //
 }
 
 // roleColumns holds the columns for table s_role.
 var roleColumns = RoleColumns{
 	Id:        "id",
 	Name:      "name",
-	Status:    "status",
+	NameZh:    "name_zh",
+	NameJa:    "name_ja",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",
+	Class:     "class",
 }
 
 // NewRoleDao creates and returns a new DAO object for table data access.
