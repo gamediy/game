@@ -76,6 +76,12 @@ message MailBox{
   string ReadStart = 6;
   int64 Read = 7;
 }
+message MailBoxTotalUnReadReq{
+  int64 Uid = 1;
+}
+message MailBoxTotalUnReadRes{
+  int64 Num = 1;
+}
 
 
 service UserService{
@@ -84,4 +90,5 @@ service UserService{
   rpc UserInfo(UserInfoRequest) returns(UserInfoReply);
   rpc Wallet(WalletRequest) returns(WalletReply);
   rpc ListMailBox(ListMailBoxReq)returns(ListMailBoxRes);
+  rpc CountMailBoxTotalUnRead(MailBoxTotalUnReadReq)returns(MailBoxTotalUnReadRes);
 }

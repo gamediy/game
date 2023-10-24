@@ -4,6 +4,7 @@ import (
 	"context"
 	"game/app/user/api/user/user"
 	"game/app/user/internal/service/user_svc"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -63,4 +64,8 @@ func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *us
 
 func (*Controller) ListMailBox(ctx context.Context, req *user.ListMailBoxReq) (res *user.ListMailBoxRes, err error) {
 	return user_svc.ListMailBox(ctx, req)
+}
+
+func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *user.MailBoxTotalUnReadReq) (res *user.MailBoxTotalUnReadRes, err error) {
+	return user_svc.CountMailBoxTotalUnRead(ctx, req)
 }

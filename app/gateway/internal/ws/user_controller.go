@@ -17,6 +17,18 @@ func UserControllerInit() {
 	Ctrl[ws_consts.Wallet] = wallet
 	Ctrl[ws_consts.DepositAmountItems] = depositAmountItems
 	Ctrl[ws_consts.ListMailBox] = listMailBox
+	Ctrl[ws_consts.MailBoxTotal] = countMailBoxTotal
+}
+
+func countMailBoxTotal(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+	read, err := user_svc.Service.CountMailBoxUnRead(ctx, wsclient.UserInfo.Uid)
+	if err != nil {
+		return nil, err
+	}
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(ws_consts.MailBoxTotal),
+		Body:  model.WrapMessage(read, nil),
+	}, nil
 }
 
 func listMailBox(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
