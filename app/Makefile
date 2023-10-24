@@ -15,31 +15,18 @@ APP_ARGS = --gf.gcfg.file=config-dev.yaml
 # 默认目标，启动所有三个应用程序
 all: start-app1 start-app2 start-app3
 
-# 用于检查应用程序是否已经在运行
-APP1_PIDFILE = app1.pid
-APP2_PIDFILE = app2.pid
-APP3_PIDFILE = app3.pid
-
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
-	@if [ ! -e $(APP1_PIDFILE) ]; then \
-		$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 & \
-		echo $$! > $(APP1_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP1_SOURCE_FILES) $(APP_ARGS) > app1.log 2>&1 &
 
 # 启动应用程序 2
 start-app2: $(APP2_SOURCE_FILES)
-	@if [ ! -e $(APP2_PIDFILE) ]; then \
-		$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 & \
-		echo $$! > $(APP2_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 &
 
 # 启动应用程序 3
 start-app3: $(APP3_SOURCE_FILES)
-	@if [ ! -e $(APP3_PIDFILE) ]; then \
-		$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 & \
-		echo $$! > $(APP3_PIDFILE); \
-	fi
+	@$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) >app3.log 2>&1 &
+
 # 端口列表
 PORTS := 5000 5001 5002
 
