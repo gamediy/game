@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+	"game/app/user/internal/controller/deposit"
 	"game/app/user/internal/controller/withdraw"
 
 	"game/app/user/internal/controller/user"
@@ -25,6 +26,7 @@ var (
 			s := grpcx.Server.New()
 			user.Register(s)
 			withdraw.Register(s)
+			deposit.Register(s)
 			s.Run()
 			return
 		},

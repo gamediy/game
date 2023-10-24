@@ -44,7 +44,7 @@ func TestRegister_Exec(t *testing.T) {
 				RealName:    tt.fields.RealName,
 				ClientAgent: tt.fields.ClientAgent,
 			}
-			if err := s.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
+			if _, err := s.Exec(tt.args.ctx); (err != nil) != tt.wantErr {
 				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})

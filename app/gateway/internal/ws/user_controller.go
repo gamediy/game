@@ -14,6 +14,19 @@ func UserControllerInit() {
 	Ctrl[ws_consts.Login] = login
 	Ctrl[ws_consts.Heartbeat] = heartbeat
 	Ctrl[ws_consts.Wallet] = wallet
+	Ctrl[ws_consts.DepositAmountItems] = depositAmountItems
+}
+
+func depositAmountItems(ctx context.Context, wsclient *Client, query g.Map) (*model.WsMessage, error) {
+	items, err := user_svc.Service.ListDepositAmountItems(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(ws_consts.DepositAmountItems),
+		Body:  model.WrapMessage(items, nil),
+	}, nil
 }
 
 // 登录
