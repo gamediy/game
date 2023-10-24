@@ -44,14 +44,14 @@ start-app3: $(APP3_SOURCE_FILES)
 # 停止应用程序
 stop:
 	@if [ -e $(APP1_PIDFILE) ]; then \
-		kill `cat $(APP1_PIDFILE)`; \
+		kill -9 `cat $(APP1_PIDFILE)`; \
 		rm -f $(APP1_PIDFILE); \
 	fi
 	@if [ -e $(APP2_PIDFILE) ]; then \
-		kill `cat $(APP2_PIDFILE)`; \
+		kill -9 `cat $(APP2_PIDFILE)`; \
 		rm -f $(APP2_PIDFILE); \
 	fi
 	@if [ -e $(APP3_PIDFILE) ]; then \
-		kill `cat $(APP3_PIDFILE)`; \
+		kill -9 `cat $(APP3_PIDFILE)`; \
 		rm -f $(APP3_PIDFILE); \
 	fi
