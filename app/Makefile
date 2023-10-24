@@ -44,14 +44,13 @@ start-app3: $(APP3_SOURCE_FILES)
 PORTS = 5000 5001 5002
 # 停止应用程序
 stop:
-	@echo "Stopping programs on ports 5000, 5001, and 5002..."
-	@for port in 5000 5001 5002; do \
-        pid=$$(lsof -t -i :$$port); \
-        if [ -n "$$pid" ]; then \
-            echo "Stopping program on port $$port (Process ID: $$pid)..."; \
-            kill $$pid; \
-            echo "Program on port $$port has been stopped."; \
-        else \
-            echo "No running program found on port $$port."; \
-        fi \
-    done
+	@for PORT in $(PORTS); do \
+		PID=$( lsof -ti :$$PORT); \
+		echo "$$PID"
+		if [ -n "$$PID" ]; then \
+			kill -9 "$$PID"; \
+			echo "Process with PID $$PID on port $$PORT has been stopped."; \
+		else \
+			echo "No process found listening on port $$PORT."; \
+		fi; \
+	done
