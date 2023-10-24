@@ -1,42 +1,41 @@
-
-syntax="proto3";
+syntax = "proto3";
 
 option go_package = ".;user";
 
 package user;
 
 message LoginRequest{
-  string account=1;
-  string password=2;
-  string clientAgent=3;
-  string deviceId=4;
-  string xid=5;
-  string ip=6;
+  string account = 1;
+  string password = 2;
+  string clientAgent = 3;
+  string deviceId = 4;
+  string xid = 5;
+  string ip = 6;
 
 }
 
 message RegRequest{
-  string account=1;
-  string password=2;
-  string ip=3;
-  string xid=4;
-  string phone=5;
-  string email=6;
-  string clientAgent=7;
-  string deviceId=8;
+  string account = 1;
+  string password = 2;
+  string ip = 3;
+  string xid = 4;
+  string phone = 5;
+  string email = 6;
+  string clientAgent = 7;
+  string deviceId = 8;
 }
 message RegReply{
 
-  string token=1;
+  string token = 1;
 
 }
 message LoginReply{
 
-  string token=1;
+  string token = 1;
 
 }
 message UserInfoRequest{
-  string token=1;
+  string token = 1;
 }
 message UserInfoReply{
   int32 uid = 1;
@@ -49,13 +48,13 @@ message UserInfoReply{
 }
 
 message WalletRequest{
-  int64 uid=1;
+  int64 uid = 1;
 }
 
 message WalletReply{
-  double  balance=1;
-  double  freeze=2;
-  double  totalProfit=3;
+  double  balance = 1;
+  double  freeze = 2;
+  double  totalProfit = 3;
 }
 message ListMailBoxReq {
   int64 Page = 1;
@@ -75,6 +74,7 @@ message MailBox{
   int64 Receiver = 4;
   string ReadTime = 5;
   string ReadStart = 6;
+  int64 Read = 7;
 }
 
 
