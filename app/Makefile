@@ -40,18 +40,16 @@ start-app3: $(APP3_SOURCE_FILES)
 		$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) > app3.log 2>&1 & \
 		echo $$! > $(APP3_PIDFILE); \
 	fi
-
+# 端口列表
+PORTS = 5000 5001 5002
 # 停止应用程序
 stop:
-	@if [ -e $(APP1_PIDFILE) ]; then \
-		kill -9 `cat $(APP1_PIDFILE)`; \
-		rm -f $(APP1_PIDFILE); \
-	fi
-	@if [ -e $(APP2_PIDFILE) ]; then \
-		kill -9 `cat $(APP2_PIDFILE)`; \
-		rm -f $(APP2_PIDFILE); \
-	fi
-	@if [ -e $(APP3_PIDFILE) ]; then \
-		kill -9 `cat $(APP3_PIDFILE)`; \
-		rm -f $(APP3_PIDFILE); \
-	fi
+	@for PORT in $(PORTS); do \
+		PID=$(shell lsof -ti :$$PORT); \
+		if [ -n "$$PID" ]; then \
+			kill -9 "$$PID"; \
+			echo "Process with PID $$PID on port $$PORT has been stopped."; \
+		else \
+			echo "No process found listening on port $$PORT."; \
+		fi; \
+	done
