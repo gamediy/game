@@ -41,16 +41,17 @@ start-app3: $(APP3_SOURCE_FILES)
 		echo $$! > $(APP3_PIDFILE); \
 	fi
 # 端口列表
-PORTS = 5000 5001 5002
-# 停止应用程序
+PORTS := 5000 5001 5002
+
 stop:
-	@for PORT in $(PORTS); do \
-		PID=$( lsof -ti :$$PORT); \
-		echo "$$PID"
-		if [ -n "$$PID" ]; then \
-			kill -9 "$$PID"; \
-			echo "Process with PID $$PID on port $$PORT has been stopped."; \
-		else \
-			echo "No process found listening on port $$PORT."; \
-		fi; \
-	done
+	@echo "Stopping programs on ports $(PORTS)..."
+	@for port in $(PORTS); do \
+        pid=$$(lsof -t -i :$$port); \
+        if [ -n "$$pid" ]; then \
+            echo "Stopping program on port $$port (Process ID: $$pid)..."; \
+            kill $$pid; \
+            echo "Program on port $$port has been stopped."; \
+        else \
+            echo "No running program found on port $$port."; \
+        fi \
+    done
