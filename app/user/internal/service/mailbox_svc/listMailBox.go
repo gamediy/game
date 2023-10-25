@@ -12,6 +12,9 @@ func ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (*mailbox.Lis
 		data  = make([]*mailbox.MailBox, 0)
 	)
 	db := dao.Mailbox.Ctx(ctx)
+	if req.Type != "" {
+		db = db.Where("type", req.Type)
+	}
 	if req.Receiver != "" {
 		db = db.Where("receiver", req.Receiver)
 	}

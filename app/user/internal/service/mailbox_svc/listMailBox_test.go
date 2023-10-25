@@ -3,6 +3,7 @@ package mailbox_svc
 import (
 	"context"
 	"game/app/user/api/user/mailbox"
+	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
@@ -18,7 +19,10 @@ func TestListMailBox(t *testing.T) {
 		want    *mailbox.ListMailBoxRes
 		wantErr bool
 	}{
-		{args: args{ctx: context.TODO(), req: &mailbox.ListMailBoxReq{Page: 1, Size: 1}}},
+		{args: args{ctx: context.TODO(), req: &mailbox.ListMailBoxReq{
+			Page: 1, Size: 1,
+			Type: "1",
+		}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -8,6 +8,7 @@ message ListMailBoxReq {
   int64 Size = 2;
   string Receiver = 3;
   string Read = 4;
+  string type = 5; // 0 普通 1 赠送
 }
 message ListMailBoxRes{
   int64 Total = 1;
