@@ -13,7 +13,7 @@ func Test_userSvc_List(t *testing.T) {
 	xetcd.InitEtcd(ctx)
 	grpcx.Resolver.Register(etcd.NewWithClient(xetcd.Client))
 	UserClientInit()
-	_, err := Service.ListDepositAmountItems(ctx)
+	_, err := Service.ListDepositAmountItems(ctx, 0)
 	if err != nil {
 		t.Fatal(err)
 	}

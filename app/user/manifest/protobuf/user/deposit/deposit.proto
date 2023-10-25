@@ -2,9 +2,11 @@ syntax = "proto3";
 option go_package = ".;deposit";
 package deposit;
 
-message DepositAmountItemsReq {}
+message DepositAmountItemsReq {
+  int64 uid = 1;
+}
 
-message UAmountItemEntry {
+message AmountItem {
   int64 Id = 1;
   string Title = 2;
   int64 Status = 3;
@@ -24,8 +26,14 @@ message UAmountItemEntry {
   string updated_at = 17;
   string address = 18;
 }
+message depositBox {
+  string title = 1;
+  int64  categoryId = 2;
+  repeated AmountItem item = 3;
+}
 message DepositAmountItemsRes {
-  repeated UAmountItemEntry list = 1;
+  string tips = 1;
+  repeated depositBox list = 2;
 }
 service DepositSvc{
   rpc ListDepositAmountItems(DepositAmountItemsReq) returns(DepositAmountItemsRes);

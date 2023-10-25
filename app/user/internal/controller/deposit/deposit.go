@@ -17,6 +17,6 @@ func Register(s *grpcx.GrpcServer) {
 }
 
 func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
-	items := deposit_svc.ListDepositAmountItems(ctx)
+	items, _ := deposit_svc.ListDepositAmountItems(ctx, req.Uid)
 	return items, nil
 }

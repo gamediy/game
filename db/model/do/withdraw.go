@@ -9,9 +9,9 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Withdraw is the golang structure of table u_withdraw for DAO operations like Where/Data.
+// Withdraw is the golang structure of table w_withdraw for DAO operations like Where/Data.
 type Withdraw struct {
-	g.Meta        `orm:"table:u_withdraw, do:true"`
+	g.Meta        `orm:"table:w_withdraw, do:true"`
 	OrderNo       interface{} // 订单号
 	Account       interface{} // 账号
 	Uid           interface{} // UID

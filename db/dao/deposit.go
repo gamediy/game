@@ -11,14 +11,14 @@ import (
 // internalDepositDao is internal type for wrapping internal DAO implements.
 type internalDepositDao = *internal.DepositDao
 
-// depositDao is the data access object for table u_deposit.
+// depositDao is the data access object for table w_deposit.
 // You can define custom methods on it to extend its functionality as you wish.
 type depositDao struct {
 	internalDepositDao
 }
 
 var (
-	// Deposit is globally public accessible object for table u_deposit operations.
+	// Deposit is globally public accessible object for table w_deposit operations.
 	Deposit = depositDao{
 		internal.NewDepositDao(),
 	}

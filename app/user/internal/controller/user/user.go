@@ -2,6 +2,8 @@ package user
 
 import (
 	"context"
+	"game/app/user/api/user/deposit"
+	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
@@ -71,5 +73,17 @@ func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res
 }
 
 func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (res *mailbox.ListMailBoxRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *mailbox.MailBoxTotalUnReadReq) (res *mailbox.MailBoxTotalUnReadRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

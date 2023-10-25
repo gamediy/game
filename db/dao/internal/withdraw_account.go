@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// WithdrawAccountDao is the data access object for table u_withdraw_account.
+// WithdrawAccountDao is the data access object for table w_withdraw_account.
 type WithdrawAccountDao struct {
 	table   string                 // table is the underlying table name of the DAO.
 	group   string                 // group is the database configuration group name of current DAO.
 	columns WithdrawAccountColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// WithdrawAccountColumns defines and stores column names for table u_withdraw_account.
+// WithdrawAccountColumns defines and stores column names for table w_withdraw_account.
 type WithdrawAccountColumns struct {
 	Id       string //
 	Net      string //
@@ -32,7 +32,7 @@ type WithdrawAccountColumns struct {
 	Title    string //
 }
 
-// withdrawAccountColumns holds the columns for table u_withdraw_account.
+// withdrawAccountColumns holds the columns for table w_withdraw_account.
 var withdrawAccountColumns = WithdrawAccountColumns{
 	Id:       "id",
 	Net:      "net",
@@ -50,7 +50,7 @@ var withdrawAccountColumns = WithdrawAccountColumns{
 func NewWithdrawAccountDao() *WithdrawAccountDao {
 	return &WithdrawAccountDao{
 		group:   "default",
-		table:   "u_withdraw_account",
+		table:   "w_withdraw_account",
 		columns: withdrawAccountColumns,
 	}
 }

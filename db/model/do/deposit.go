@@ -9,9 +9,9 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Deposit is the golang structure of table u_deposit for DAO operations like Where/Data.
+// Deposit is the golang structure of table w_deposit for DAO operations like Where/Data.
 type Deposit struct {
-	g.Meta          `orm:"table:u_deposit, do:true"`
+	g.Meta          `orm:"table:w_deposit, do:true"`
 	OrderNo         interface{} // 订单号
 	Account         interface{} // 账号
 	Uid             interface{} // UID

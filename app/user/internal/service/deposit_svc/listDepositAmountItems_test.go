@@ -3,6 +3,7 @@ package deposit_svc
 import (
 	"context"
 	"game/app/user/api/user/deposit"
+	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
@@ -21,7 +22,10 @@ func TestListDepositAmountItems(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := ListDepositAmountItems(tt.args.ctx)
+			got, err := ListDepositAmountItems(tt.args.ctx, 121)
+			if err != nil {
+				t.Fatal(err)
+			}
 			g.Dump(got)
 		})
 	}

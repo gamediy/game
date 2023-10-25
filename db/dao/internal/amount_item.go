@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// AmountItemDao is the data access object for table u_amount_item.
+// AmountItemDao is the data access object for table w_amount_item.
 type AmountItemDao struct {
 	table   string            // table is the underlying table name of the DAO.
 	group   string            // group is the database configuration group name of current DAO.
 	columns AmountItemColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// AmountItemColumns defines and stores column names for table u_amount_item.
+// AmountItemColumns defines and stores column names for table w_amount_item.
 type AmountItemColumns struct {
 	Id               string //
 	Title            string // 标题
@@ -40,7 +40,7 @@ type AmountItemColumns struct {
 	Address          string // 地址或卡号
 }
 
-// amountItemColumns holds the columns for table u_amount_item.
+// amountItemColumns holds the columns for table w_amount_item.
 var amountItemColumns = AmountItemColumns{
 	Id:               "id",
 	Title:            "title",
@@ -66,7 +66,7 @@ var amountItemColumns = AmountItemColumns{
 func NewAmountItemDao() *AmountItemDao {
 	return &AmountItemDao{
 		group:   "default",
-		table:   "u_amount_item",
+		table:   "w_amount_item",
 		columns: amountItemColumns,
 	}
 }

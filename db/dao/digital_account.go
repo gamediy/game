@@ -11,14 +11,14 @@ import (
 // internalDigitalAccountDao is internal type for wrapping internal DAO implements.
 type internalDigitalAccountDao = *internal.DigitalAccountDao
 
-// digitalAccountDao is the data access object for table u_digital_account.
+// digitalAccountDao is the data access object for table w_digital_account.
 // You can define custom methods on it to extend its functionality as you wish.
 type digitalAccountDao struct {
 	internalDigitalAccountDao
 }
 
 var (
-	// DigitalAccount is globally public accessible object for table u_digital_account operations.
+	// DigitalAccount is globally public accessible object for table w_digital_account operations.
 	DigitalAccount = digitalAccountDao{
 		internal.NewDigitalAccountDao(),
 	}

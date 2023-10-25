@@ -1,10 +1,10 @@
 package get
 
 import (
-	"backend/db/dao"
-	"backend/db/model/entity"
 	"context"
 	"fmt"
+	"game/db/dao"
+	"game/db/model/entity"
 )
 
 func Role(ctx context.Context, id int64) (*entity.Role, error) {

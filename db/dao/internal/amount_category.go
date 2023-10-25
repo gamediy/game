@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// AmountCategoryDao is the data access object for table u_amount_category.
+// AmountCategoryDao is the data access object for table w_amount_category.
 type AmountCategoryDao struct {
 	table   string                // table is the underlying table name of the DAO.
 	group   string                // group is the database configuration group name of current DAO.
 	columns AmountCategoryColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// AmountCategoryColumns defines and stores column names for table u_amount_category.
+// AmountCategoryColumns defines and stores column names for table w_amount_category.
 type AmountCategoryColumns struct {
 	Id        string //
 	Title     string // 标题
@@ -29,7 +29,7 @@ type AmountCategoryColumns struct {
 	UpdatedAt string //
 }
 
-// amountCategoryColumns holds the columns for table u_amount_category.
+// amountCategoryColumns holds the columns for table w_amount_category.
 var amountCategoryColumns = AmountCategoryColumns{
 	Id:        "id",
 	Title:     "title",
@@ -44,7 +44,7 @@ var amountCategoryColumns = AmountCategoryColumns{
 func NewAmountCategoryDao() *AmountCategoryDao {
 	return &AmountCategoryDao{
 		group:   "default",
-		table:   "u_amount_category",
+		table:   "w_amount_category",
 		columns: amountCategoryColumns,
 	}
 }

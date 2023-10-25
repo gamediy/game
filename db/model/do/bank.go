@@ -8,9 +8,9 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// Bank is the golang structure of table u_bank for DAO operations like Where/Data.
+// Bank is the golang structure of table w_bank for DAO operations like Where/Data.
 type Bank struct {
-	g.Meta   `orm:"table:u_bank, do:true"`
+	g.Meta   `orm:"table:w_bank, do:true"`
 	Id       interface{} //
 	Icon     interface{} // 图标
 	Currency interface{} //

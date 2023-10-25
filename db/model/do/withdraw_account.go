@@ -8,9 +8,9 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// WithdrawAccount is the golang structure of table u_withdraw_account for DAO operations like Where/Data.
+// WithdrawAccount is the golang structure of table w_withdraw_account for DAO operations like Where/Data.
 type WithdrawAccount struct {
-	g.Meta   `orm:"table:u_withdraw_account, do:true"`
+	g.Meta   `orm:"table:w_withdraw_account, do:true"`
 	Id       interface{} //
 	Net      interface{} //
 	Protocol interface{} //

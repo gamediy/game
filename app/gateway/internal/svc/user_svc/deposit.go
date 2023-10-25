@@ -5,8 +5,8 @@ import (
 	"game/app/user/api/user/deposit"
 )
 
-func (userSvc) ListDepositAmountItems(ctx context.Context) (*deposit.DepositAmountItemsRes, error) {
-	items, err := depositClient.ListDepositAmountItems(ctx, &deposit.DepositAmountItemsReq{})
+func (userSvc) ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.DepositAmountItemsRes, error) {
+	items, err := depositClient.ListDepositAmountItems(ctx, &deposit.DepositAmountItemsReq{Uid: uid})
 	if err != nil {
 		return nil, err
 	}

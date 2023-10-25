@@ -9,9 +9,9 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// DigitalAccount is the golang structure of table u_digital_account for DAO operations like Where/Data.
+// DigitalAccount is the golang structure of table w_digital_account for DAO operations like Where/Data.
 type DigitalAccount struct {
-	g.Meta       `orm:"table:u_digital_account, do:true"`
+	g.Meta       `orm:"table:w_digital_account, do:true"`
 	Id           interface{} //
 	Address      interface{} // 地址
 	Net          interface{} // 网络 TRON ETH

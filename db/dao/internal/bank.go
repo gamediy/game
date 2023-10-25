@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// BankDao is the data access object for table u_bank.
+// BankDao is the data access object for table w_bank.
 type BankDao struct {
 	table   string      // table is the underlying table name of the DAO.
 	group   string      // group is the database configuration group name of current DAO.
 	columns BankColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// BankColumns defines and stores column names for table u_bank.
+// BankColumns defines and stores column names for table w_bank.
 type BankColumns struct {
 	Id       string //
 	Icon     string // 图标
@@ -31,7 +31,7 @@ type BankColumns struct {
 	Class    string //
 }
 
-// bankColumns holds the columns for table u_bank.
+// bankColumns holds the columns for table w_bank.
 var bankColumns = BankColumns{
 	Id:       "id",
 	Icon:     "icon",
@@ -48,7 +48,7 @@ var bankColumns = BankColumns{
 func NewBankDao() *BankDao {
 	return &BankDao{
 		group:   "default",
-		table:   "u_bank",
+		table:   "w_bank",
 		columns: bankColumns,
 	}
 }

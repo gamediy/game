@@ -11,14 +11,14 @@ import (
 // internalWithdrawAccountDao is internal type for wrapping internal DAO implements.
 type internalWithdrawAccountDao = *internal.WithdrawAccountDao
 
-// withdrawAccountDao is the data access object for table u_withdraw_account.
+// withdrawAccountDao is the data access object for table w_withdraw_account.
 // You can define custom methods on it to extend its functionality as you wish.
 type withdrawAccountDao struct {
 	internalWithdrawAccountDao
 }
 
 var (
-	// WithdrawAccount is globally public accessible object for table u_withdraw_account operations.
+	// WithdrawAccount is globally public accessible object for table w_withdraw_account operations.
 	WithdrawAccount = withdrawAccountDao{
 		internal.NewWithdrawAccountDao(),
 	}

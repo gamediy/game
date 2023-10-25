@@ -1,10 +1,10 @@
 package get
 
 import (
-	"backend/consts"
-	"backend/db/dao"
-	"backend/db/model/entity"
 	"context"
+	"game/consts"
+	"game/db/dao"
+	"game/db/model/entity"
 )
 
 func Admin(ctx context.Context, account string) (*entity.Admin, error) {

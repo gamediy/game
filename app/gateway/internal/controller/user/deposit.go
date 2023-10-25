@@ -10,7 +10,7 @@ import (
 )
 
 func depositAmountItems(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
-	items, err := user_svc.Service.ListDepositAmountItems(ctx)
+	items, err := user_svc.Service.ListDepositAmountItems(ctx, wsclient.UserInfo.Uid)
 	if err != nil {
 		return nil, err
 	}

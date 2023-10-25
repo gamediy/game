@@ -11,14 +11,14 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// DigitalAccountDao is the data access object for table u_digital_account.
+// DigitalAccountDao is the data access object for table w_digital_account.
 type DigitalAccountDao struct {
 	table   string                // table is the underlying table name of the DAO.
 	group   string                // group is the database configuration group name of current DAO.
 	columns DigitalAccountColumns // columns contains all the column names of Table for convenient usage.
 }
 
-// DigitalAccountColumns defines and stores column names for table u_digital_account.
+// DigitalAccountColumns defines and stores column names for table w_digital_account.
 type DigitalAccountColumns struct {
 	Id           string //
 	Address      string // 地址
@@ -33,7 +33,7 @@ type DigitalAccountColumns struct {
 	UpdatedAt    string //
 }
 
-// digitalAccountColumns holds the columns for table u_digital_account.
+// digitalAccountColumns holds the columns for table w_digital_account.
 var digitalAccountColumns = DigitalAccountColumns{
 	Id:           "id",
 	Address:      "address",
@@ -52,7 +52,7 @@ var digitalAccountColumns = DigitalAccountColumns{
 func NewDigitalAccountDao() *DigitalAccountDao {
 	return &DigitalAccountDao{
 		group:   "default",
-		table:   "u_digital_account",
+		table:   "w_digital_account",
 		columns: digitalAccountColumns,
 	}
 }

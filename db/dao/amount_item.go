@@ -11,14 +11,14 @@ import (
 // internalAmountItemDao is internal type for wrapping internal DAO implements.
 type internalAmountItemDao = *internal.AmountItemDao
 
-// amountItemDao is the data access object for table u_amount_item.
+// amountItemDao is the data access object for table w_amount_item.
 // You can define custom methods on it to extend its functionality as you wish.
 type amountItemDao struct {
 	internalAmountItemDao
 }
 
 var (
-	// AmountItem is globally public accessible object for table u_amount_item operations.
+	// AmountItem is globally public accessible object for table w_amount_item operations.
 	AmountItem = amountItemDao{
 		internal.NewAmountItemDao(),
 	}

@@ -9,9 +9,9 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// AmountItem is the golang structure of table u_amount_item for DAO operations like Where/Data.
+// AmountItem is the golang structure of table w_amount_item for DAO operations like Where/Data.
 type AmountItem struct {
-	g.Meta           `orm:"table:u_amount_item, do:true"`
+	g.Meta           `orm:"table:w_amount_item, do:true"`
 	Id               interface{} //
 	Title            interface{} // 标题
 	Status           interface{} // 状态
