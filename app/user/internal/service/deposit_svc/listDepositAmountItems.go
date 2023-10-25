@@ -17,13 +17,14 @@ func ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.DepositAmo
 		list     = make([]*deposit.AmountItem, 0)
 		category = make([]entity.AmountCategory, 0)
 	)
+	res.List = make([]*deposit.DepositBox, 0)
+	res.Tips = "payment prompt get configuration file"
 	userInfo, err := get.UserById(ctx, uid)
 	if err != nil {
 		return nil, err
 	}
 	dao.AmountItem.Ctx(ctx).Scan(&list, "status=? and type=?", 1, "Deposit")
 	dao.AmountCategory.Ctx(ctx).Scan(&category, "status", 1)
-	res.List = make([]*deposit.DepositBox, 0)
 	for _, category := range category {
 		depositList := &deposit.DepositBox{}
 		depositList.Title = category.Title
