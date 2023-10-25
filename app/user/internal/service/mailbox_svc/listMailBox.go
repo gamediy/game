@@ -18,6 +18,9 @@ func ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (*mailbox.Lis
 	if req.Read != "" {
 		db = db.Where("read", req.Read)
 	}
+	if req.Size <= 0 || req.Size >= 100 {
+		req.Size = 10
+	}
 	err := db.Page(int(req.Page), int(req.Size)).ScanAndCount(&data, &total, false)
 	if err != nil {
 		return nil, err

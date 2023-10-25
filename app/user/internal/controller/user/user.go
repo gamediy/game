@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"game/app/user/api/user/deposit"
+	"game/app/user/api/deposit"
 	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/withdraw"
