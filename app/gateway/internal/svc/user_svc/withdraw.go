@@ -3,7 +3,7 @@ package user_svc
 import (
 	"context"
 	"fmt"
-	"game/app/user/api/withdraw/withdraw"
+	"game/app/user/api/user/withdraw"
 )
 
 func (userSvc) SubmitWithdraw(ctx context.Context) {

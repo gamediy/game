@@ -2,9 +2,12 @@ package user_svc
 
 import (
 	"context"
-	"game/app/user/api/deposit/deposit"
+	"game/app/user/api/user/deposit"
+	"game/app/user/api/user/mailbox"
+	"game/app/user/api/user/withdraw"
+
 	"game/app/user/api/user/user"
-	"game/app/user/api/withdraw/withdraw"
+
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/util/gconv"
 	"google.golang.org/grpc"
@@ -19,6 +22,7 @@ var (
 	userClient     user.UserServiceClient
 	withdrawClient withdraw.WithdrawServiceClient
 	depositClient  deposit.DepositSvcClient
+	mailBoxClient  mailbox.MailBoxServiceClient
 )
 
 func UserClientInit() {
@@ -26,6 +30,7 @@ func UserClientInit() {
 	userClient = user.NewUserServiceClient(conn)
 	withdrawClient = withdraw.NewWithdrawServiceClient(conn)
 	depositClient = deposit.NewDepositSvcClient(conn)
+	mailBoxClient = mailbox.NewMailBoxServiceClient(conn)
 }
 
 type userSvc struct {
@@ -51,7 +56,4 @@ func (userSvc) UserInfo(ctx context.Context, in *user.UserInfoRequest) (*user.Us
 	reply := user.UserInfoReply{}
 	gconv.Struct(userInfo, &reply)
 	return &reply, err
-}
-func (userSvc) Wallet(ctx context.Context, req *user.WalletRequest) (*user.WalletReply, error) {
-	return userClient.Wallet(ctx, req)
 }

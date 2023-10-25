@@ -1,4 +1,4 @@
-package user_svc
+package mailbox_svc
 
 import (
 	"context"

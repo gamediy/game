@@ -1,8 +1,9 @@
-package user_svc
+package deposit_svc
 
 import (
 	"context"
-	"game/app/user/api/deposit/deposit"
+	"game/app/user/api/user/deposit"
+
 	"game/db/dao"
 )
 

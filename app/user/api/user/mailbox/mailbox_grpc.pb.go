@@ -20,126 +20,126 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_ListMailBox_FullMethodName             = "/mailbox.UserService/ListMailBox"
-	UserService_CountMailBoxTotalUnRead_FullMethodName = "/mailbox.UserService/CountMailBoxTotalUnRead"
+	MailBoxService_ListMailBox_FullMethodName             = "/mailbox.MailBoxService/ListMailBox"
+	MailBoxService_CountMailBoxTotalUnRead_FullMethodName = "/mailbox.MailBoxService/CountMailBoxTotalUnRead"
 )
 
-// UserServiceClient is the client API for UserService service.
+// MailBoxServiceClient is the client API for MailBoxService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type UserServiceClient interface {
+type MailBoxServiceClient interface {
 	ListMailBox(ctx context.Context, in *ListMailBoxReq, opts ...grpc.CallOption) (*ListMailBoxRes, error)
 	CountMailBoxTotalUnRead(ctx context.Context, in *MailBoxTotalUnReadReq, opts ...grpc.CallOption) (*MailBoxTotalUnReadRes, error)
 }
 
-type userServiceClient struct {
+type mailBoxServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
-	return &userServiceClient{cc}
+func NewMailBoxServiceClient(cc grpc.ClientConnInterface) MailBoxServiceClient {
+	return &mailBoxServiceClient{cc}
 }
 
-func (c *userServiceClient) ListMailBox(ctx context.Context, in *ListMailBoxReq, opts ...grpc.CallOption) (*ListMailBoxRes, error) {
+func (c *mailBoxServiceClient) ListMailBox(ctx context.Context, in *ListMailBoxReq, opts ...grpc.CallOption) (*ListMailBoxRes, error) {
 	out := new(ListMailBoxRes)
-	err := c.cc.Invoke(ctx, UserService_ListMailBox_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, MailBoxService_ListMailBox_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CountMailBoxTotalUnRead(ctx context.Context, in *MailBoxTotalUnReadReq, opts ...grpc.CallOption) (*MailBoxTotalUnReadRes, error) {
+func (c *mailBoxServiceClient) CountMailBoxTotalUnRead(ctx context.Context, in *MailBoxTotalUnReadReq, opts ...grpc.CallOption) (*MailBoxTotalUnReadRes, error) {
 	out := new(MailBoxTotalUnReadRes)
-	err := c.cc.Invoke(ctx, UserService_CountMailBoxTotalUnRead_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, MailBoxService_CountMailBoxTotalUnRead_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UserServiceServer is the server API for UserService service.
-// All implementations must embed UnimplementedUserServiceServer
+// MailBoxServiceServer is the server API for MailBoxService service.
+// All implementations must embed UnimplementedMailBoxServiceServer
 // for forward compatibility
-type UserServiceServer interface {
+type MailBoxServiceServer interface {
 	ListMailBox(context.Context, *ListMailBoxReq) (*ListMailBoxRes, error)
 	CountMailBoxTotalUnRead(context.Context, *MailBoxTotalUnReadReq) (*MailBoxTotalUnReadRes, error)
-	mustEmbedUnimplementedUserServiceServer()
+	mustEmbedUnimplementedMailBoxServiceServer()
 }
 
-// UnimplementedUserServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedUserServiceServer struct {
+// UnimplementedMailBoxServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedMailBoxServiceServer struct {
 }
 
-func (UnimplementedUserServiceServer) ListMailBox(context.Context, *ListMailBoxReq) (*ListMailBoxRes, error) {
+func (UnimplementedMailBoxServiceServer) ListMailBox(context.Context, *ListMailBoxReq) (*ListMailBoxRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMailBox not implemented")
 }
-func (UnimplementedUserServiceServer) CountMailBoxTotalUnRead(context.Context, *MailBoxTotalUnReadReq) (*MailBoxTotalUnReadRes, error) {
+func (UnimplementedMailBoxServiceServer) CountMailBoxTotalUnRead(context.Context, *MailBoxTotalUnReadReq) (*MailBoxTotalUnReadRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CountMailBoxTotalUnRead not implemented")
 }
-func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
+func (UnimplementedMailBoxServiceServer) mustEmbedUnimplementedMailBoxServiceServer() {}
 
-// UnsafeUserServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UserServiceServer will
+// UnsafeMailBoxServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MailBoxServiceServer will
 // result in compilation errors.
-type UnsafeUserServiceServer interface {
-	mustEmbedUnimplementedUserServiceServer()
+type UnsafeMailBoxServiceServer interface {
+	mustEmbedUnimplementedMailBoxServiceServer()
 }
 
-func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
-	s.RegisterService(&UserService_ServiceDesc, srv)
+func RegisterMailBoxServiceServer(s grpc.ServiceRegistrar, srv MailBoxServiceServer) {
+	s.RegisterService(&MailBoxService_ServiceDesc, srv)
 }
 
-func _UserService_ListMailBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MailBoxService_ListMailBox_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListMailBoxReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).ListMailBox(ctx, in)
+		return srv.(MailBoxServiceServer).ListMailBox(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_ListMailBox_FullMethodName,
+		FullMethod: MailBoxService_ListMailBox_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).ListMailBox(ctx, req.(*ListMailBoxReq))
+		return srv.(MailBoxServiceServer).ListMailBox(ctx, req.(*ListMailBoxReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CountMailBoxTotalUnRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MailBoxService_CountMailBoxTotalUnRead_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MailBoxTotalUnReadReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CountMailBoxTotalUnRead(ctx, in)
+		return srv.(MailBoxServiceServer).CountMailBoxTotalUnRead(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_CountMailBoxTotalUnRead_FullMethodName,
+		FullMethod: MailBoxService_CountMailBoxTotalUnRead_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CountMailBoxTotalUnRead(ctx, req.(*MailBoxTotalUnReadReq))
+		return srv.(MailBoxServiceServer).CountMailBoxTotalUnRead(ctx, req.(*MailBoxTotalUnReadReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
+// MailBoxService_ServiceDesc is the grpc.ServiceDesc for MailBoxService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mailbox.UserService",
-	HandlerType: (*UserServiceServer)(nil),
+var MailBoxService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mailbox.MailBoxService",
+	HandlerType: (*MailBoxServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ListMailBox",
-			Handler:    _UserService_ListMailBox_Handler,
+			Handler:    _MailBoxService_ListMailBox_Handler,
 		},
 		{
 			MethodName: "CountMailBoxTotalUnRead",
-			Handler:    _UserService_CountMailBoxTotalUnRead_Handler,
+			Handler:    _MailBoxService_CountMailBoxTotalUnRead_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

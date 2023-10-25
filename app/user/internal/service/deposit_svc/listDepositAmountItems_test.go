@@ -1,4 +1,4 @@
-package user_svc
+package deposit_svc
 
 import (
 	"context"

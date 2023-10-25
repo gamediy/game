@@ -3,9 +3,12 @@ package user
 import (
 	"context"
 	"game/app/user/api/user/deposit"
+	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/withdraw"
+	"game/app/user/internal/service/mailbox_svc"
 	"game/app/user/internal/service/user_svc"
+	"game/app/user/internal/service/wallet_svc"
 
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -63,15 +66,15 @@ func (*Controller) UserInfo(ctx context.Context, req *user.UserInfoRequest) (res
 }
 
 func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *user.WalletReply, err error) {
-	return user_svc.Wallet(ctx, req)
+	return wallet_svc.Wallet(ctx, req)
 }
 
-func (*Controller) ListMailBox(ctx context.Context, req *user.ListMailBoxReq) (res *user.ListMailBoxRes, err error) {
-	return user_svc.ListMailBox(ctx, req)
+func (*Controller) ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (res *mailbox.ListMailBoxRes, err error) {
+	return mailbox_svc.ListMailBox(ctx, req)
 }
 
-func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *user.MailBoxTotalUnReadReq) (res *user.MailBoxTotalUnReadRes, err error) {
-	return user_svc.CountMailBoxTotalUnRead(ctx, req)
+func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *mailbox.MailBoxTotalUnReadReq) (res *mailbox.MailBoxTotalUnReadRes, err error) {
+	return mailbox_svc.CountMailBoxTotalUnRead(ctx, req)
 }
 
 func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {

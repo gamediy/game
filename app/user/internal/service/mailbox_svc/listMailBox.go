@@ -1,15 +1,15 @@
-package user_svc
+package mailbox_svc
 
 import (
 	"context"
-	"game/app/user/api/user/user"
+	"game/app/user/api/user/mailbox"
 	"game/db/dao"
 )
 
-func ListMailBox(ctx context.Context, req *user.ListMailBoxReq) (*user.ListMailBoxRes, error) {
+func ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (*mailbox.ListMailBoxRes, error) {
 	var (
 		total int
-		data  = make([]*user.MailBox, 0)
+		data  = make([]*mailbox.MailBox, 0)
 	)
 	db := dao.Mailbox.Ctx(ctx)
 	if req.Receiver != "" {
@@ -22,5 +22,5 @@ func ListMailBox(ctx context.Context, req *user.ListMailBoxReq) (*user.ListMailB
 	if err != nil {
 		return nil, err
 	}
-	return &user.ListMailBoxRes{List: data, Total: int64(total)}, nil
+	return &mailbox.ListMailBoxRes{List: data, Total: int64(total)}, nil
 }

@@ -31,7 +31,7 @@ message MailBoxTotalUnReadRes{
   int64 Num = 1;
 }
 
-service UserService{
+service MailBoxService{
 
   rpc ListMailBox(ListMailBoxReq)returns(ListMailBoxRes);
   rpc CountMailBoxTotalUnRead(MailBoxTotalUnReadReq)returns(MailBoxTotalUnReadRes);

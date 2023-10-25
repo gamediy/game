@@ -1,4 +1,4 @@
-package user_svc
+package wallet_svc
 
 import (
 	"context"

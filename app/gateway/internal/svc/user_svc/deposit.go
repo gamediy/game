@@ -2,7 +2,7 @@ package user_svc
 
 import (
 	"context"
-	"game/app/user/api/deposit/deposit"
+	"game/app/user/api/user/deposit"
 )
 
 func (userSvc) ListDepositAmountItems(ctx context.Context) (*deposit.DepositAmountItemsRes, error) {

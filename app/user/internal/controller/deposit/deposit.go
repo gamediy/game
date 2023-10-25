@@ -3,8 +3,7 @@ package deposit
 import (
 	"context"
 	"game/app/user/api/user/deposit"
-
-	"game/app/user/internal/service/user_svc"
+	"game/app/user/internal/service/deposit_svc"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 )
@@ -18,6 +17,6 @@ func Register(s *grpcx.GrpcServer) {
 }
 
 func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
-	items := user_svc.ListDepositAmountItems(ctx)
+	items := deposit_svc.ListDepositAmountItems(ctx)
 	return items, nil
 }
