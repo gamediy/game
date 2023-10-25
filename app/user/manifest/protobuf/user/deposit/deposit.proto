@@ -35,6 +35,18 @@ message DepositAmountItemsRes {
   string tips = 1;
   repeated depositBox list = 2;
 }
-service DepositSvc{
+
+// create deposit
+message CreateDepositReq{
+  int64 payId = 1; // 充值类型ID
+  double amount = 2;
+  string transferOrderNo = 3; // 交易成功的订单号
+  string transferImg = 4; // 凭证
+}
+message CreateDepositRes {
+  string orderNo = 1; // 交易ID
+}
+service DepositService{
   rpc ListDepositAmountItems(DepositAmountItemsReq) returns(DepositAmountItemsRes);
+  rpc CreateDeposit(CreateDepositReq)returns(CreateDepositRes);
 }

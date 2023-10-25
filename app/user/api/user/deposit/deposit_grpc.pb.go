@@ -20,89 +20,126 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DepositSvc_ListDepositAmountItems_FullMethodName = "/deposit.DepositSvc/ListDepositAmountItems"
+	DepositService_ListDepositAmountItems_FullMethodName = "/deposit.DepositService/ListDepositAmountItems"
+	DepositService_CreateDeposit_FullMethodName          = "/deposit.DepositService/CreateDeposit"
 )
 
-// DepositSvcClient is the client API for DepositSvc service.
+// DepositServiceClient is the client API for DepositService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DepositSvcClient interface {
+type DepositServiceClient interface {
 	ListDepositAmountItems(ctx context.Context, in *DepositAmountItemsReq, opts ...grpc.CallOption) (*DepositAmountItemsRes, error)
+	CreateDeposit(ctx context.Context, in *CreateDepositReq, opts ...grpc.CallOption) (*CreateDepositRes, error)
 }
 
-type depositSvcClient struct {
+type depositServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewDepositSvcClient(cc grpc.ClientConnInterface) DepositSvcClient {
-	return &depositSvcClient{cc}
+func NewDepositServiceClient(cc grpc.ClientConnInterface) DepositServiceClient {
+	return &depositServiceClient{cc}
 }
 
-func (c *depositSvcClient) ListDepositAmountItems(ctx context.Context, in *DepositAmountItemsReq, opts ...grpc.CallOption) (*DepositAmountItemsRes, error) {
+func (c *depositServiceClient) ListDepositAmountItems(ctx context.Context, in *DepositAmountItemsReq, opts ...grpc.CallOption) (*DepositAmountItemsRes, error) {
 	out := new(DepositAmountItemsRes)
-	err := c.cc.Invoke(ctx, DepositSvc_ListDepositAmountItems_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, DepositService_ListDepositAmountItems_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// DepositSvcServer is the server API for DepositSvc service.
-// All implementations must embed UnimplementedDepositSvcServer
+func (c *depositServiceClient) CreateDeposit(ctx context.Context, in *CreateDepositReq, opts ...grpc.CallOption) (*CreateDepositRes, error) {
+	out := new(CreateDepositRes)
+	err := c.cc.Invoke(ctx, DepositService_CreateDeposit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// DepositServiceServer is the server API for DepositService service.
+// All implementations must embed UnimplementedDepositServiceServer
 // for forward compatibility
-type DepositSvcServer interface {
+type DepositServiceServer interface {
 	ListDepositAmountItems(context.Context, *DepositAmountItemsReq) (*DepositAmountItemsRes, error)
-	mustEmbedUnimplementedDepositSvcServer()
+	CreateDeposit(context.Context, *CreateDepositReq) (*CreateDepositRes, error)
+	mustEmbedUnimplementedDepositServiceServer()
 }
 
-// UnimplementedDepositSvcServer must be embedded to have forward compatible implementations.
-type UnimplementedDepositSvcServer struct {
+// UnimplementedDepositServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedDepositServiceServer struct {
 }
 
-func (UnimplementedDepositSvcServer) ListDepositAmountItems(context.Context, *DepositAmountItemsReq) (*DepositAmountItemsRes, error) {
+func (UnimplementedDepositServiceServer) ListDepositAmountItems(context.Context, *DepositAmountItemsReq) (*DepositAmountItemsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDepositAmountItems not implemented")
 }
-func (UnimplementedDepositSvcServer) mustEmbedUnimplementedDepositSvcServer() {}
+func (UnimplementedDepositServiceServer) CreateDeposit(context.Context, *CreateDepositReq) (*CreateDepositRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeposit not implemented")
+}
+func (UnimplementedDepositServiceServer) mustEmbedUnimplementedDepositServiceServer() {}
 
-// UnsafeDepositSvcServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DepositSvcServer will
+// UnsafeDepositServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to DepositServiceServer will
 // result in compilation errors.
-type UnsafeDepositSvcServer interface {
-	mustEmbedUnimplementedDepositSvcServer()
+type UnsafeDepositServiceServer interface {
+	mustEmbedUnimplementedDepositServiceServer()
 }
 
-func RegisterDepositSvcServer(s grpc.ServiceRegistrar, srv DepositSvcServer) {
-	s.RegisterService(&DepositSvc_ServiceDesc, srv)
+func RegisterDepositServiceServer(s grpc.ServiceRegistrar, srv DepositServiceServer) {
+	s.RegisterService(&DepositService_ServiceDesc, srv)
 }
 
-func _DepositSvc_ListDepositAmountItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _DepositService_ListDepositAmountItems_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DepositAmountItemsReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DepositSvcServer).ListDepositAmountItems(ctx, in)
+		return srv.(DepositServiceServer).ListDepositAmountItems(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DepositSvc_ListDepositAmountItems_FullMethodName,
+		FullMethod: DepositService_ListDepositAmountItems_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DepositSvcServer).ListDepositAmountItems(ctx, req.(*DepositAmountItemsReq))
+		return srv.(DepositServiceServer).ListDepositAmountItems(ctx, req.(*DepositAmountItemsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// DepositSvc_ServiceDesc is the grpc.ServiceDesc for DepositSvc service.
+func _DepositService_CreateDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDepositReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DepositServiceServer).CreateDeposit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DepositService_CreateDeposit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DepositServiceServer).CreateDeposit(ctx, req.(*CreateDepositReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// DepositService_ServiceDesc is the grpc.ServiceDesc for DepositService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var DepositSvc_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "deposit.DepositSvc",
-	HandlerType: (*DepositSvcServer)(nil),
+var DepositService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "deposit.DepositService",
+	HandlerType: (*DepositServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ListDepositAmountItems",
-			Handler:    _DepositSvc_ListDepositAmountItems_Handler,
+			Handler:    _DepositService_ListDepositAmountItems_Handler,
+		},
+		{
+			MethodName: "CreateDeposit",
+			Handler:    _DepositService_CreateDeposit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

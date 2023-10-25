@@ -80,6 +80,10 @@ func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.Depo
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }
 
+func (*Controller) CreateDeposit(ctx context.Context, req *deposit.CreateDepositReq) (res *deposit.CreateDepositRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
 func (*Controller) ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (res *mailbox.ListMailBoxRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

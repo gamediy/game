@@ -9,11 +9,11 @@ import (
 )
 
 type Controller struct {
-	deposit.UnimplementedDepositSvcServer
+	deposit.UnimplementedDepositServiceServer
 }
 
 func Register(s *grpcx.GrpcServer) {
-	deposit.RegisterDepositSvcServer(s.Server, &Controller{})
+	deposit.RegisterDepositServiceServer(s.Server, &Controller{})
 }
 
 func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
