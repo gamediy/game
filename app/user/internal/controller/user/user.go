@@ -2,9 +2,11 @@ package user
 
 import (
 	"context"
+	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/withdraw"
+
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
 
@@ -18,6 +20,7 @@ import (
 
 type Controller struct {
 	user.UnimplementedUserServiceServer
+	withdraw.UnimplementedWithdrawServiceServer
 }
 
 func Register(s *grpcx.GrpcServer) {
@@ -67,11 +70,11 @@ func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *us
 	return wallet_svc.Wallet(ctx, req)
 }
 
-func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res *withdraw.SubmitReply, err error) {
+func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }
 
-func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
+func (*Controller) CreateDeposit(ctx context.Context, req *deposit.CreateDepositReq) (res *deposit.CreateDepositRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }
 
@@ -80,5 +83,13 @@ func (*Controller) ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq)
 }
 
 func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *mailbox.MailBoxTotalUnReadReq) (res *mailbox.MailBoxTotalUnReadRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

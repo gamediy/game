@@ -2,10 +2,6 @@ package cmd
 
 import (
 	"context"
-	"game/app/user/internal/controller/deposit"
-	"game/app/user/internal/controller/mailbox"
-	"game/app/user/internal/controller/withdraw"
-
 	"game/app/user/internal/controller/user"
 	"game/utility/utils/xetcd"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
@@ -26,9 +22,6 @@ var (
 			gsvc.SetRegistry(etcd.NewWithClient(xetcd.Client))
 			s := grpcx.Server.New()
 			user.Register(s)
-			withdraw.Register(s)
-			deposit.Register(s)
-			mailbox.Register(s)
 
 			s.Run()
 			return

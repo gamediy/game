@@ -24,7 +24,7 @@ type AmountCategoryColumns struct {
 	Title     string // 标题
 	Category  string // 1:区块链，银行卡
 	Status    string //
-	Type      string // deposit,withdraw
+	Type      string // deposit,withdraw_bak
 	CreatedAt string //
 	UpdatedAt string //
 }

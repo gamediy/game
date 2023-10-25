@@ -16,7 +16,7 @@ type AmountCategory struct {
 	Title     interface{} // 标题
 	Category  interface{} // 1:区块链，银行卡
 	Status    interface{} //
-	Type      interface{} // deposit,withdraw
+	Type      interface{} // deposit,withdraw_bak
 	CreatedAt *gtime.Time //
 	UpdatedAt *gtime.Time //
 }

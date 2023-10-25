@@ -8,7 +8,7 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-// Withdraw is the golang structure for table withdraw.
+// Withdraw is the golang structure for table withdraw_bak.
 type Withdraw struct {
 	OrderNo       int64       `json:"orderNo"       description:"订单号"`
 	Account       string      `json:"account"       description:"账号"`
