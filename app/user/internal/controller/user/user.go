@@ -2,14 +2,15 @@ package user
 
 import (
 	"context"
+	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/withdraw"
+	"game/app/user/internal/service/deposit_svc"
+	"game/app/user/internal/service/mailbox_svc"
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
 
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -67,18 +68,26 @@ func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *us
 	return wallet_svc.Wallet(ctx, req)
 }
 
-func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res *withdraw.SubmitReply, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
+	return deposit_svc.ListDepositAmountItems(ctx, req.Uid)
 }
 
-func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+func (*Controller) CreateDeposit(ctx context.Context, req *deposit.CreateDepositReq) (res *deposit.CreateDepositRes, err error) {
+	return nil, nil
 }
 
 func (*Controller) ListMailBox(ctx context.Context, req *mailbox.ListMailBoxReq) (res *mailbox.ListMailBoxRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	return mailbox_svc.ListMailBox(ctx, req)
 }
 
 func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *mailbox.MailBoxTotalUnReadReq) (res *mailbox.MailBoxTotalUnReadRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	return mailbox_svc.CountMailBoxTotalUnRead(ctx, req)
+}
+
+func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, nil
+}
+
+func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, nil
 }
