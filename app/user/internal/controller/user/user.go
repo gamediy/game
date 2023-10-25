@@ -25,6 +25,7 @@ type Controller struct {
 
 func Register(s *grpcx.GrpcServer) {
 	user.RegisterUserServiceServer(s.Server, &Controller{})
+	withdraw.RegisterWithdrawServiceServer(s.Server, &Controller{})
 }
 
 func (*Controller) Reg(ctx context.Context, req *user.RegRequest) (res *user.RegReply, err error) {
