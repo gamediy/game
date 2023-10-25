@@ -20,4 +20,5 @@ type Mailbox struct {
 	Read      interface{} // 0：未读，1：已读
 	ReadTime  *gtime.Time // 已读时间
 	ReadStart *gtime.Time // 开始阅读时间
+	Type      interface{} // 0 普通 1 赠送
 }

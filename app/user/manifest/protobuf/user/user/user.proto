@@ -75,6 +75,7 @@ message MailBox{
   string ReadTime = 5;
   string ReadStart = 6;
   int64 Read = 7;
+  int64 type = 8;
 }
 message MailBoxTotalUnReadReq{
   int64 Uid = 1;

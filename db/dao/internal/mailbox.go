@@ -28,6 +28,7 @@ type MailboxColumns struct {
 	Read      string // 0：未读，1：已读
 	ReadTime  string // 已读时间
 	ReadStart string // 开始阅读时间
+	Type      string // 0 普通 1 赠送
 }
 
 // mailboxColumns holds the columns for table u_mailbox.
@@ -40,6 +41,7 @@ var mailboxColumns = MailboxColumns{
 	Read:      "read",
 	ReadTime:  "read_time",
 	ReadStart: "read_start",
+	Type:      "type",
 }
 
 // NewMailboxDao creates and returns a new DAO object for table data access.
