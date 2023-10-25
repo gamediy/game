@@ -8,9 +8,9 @@ message DepositAmountItemsReq {
 
 message AmountItem {
   int64 id = 1;
-  string Title = 2;
-  int64 Status = 3;
-  string Detail = 4;
+  string title = 2;
+  int64 status = 3;
+  string detail = 4;
   int64 amount_category_id = 5;
   string net = 6;
   double min = 7;
