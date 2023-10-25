@@ -2,7 +2,7 @@ package mailbox_svc
 
 import (
 	"context"
-	"game/app/user/api/user/user"
+	"game/app/user/api/user/mailbox"
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
@@ -10,15 +10,15 @@ import (
 func TestListMailBox(t *testing.T) {
 	type args struct {
 		ctx context.Context
-		req *user.ListMailBoxReq
+		req *mailbox.ListMailBoxReq
 	}
 	tests := []struct {
 		name    string
 		args    args
-		want    *user.ListMailBoxRes
+		want    *mailbox.ListMailBoxRes
 		wantErr bool
 	}{
-		{args: args{ctx: context.TODO(), req: &user.ListMailBoxReq{Page: 1, Size: 1}}},
+		{args: args{ctx: context.TODO(), req: &mailbox.ListMailBoxReq{Page: 1, Size: 1}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

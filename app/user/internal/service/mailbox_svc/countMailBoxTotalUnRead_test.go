@@ -2,7 +2,7 @@ package mailbox_svc
 
 import (
 	"context"
-	"game/app/user/api/user/user"
+	"game/app/user/api/user/mailbox"
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
@@ -10,15 +10,15 @@ import (
 func TestCountMailBoxTotalUnRead(t *testing.T) {
 	type args struct {
 		ctx context.Context
-		in  *user.MailBoxTotalUnReadReq
+		in  *mailbox.MailBoxTotalUnReadReq
 	}
 	tests := []struct {
 		name    string
 		args    args
-		want    *user.MailBoxTotalUnReadRes
+		want    *mailbox.MailBoxTotalUnReadRes
 		wantErr bool
 	}{
-		{args: args{in: &user.MailBoxTotalUnReadReq{Uid: 3}}},
+		{args: args{in: &mailbox.MailBoxTotalUnReadReq{Uid: 3}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

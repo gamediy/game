@@ -2,7 +2,8 @@ package deposit_svc
 
 import (
 	"context"
-	"game/app/user/api/deposit/deposit"
+	"game/app/user/api/user/deposit"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
