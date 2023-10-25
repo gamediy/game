@@ -7,7 +7,7 @@ message DepositAmountItemsReq {
 }
 
 message AmountItem {
-  int64 Id = 1;
+  int64 id = 1;
   string Title = 2;
   int64 Status = 3;
   string Detail = 4;
