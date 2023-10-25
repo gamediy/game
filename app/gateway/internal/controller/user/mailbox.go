@@ -25,7 +25,7 @@ func countMailBoxTotal(ctx context.Context, wsclient *ws.Client, query g.Map) (*
 func listMailBox(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	req := mailbox.ListMailBoxReq{}
 	if query == nil {
-		query = g.Map{"size": 1, "page": "10"}
+		query = g.Map{"size": 10, "page": 1}
 	}
 	req.Size = gconv.Int64(query["size"])
 	req.Page = gconv.Int64(query["page"])

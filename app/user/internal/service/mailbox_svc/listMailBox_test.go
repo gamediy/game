@@ -20,8 +20,8 @@ func TestListMailBox(t *testing.T) {
 		wantErr bool
 	}{
 		{args: args{ctx: context.TODO(), req: &mailbox.ListMailBoxReq{
-			Page: 1, Size: 1,
-			Type: "1",
+			Page: 1, Size: 10,
+			Receiver: "161",
 		}}},
 	}
 	for _, tt := range tests {
