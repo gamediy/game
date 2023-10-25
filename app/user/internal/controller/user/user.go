@@ -2,9 +2,13 @@ package user
 
 import (
 	"context"
+	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/user"
+	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
 
+	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -68,4 +72,16 @@ func (*Controller) ListMailBox(ctx context.Context, req *user.ListMailBoxReq) (r
 
 func (*Controller) CountMailBoxTotalUnRead(ctx context.Context, req *user.MailBoxTotalUnReadReq) (res *user.MailBoxTotalUnReadRes, err error) {
 	return user_svc.CountMailBoxTotalUnRead(ctx, req)
+}
+
+func (*Controller) ListDepositAmountItems(ctx context.Context, req *deposit.DepositAmountItemsReq) (res *deposit.DepositAmountItemsRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) Submit(ctx context.Context, req *withdraw.SubmitRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+}
+
+func (*Controller) Bind(ctx context.Context, req *withdraw.BindRequest) (res *withdraw.SubmitReply, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

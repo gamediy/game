@@ -2,7 +2,7 @@ package withdraw
 
 import (
 	"context"
-	"game/app/user/api/withdraw/withdraw"
+	"game/app/user/api/user/withdraw"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/errors/gcode"

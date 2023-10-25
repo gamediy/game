@@ -56,33 +56,7 @@ message WalletReply{
   double  freeze = 2;
   double  totalProfit = 3;
 }
-message ListMailBoxReq {
-  int64 Page = 1;
-  int64 Size = 2;
-  string Receiver = 3;
-  string Read = 4;
-}
-message ListMailBoxRes{
-  int64 Total = 1;
-  repeated MailBox list = 2;
 
-}
-message MailBox{
-  int64 Id = 1;
-  string Title = 2;
-  string Content = 3;
-  int64 Receiver = 4;
-  string ReadTime = 5;
-  string ReadStart = 6;
-  int64 Read = 7;
-  int64 type = 8; // 0 普通 1赠送
-}
-message MailBoxTotalUnReadReq{
-  int64 Uid = 1;
-}
-message MailBoxTotalUnReadRes{
-  int64 Num = 1;
-}
 
 
 service UserService{
@@ -90,6 +64,5 @@ service UserService{
   rpc Login(LoginRequest) returns(LoginReply);
   rpc UserInfo(UserInfoRequest) returns(UserInfoReply);
   rpc Wallet(WalletRequest) returns(WalletReply);
-  rpc ListMailBox(ListMailBoxReq)returns(ListMailBoxRes);
-  rpc CountMailBoxTotalUnRead(MailBoxTotalUnReadReq)returns(MailBoxTotalUnReadRes);
+
 }

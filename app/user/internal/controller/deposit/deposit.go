@@ -2,7 +2,8 @@ package deposit
 
 import (
 	"context"
-	"game/app/user/api/deposit/deposit"
+	"game/app/user/api/user/deposit"
+
 	"game/app/user/internal/service/user_svc"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
