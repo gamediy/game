@@ -30,7 +30,7 @@ func listMailBox(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.
 	req.Size = gconv.Int64(query["size"])
 	req.Page = gconv.Int64(query["page"])
 	req.Read = gconv.String(query["read"])
-	req.Receiver = gconv.String(query["receiver"])
+	req.Receiver = gconv.String(wsclient.UserInfo.Uid)
 	res, err := user_svc.Service.ListMailBox(ctx, &req)
 	if err != nil {
 		return nil, err
