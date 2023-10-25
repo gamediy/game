@@ -21,7 +21,7 @@ var (
 	conn           *grpc.ClientConn
 	userClient     user.UserServiceClient
 	withdrawClient withdraw.WithdrawServiceClient
-	depositClient  deposit.DepositSvcClient
+	depositClient  deposit.DepositServiceClient
 	mailBoxClient  mailbox.MailBoxServiceClient
 )
 
@@ -29,7 +29,7 @@ func UserClientInit() {
 	conn = grpcx.Client.MustNewGrpcClientConn("user_svc", grpcx.Balancer.WithRandom())
 	userClient = user.NewUserServiceClient(conn)
 	withdrawClient = withdraw.NewWithdrawServiceClient(conn)
-	depositClient = deposit.NewDepositSvcClient(conn)
+	depositClient = deposit.NewDepositServiceClient(conn)
 	mailBoxClient = mailbox.NewMailBoxServiceClient(conn)
 }
 
