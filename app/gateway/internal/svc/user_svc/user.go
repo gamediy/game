@@ -4,7 +4,6 @@ import (
 	"context"
 	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
-	"game/app/user/api/user/withdraw"
 
 	"game/app/user/api/user/user"
 
@@ -18,17 +17,15 @@ var (
 )
 
 var (
-	conn           *grpc.ClientConn
-	userClient     user.UserServiceClient
-	withdrawClient withdraw.WithdrawServiceClient
-	depositClient  deposit.DepositServiceClient
-	mailBoxClient  mailbox.MailBoxServiceClient
+	conn          *grpc.ClientConn
+	userClient    user.UserServiceClient
+	depositClient deposit.DepositServiceClient
+	mailBoxClient mailbox.MailBoxServiceClient
 )
 
 func UserClientInit() {
 	conn = grpcx.Client.MustNewGrpcClientConn("user_svc", grpcx.Balancer.WithRandom())
 	userClient = user.NewUserServiceClient(conn)
-	withdrawClient = withdraw.NewWithdrawServiceClient(conn)
 	depositClient = deposit.NewDepositServiceClient(conn)
 	mailBoxClient = mailbox.NewMailBoxServiceClient(conn)
 }
