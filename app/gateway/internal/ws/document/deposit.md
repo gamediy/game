@@ -11,3 +11,19 @@
   }
 }
 ```
+res
+```json
+{
+  "event": "/user/wallet/createDeposit_response",
+  "body": {
+    "code": 0,
+    "msg": "",
+    "data": {
+      "orderNo": 1717395400610025472
+    }
+  },
+  "query": null,
+  "tag": "",
+  "_": 0
+}
+```
