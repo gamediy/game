@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = ".;book";
+package book;
+message testReq {
+
+}
+message testRes{
+
+}
+service BookService{
+  rpc GetBook(testReq)returns(testRes);
+}
