@@ -1,8 +1,0 @@
-syntax = "proto3";
-option go_package = ".;english";
-package english;
-message testEnReq{}
-message testEnRes{}
-service EnglishService{
-  rpc GetEnglish(testEnReq)returns(testEnRes);
-}
