@@ -13,12 +13,9 @@ import (
 
 func countMailBoxTotal(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	read, err := user_svc.Service.CountMailBoxUnRead(ctx, wsclient.UserInfo.Uid)
-	if err != nil {
-		return nil, err
-	}
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(mailbox_event.MailBoxTotal),
-		Body:  model.WrapMessage(read, nil),
+		Body:  model.WrapMessage(read, err),
 	}, nil
 }
 
@@ -33,12 +30,8 @@ func listMailBox(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.
 	req.Receiver = gconv.String(wsclient.UserInfo.Uid)
 	req.Type = gconv.String(query["type"])
 	res, err := user_svc.Service.ListMailBox(ctx, &req)
-	if err != nil {
-		return nil, err
-	}
-
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(mailbox_event.ListMailBox),
-		Body:  model.WrapMessage(res, nil),
+		Body:  model.WrapMessage(res, err),
 	}, nil
 }

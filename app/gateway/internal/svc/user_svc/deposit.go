@@ -12,3 +12,6 @@ func (userSvc) ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.
 	}
 	return items, nil
 }
+func (userSvc) CreateDeposit(ctx context.Context, in *deposit.CreateDepositReq) (*deposit.CreateDepositRes, error) {
+	return depositClient.CreateDeposit(ctx, in)
+}

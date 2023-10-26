@@ -22,6 +22,7 @@ func UserControllerInit() {
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
 	controller.Ctrl[wallet_event.Wallet] = wallet
 	controller.Ctrl[deposit_event.DepositAmountItems] = depositAmountItems
+	controller.Ctrl[deposit_event.CreateDeposit] = createDeposit
 	controller.Ctrl[mailbox_event.ListMailBox] = listMailBox
 	controller.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
 }

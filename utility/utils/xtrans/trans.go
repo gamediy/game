@@ -44,6 +44,9 @@ func T(language interface{}, word string) string {
 
 	return i18n.Translate(ctx, word)
 }
+func TError(language interface{}, word string) error {
+	return fmt.Errorf(T(language, word))
+}
 
 func New(language interface{}) *gi18n.Manager {
 

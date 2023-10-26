@@ -44,9 +44,11 @@ message CreateDepositReq{
   double amount = 2;
   string transferOrderNo = 3; // 交易成功的订单号
   string transferImg = 4; // 凭证
+  int64 uid = 5;
+  string lang = 6;
 }
 message CreateDepositRes {
-  string orderNo = 1; // 交易ID
+  int64 orderNo = 1; // 交易ID
 }
 service DepositService{
   rpc ListDepositAmountItems(DepositAmountItemsReq) returns(DepositAmountItemsRes);
