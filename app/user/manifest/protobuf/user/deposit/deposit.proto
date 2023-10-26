@@ -50,7 +50,30 @@ message CreateDepositReq{
 message CreateDepositRes {
   int64 orderNo = 1; // 交易ID
 }
+message ListDepositReq {
+  int64 uid = 1;
+  int64 page = 2;
+  int64 size = 3;
+}
+message DepositItem{
+  string logo = 1;
+  int64  uid = 2;
+  string orderNo = 3;
+  double amount = 4;
+  string status = 5; // 0 等待中 1完成 -1 失败
+  string currency = 6;
+  string protocol = 7;
+  string transferOrder = 8;
+  string transferImg = 9;
+  string createdAt = 10;
+  int64 amountItemId = 11;
+}
+message ListDepositRes{
+  int64 total = 1;
+  repeated DepositItem list = 2;
+}
 service DepositService{
   rpc ListDepositAmountItems(DepositAmountItemsReq) returns(DepositAmountItemsRes);
+  rpc ListDeposit(ListDepositReq)returns(ListDepositRes);
   rpc CreateDeposit(CreateDepositReq)returns(CreateDepositRes);
 }

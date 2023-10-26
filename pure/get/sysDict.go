@@ -3,6 +3,7 @@ package get
 import (
 	"context"
 	"fmt"
+	"game/consts"
 	"game/db/dao"
 	"game/db/model/entity"
 	"github.com/gogf/gf/v2/frame/g"
@@ -20,10 +21,10 @@ func Dict(ctx context.Context, key string) (*entity.Dict, error) {
 }
 func ImgPrefix() string {
 	ctx := context.TODO()
-	v, err := gcache.GetOrSetFunc(ctx, "", func(ctx context.Context) (value interface{}, err error) {
+	v, err := gcache.GetOrSetFuncLock(ctx, "", func(ctx context.Context) (value interface{}, err error) {
 		dict, err := Dict(ctx, "cloudflare_pub")
 		return dict.V, err
-	}, time.Minute*10)
+	}, time.Minute*consts.NormalCacheTime)
 	if err != nil {
 		g.Log().Error(ctx, err)
 		return ""

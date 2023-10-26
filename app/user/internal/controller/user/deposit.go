@@ -24,3 +24,7 @@ func (*Controller) CreateDeposit(ctx context.Context, req *deposit.CreateDeposit
 	}
 	return &deposit.CreateDepositRes{OrderNo: orderNo}, nil
 }
+
+func (*Controller) ListDeposit(ctx context.Context, req *deposit.ListDepositReq) (res *deposit.ListDepositRes, err error) {
+	return deposit_svc.ListDeposit(ctx, req)
+}

@@ -22,7 +22,6 @@ var (
 			gsvc.SetRegistry(etcd.NewWithClient(xetcd.Client))
 			s := grpcx.Server.New()
 			user.Register(s)
-
 			s.Run()
 			return
 		},

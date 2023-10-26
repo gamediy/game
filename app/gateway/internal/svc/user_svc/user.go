@@ -30,8 +30,7 @@ func UserClientInit() {
 	mailBoxClient = mailbox.NewMailBoxServiceClient(conn)
 }
 
-type userSvc struct {
-}
+type userSvc struct{}
 
 func (userSvc) Register(ctx context.Context, in *user.RegRequest) (string, error) {
 	token, err := userClient.Reg(ctx, in)

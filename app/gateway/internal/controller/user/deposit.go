@@ -27,9 +27,20 @@ func createDeposit(ctx context.Context, wsclient *ws.Client, query g.Map) (*mode
 	in.TransferImg = gconv.String(query["transferImg"])
 	in.Uid = wsclient.UserInfo.Uid
 	in.Lang = wsclient.UserInfo.Lang
-	orderNo, err := user_svc.Service.CreateDeposit(ctx, in)
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(deposit_event.CreateDeposit),
-		Body:  model.WrapMessage(orderNo, err),
+		Body:  model.WrapMessage(user_svc.Service.CreateDeposit(ctx, in)),
+	}, nil
+}
+
+func listDeposit(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	in := &deposit.ListDepositReq{
+		Uid:  wsclient.UserInfo.Uid,
+		Page: gconv.Int64(query["page"]),
+		Size: gconv.Int64(query["size"]),
+	}
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(deposit_event.ListDeposit),
+		Body:  model.WrapMessage(user_svc.ListDeposit(ctx, in)),
 	}, nil
 }

@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	DepositService_ListDepositAmountItems_FullMethodName = "/deposit.DepositService/ListDepositAmountItems"
+	DepositService_ListDeposit_FullMethodName            = "/deposit.DepositService/ListDeposit"
 	DepositService_CreateDeposit_FullMethodName          = "/deposit.DepositService/CreateDeposit"
 )
 
@@ -29,6 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DepositServiceClient interface {
 	ListDepositAmountItems(ctx context.Context, in *DepositAmountItemsReq, opts ...grpc.CallOption) (*DepositAmountItemsRes, error)
+	ListDeposit(ctx context.Context, in *ListDepositReq, opts ...grpc.CallOption) (*ListDepositRes, error)
 	CreateDeposit(ctx context.Context, in *CreateDepositReq, opts ...grpc.CallOption) (*CreateDepositRes, error)
 }
 
@@ -49,6 +51,15 @@ func (c *depositServiceClient) ListDepositAmountItems(ctx context.Context, in *D
 	return out, nil
 }
 
+func (c *depositServiceClient) ListDeposit(ctx context.Context, in *ListDepositReq, opts ...grpc.CallOption) (*ListDepositRes, error) {
+	out := new(ListDepositRes)
+	err := c.cc.Invoke(ctx, DepositService_ListDeposit_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *depositServiceClient) CreateDeposit(ctx context.Context, in *CreateDepositReq, opts ...grpc.CallOption) (*CreateDepositRes, error) {
 	out := new(CreateDepositRes)
 	err := c.cc.Invoke(ctx, DepositService_CreateDeposit_FullMethodName, in, out, opts...)
@@ -63,6 +74,7 @@ func (c *depositServiceClient) CreateDeposit(ctx context.Context, in *CreateDepo
 // for forward compatibility
 type DepositServiceServer interface {
 	ListDepositAmountItems(context.Context, *DepositAmountItemsReq) (*DepositAmountItemsRes, error)
+	ListDeposit(context.Context, *ListDepositReq) (*ListDepositRes, error)
 	CreateDeposit(context.Context, *CreateDepositReq) (*CreateDepositRes, error)
 	mustEmbedUnimplementedDepositServiceServer()
 }
@@ -73,6 +85,9 @@ type UnimplementedDepositServiceServer struct {
 
 func (UnimplementedDepositServiceServer) ListDepositAmountItems(context.Context, *DepositAmountItemsReq) (*DepositAmountItemsRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDepositAmountItems not implemented")
+}
+func (UnimplementedDepositServiceServer) ListDeposit(context.Context, *ListDepositReq) (*ListDepositRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDeposit not implemented")
 }
 func (UnimplementedDepositServiceServer) CreateDeposit(context.Context, *CreateDepositReq) (*CreateDepositRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeposit not implemented")
@@ -108,6 +123,24 @@ func _DepositService_ListDepositAmountItems_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DepositService_ListDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDepositReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DepositServiceServer).ListDeposit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DepositService_ListDeposit_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DepositServiceServer).ListDeposit(ctx, req.(*ListDepositReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DepositService_CreateDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDepositReq)
 	if err := dec(in); err != nil {
@@ -136,6 +169,10 @@ var DepositService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDepositAmountItems",
 			Handler:    _DepositService_ListDepositAmountItems_Handler,
+		},
+		{
+			MethodName: "ListDeposit",
+			Handler:    _DepositService_ListDeposit_Handler,
 		},
 		{
 			MethodName: "CreateDeposit",
