@@ -23,12 +23,17 @@ redis:
     db: 3
     pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 grpc:
-  name:             "user_svc"  # 服务名称
-  address:          ":5001" # 自定义服务监听地址
-  logPath:          "./log" # 日志存储目录路径
-  logStdout:        true    # 日志是否输出到终端
-  errorLogEnabled:  true    # 是否开启错误日志记录
+  name: "user_svc"  # 服务名称
+  address: ":5001" # 自定义服务监听地址
+  logPath: "./log" # 日志存储目录路径
+  logStdout: true    # 日志是否输出到终端
+  errorLogEnabled: true    # 是否开启错误日志记录
   accessLogEnabled: true    # 是否开启访问日志记录
-  errorStack:       true    # 当产生错误时，是否记录错误堆栈
+  errorStack: true    # 当产生错误时，是否记录错误堆栈
 etcd:
-  address: ["8.219.177.71:2379"]
+  address: [ "8.219.177.71:2379" ]
+pusher:
+  appId: "1696531"
+  key: "bb8063bd4d4939b6c4ea"
+  secret: "366111b02e0482f92d16"
+  cluster: "mt1"

@@ -1,7 +1,7 @@
 package consts
 
 var (
-	DepositStatusPending = 0
-	DepositStatusSuccess = 1
+	DepositStatusPending = 1
+	DepositStatusSuccess = 2
 	DepositStatusFail    = -1
 )

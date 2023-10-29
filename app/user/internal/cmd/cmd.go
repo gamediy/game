@@ -4,6 +4,7 @@ import (
 	"context"
 	"game/app/user/internal/controller/user"
 	"game/utility/utils/xetcd"
+	"game/utility/utils/xpusher"
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
@@ -19,6 +20,7 @@ var (
 		Brief: "start crontab job",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			xetcd.InitEtcd(ctx)
+			xpusher.InitFromCfg(ctx)
 			gsvc.SetRegistry(etcd.NewWithClient(xetcd.Client))
 			s := grpcx.Server.New()
 			user.Register(s)

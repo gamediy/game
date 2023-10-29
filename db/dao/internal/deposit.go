@@ -41,6 +41,8 @@ type DepositColumns struct {
 	AdminOperate    string // 操作用户
 	TransferOrderNo string // 用户转账订单号
 	TransferImg     string // 用户转账图片
+	ExchangeRate    string // 汇率
+	ExchangeMoney   string // 第三方充值金额
 }
 
 // depositColumns holds the columns for table w_deposit.
@@ -66,6 +68,8 @@ var depositColumns = DepositColumns{
 	AdminOperate:    "admin_operate",
 	TransferOrderNo: "transfer_order_no",
 	TransferImg:     "transfer_img",
+	ExchangeRate:    "exchange_rate",
+	ExchangeMoney:   "exchange_money",
 }
 
 // NewDepositDao creates and returns a new DAO object for table data access.

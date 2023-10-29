@@ -30,4 +30,6 @@ type AmountItem struct {
 	CreatedAt        *gtime.Time //
 	UpdatedAt        *gtime.Time //
 	Address          interface{} // 地址或卡号
+	ExchangeRate     interface{} // 汇率
+	SelectMoney      interface{} // 选择金额json [100,200]
 }

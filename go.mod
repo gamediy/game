@@ -1,6 +1,6 @@
 module game
 
-go 1.20
+go 1.19
 
 require (
 	github.com/avast/retry-go/v4 v4.5.0
@@ -23,7 +23,7 @@ require (
 	github.com/gorilla/websocket v1.5.0
 	github.com/mojocn/base64Captcha v1.3.5
 	github.com/pquerna/otp v1.4.0
-	github.com/pusher/pusher-http-go v4.0.1+incompatible
+	github.com/pusher/pusher-http-go/v5 v5.1.1
 	github.com/yudeguang/ratelimit v0.0.0-20230316132559-4d9cafca864e
 	go.etcd.io/etcd/client/v3 v3.5.7
 	go.uber.org/zap v1.21.0

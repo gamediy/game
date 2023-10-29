@@ -25,5 +25,4 @@ func Router(ctx context.Context) {
 		}
 		fmt.Println(response)
 	})
-
 }

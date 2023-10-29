@@ -33,4 +33,6 @@ type Deposit struct {
 	AdminOperate    interface{} // 操作用户
 	TransferOrderNo interface{} // 用户转账订单号
 	TransferImg     interface{} // 用户转账图片
+	ExchangeRate    interface{} // 汇率
+	ExchangeMoney   interface{} // 第三方充值金额
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"game/consts"
+	"game/core/sync"
 	"game/db/dao"
 	"game/db/model/entity"
 	"game/pure/get"
@@ -46,8 +47,10 @@ func (input CreateDeposit) Exec(ctx context.Context) (int64, error) {
 	order.Protocol = payInfo.Protocol
 	order.Currency = payInfo.Currency
 	order.Address = payInfo.Address
-	order.StatusRemark = xtrans.T(input.Lang, "处理中")
-	order.Amount = input.Amount
+	order.StatusRemark = xtrans.T(input.Lang, "processing")
+	order.ExchangeRate = payInfo.ExchangeRate
+	order.ExchangeMoney = input.Amount
+	order.Amount = input.Amount * payInfo.ExchangeRate
 	order.Pid = int(userInfo.Pid)
 	order.ParentPath = userInfo.ParentPath
 	order.FinishAt = xtime.Get1970Datetime()
@@ -73,6 +76,11 @@ func (input CreateDeposit) Exec(ctx context.Context) (int64, error) {
 	}
 	if affected < 1 {
 		return 0, xtrans.TError(input.Lang, "失败请重试")
+	}
+
+	message := sync.Message{}
+	if err = message.Trigger(sync.ChannelAdmin, sync.EventDeposit); err != nil {
+		return 0, err
 	}
 	return order.OrderNo, nil
 }

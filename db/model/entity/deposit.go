@@ -31,4 +31,6 @@ type Deposit struct {
 	AdminOperate    string      `json:"adminOperate"    description:"操作用户"`
 	TransferOrderNo string      `json:"transferOrderNo" description:"用户转账订单号"`
 	TransferImg     string      `json:"transferImg"     description:"用户转账图片"`
+	ExchangeRate    float64     `json:"exchangeRate"    description:"汇率"`
+	ExchangeMoney   float64     `json:"exchangeMoney"   description:"第三方充值金额"`
 }

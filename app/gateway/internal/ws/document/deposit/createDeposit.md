@@ -4,8 +4,8 @@
 {
   "event": "/user/wallet/createDeposit",
   "query": {
-    "payId": 2,
-    "amount": 20,
+    "payId": 3,
+    "amount": 10,
     "transferOrderNo": "test",
     "transferImg": "testimg"
   }

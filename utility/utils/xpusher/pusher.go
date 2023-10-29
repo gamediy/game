@@ -3,7 +3,7 @@ package xpusher
 import (
 	"context"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/pusher/pusher-http-go"
+	"github.com/pusher/pusher-http-go/v5"
 )
 
 var client pusher.Client
@@ -32,5 +32,6 @@ func Init(appID, key, secret, cluster string) {
 		Key:     key,
 		Secret:  secret,
 		Cluster: cluster,
+		Secure:  true,
 	}
 }
