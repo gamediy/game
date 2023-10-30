@@ -43,6 +43,8 @@ type WithdrawColumns struct {
 	UpdatedAt     string //
 	AdminOperate  string // 操作用户
 	ParentPath    string //
+	ExchangeRate  string //
+	ExchangeMoney string //
 }
 
 // withdrawColumns holds the columns for table w_withdraw.
@@ -70,6 +72,8 @@ var withdrawColumns = WithdrawColumns{
 	UpdatedAt:     "updated_at",
 	AdminOperate:  "admin_operate",
 	ParentPath:    "parent_path",
+	ExchangeRate:  "exchange_rate",
+	ExchangeMoney: "exchange_money",
 }
 
 // NewWithdrawDao creates and returns a new DAO object for table data access.

@@ -33,4 +33,6 @@ type Withdraw struct {
 	UpdatedAt     *gtime.Time `json:"updatedAt"     description:""`
 	AdminOperate  string      `json:"adminOperate"  description:"操作用户"`
 	ParentPath    string      `json:"parentPath"    description:""`
+	ExchangeRate  float64     `json:"exchangeRate"  description:""`
+	ExchangeMoney float64     `json:"exchangeMoney" description:""`
 }

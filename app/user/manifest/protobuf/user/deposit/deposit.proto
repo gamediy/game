@@ -70,6 +70,7 @@ message DepositItem{
   string transferImg = 9;
   string createdAt = 10;
   int64 amountItemId = 11;
+  string statusRemark = 12;
 }
 message ListDepositRes{
   int64 total = 1;

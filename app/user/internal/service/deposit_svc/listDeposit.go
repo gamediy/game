@@ -22,7 +22,7 @@ func ListDeposit(ctx context.Context, req *deposit.ListDepositReq) (*deposit.Lis
 		size = 10
 	}
 	if err = db.Page(int(page), int(size)).
-		Fields("uid,order_no,amount,status,currency,protocol,amount_item_id,transfer_order_no,transfer_img,created_at,status").
+		Fields("uid,order_no,amount,status,currency,protocol,amount_item_id,transfer_order_no,transfer_img,created_at,status,status_remark").
 		Scan(&res.List); err != nil {
 		return nil, err
 	}

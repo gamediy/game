@@ -35,4 +35,6 @@ type Withdraw struct {
 	UpdatedAt     *gtime.Time //
 	AdminOperate  interface{} // 操作用户
 	ParentPath    interface{} //
+	ExchangeRate  interface{} //
+	ExchangeMoney interface{} //
 }
