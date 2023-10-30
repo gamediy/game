@@ -14,3 +14,6 @@ func (userSvc) SetPayPass(ctx context.Context, in *withdraw.SetPayPassReq) (*wit
 func (userSvc) BindWithdrawAccount(ctx context.Context, in *withdraw.BindWithdrawAccountReq) (*withdraw.BindWithdrawAccountRes, error) {
 	return withdrawClient.BindWithdrawAccount(ctx, in)
 }
+func (userSvc) DelWithdrawAccount(ctx context.Context, in *withdraw.DelWithdrawAccountReq) (*withdraw.DelWithdrawAccountRes, error) {
+	return withdrawClient.DelWithdrawAccount(ctx, in)
+}

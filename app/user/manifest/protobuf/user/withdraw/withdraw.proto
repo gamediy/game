@@ -41,6 +41,14 @@ message withdrawAccountItem{
   string account = 5;
 }
 
+// del withdraw account
+message DelWithdrawAccountReq{
+  int64 uid = 1;
+  int64 id = 2;
+  string payPass = 3;
+}
+message DelWithdrawAccountRes{}
+
 // create withdraw
 message CreateWithdrawReq{
   int64 amountItemId = 1;
@@ -54,9 +62,10 @@ service WithdrawService{
   rpc PayPassStatus(PayPassStatusReq)returns(PayPassStatusRes);
   // set pay password
   rpc SetPayPass(SetPayPassReq)returns(SetPayPassRes);
-
   // bind withdraw account
   rpc BindWithdrawAccount(BindWithdrawAccountReq)returns(BindWithdrawAccountRes);
+  // del withdraw account
+  rpc DelWithdrawAccount(DelWithdrawAccountReq)returns(DelWithdrawAccountRes);
   // create withdraw
   rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
 }

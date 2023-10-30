@@ -6,6 +6,7 @@
 "pay password is error" = "pay password is error"
 "pay pass has been set" = "the payment password has been set"
 "this card has been bound" = "this card already has been bind"
+"deleted" = "deleted"
 
 ## data not found
 "bank not found" = "bank not found"

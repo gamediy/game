@@ -6,6 +6,7 @@
 "pay password is error" = "交易密码错误"
 "pay pass has been set" = "支付密码已经设置"
 "this card has been bound" = "这张卡已经被绑定"
+"deleted" = "删除"
 
 ## data not found
 "bank not found" = "银行信息不存在"

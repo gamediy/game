@@ -37,6 +37,18 @@ func (*Controller) BindWithdrawAccount(ctx context.Context, req *withdraw.BindWi
 	return &withdraw.BindWithdrawAccountRes{}, nil
 }
 
+func (*Controller) DelWithdrawAccount(ctx context.Context, req *withdraw.DelWithdrawAccountReq) (res *withdraw.DelWithdrawAccountRes, err error) {
+	x := withdraw_svc.DelWithdrawAccount{
+		Id:      req.Id,
+		Uid:     req.Uid,
+		PayPass: req.PayPass,
+	}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return &withdraw.DelWithdrawAccountRes{}, nil
+}
+
 func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithdrawReq) (res *withdraw.CreateWithdrawRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

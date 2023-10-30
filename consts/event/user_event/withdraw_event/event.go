@@ -4,4 +4,5 @@ var (
 	PayPassStatus       = "/user/withdraw/pay_pass_status"
 	SetPayPass          = "/user/withdraw/set_pay_pass"
 	BindWithdrawAccount = "/user/withdraw/bindWithdrawAccount"
+	DelWithdrawAccount  = "/user/withdraw/delWithdrawAccount"
 )

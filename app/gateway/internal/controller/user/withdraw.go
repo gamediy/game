@@ -43,3 +43,15 @@ func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }
+
+func delWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.DelWithdrawAccount(ctx, &withdraw.DelWithdrawAccountReq{
+		Uid:     wsclient.UserInfo.Uid,
+		Id:      gconv.Int64(query["id"]),
+		PayPass: gconv.String(query["payPass"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.DelWithdrawAccount),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}
