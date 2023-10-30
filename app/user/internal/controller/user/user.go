@@ -5,12 +5,8 @@ import (
 	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
-	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
-
-	"github.com/gogf/gf/errors/gcode"
-	"github.com/gogf/gf/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -70,12 +66,4 @@ func (*Controller) UserInfo(ctx context.Context, req *user.UserInfoRequest) (res
 
 func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *user.WalletReply, err error) {
 	return wallet_svc.Wallet(ctx, req)
-}
-
-func (*Controller) BindWithdrawAccount(ctx context.Context, req *withdraw.BindWithdrawAccountReq) (res *withdraw.BindWithdrawAccountRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
-}
-
-func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithdrawReq) (res *withdraw.CreateWithdrawRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }
