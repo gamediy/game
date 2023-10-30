@@ -4,6 +4,7 @@
 "processing" = "processing"
 "set pay password first" = "set pay password first"
 "pay password is error" = "pay password is error"
+"pay pass has been set" = "the payment password has been set"
 
 ## data not found
 "bank not found" = "bank not found"

@@ -13,7 +13,14 @@ func (*Controller) PayPassStatus(ctx context.Context, req *withdraw.PayPassStatu
 }
 
 func (*Controller) SetPayPass(ctx context.Context, req *withdraw.SetPayPassReq) (res *withdraw.SetPayPassRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	x := withdraw_svc.SetPayPass{
+		Uid:  req.Uid,
+		Pass: req.Pass,
+	}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return &withdraw.SetPayPassRes{}, nil
 }
 
 func (*Controller) BindWithdrawAccount(ctx context.Context, req *withdraw.BindWithdrawAccountReq) (res *withdraw.BindWithdrawAccountRes, err error) {
