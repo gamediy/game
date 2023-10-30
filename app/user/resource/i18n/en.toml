@@ -2,3 +2,10 @@
 "the recharge amount is incorrect" = "the recharge amount is incorrect"
 "failed please try again" = "failed please try again"
 "processing" = "processing"
+"set pay password first" = "set pay password first"
+"pay password is error" = "pay password is error"
+
+## data not found
+"bank not found" = "bank not found"
+"account not found" = "account not found"
+"data not found" = "data not found"

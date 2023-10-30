@@ -20,6 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	WithdrawService_PayPassStatus_FullMethodName       = "/withdraw.WithdrawService/PayPassStatus"
+	WithdrawService_SetPayPass_FullMethodName          = "/withdraw.WithdrawService/SetPayPass"
 	WithdrawService_BindWithdrawAccount_FullMethodName = "/withdraw.WithdrawService/BindWithdrawAccount"
 	WithdrawService_CreateWithdraw_FullMethodName      = "/withdraw.WithdrawService/CreateWithdraw"
 )
@@ -28,6 +30,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WithdrawServiceClient interface {
+	// pay pass status
+	PayPassStatus(ctx context.Context, in *PayPassStatusReq, opts ...grpc.CallOption) (*PayPassStatusRes, error)
+	// set pay password
+	SetPayPass(ctx context.Context, in *SetPayPassReq, opts ...grpc.CallOption) (*SetPayPassRes, error)
 	// bind withdraw account
 	BindWithdrawAccount(ctx context.Context, in *BindWithdrawAccountReq, opts ...grpc.CallOption) (*BindWithdrawAccountRes, error)
 	// create withdraw
@@ -40,6 +46,24 @@ type withdrawServiceClient struct {
 
 func NewWithdrawServiceClient(cc grpc.ClientConnInterface) WithdrawServiceClient {
 	return &withdrawServiceClient{cc}
+}
+
+func (c *withdrawServiceClient) PayPassStatus(ctx context.Context, in *PayPassStatusReq, opts ...grpc.CallOption) (*PayPassStatusRes, error) {
+	out := new(PayPassStatusRes)
+	err := c.cc.Invoke(ctx, WithdrawService_PayPassStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *withdrawServiceClient) SetPayPass(ctx context.Context, in *SetPayPassReq, opts ...grpc.CallOption) (*SetPayPassRes, error) {
+	out := new(SetPayPassRes)
+	err := c.cc.Invoke(ctx, WithdrawService_SetPayPass_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *withdrawServiceClient) BindWithdrawAccount(ctx context.Context, in *BindWithdrawAccountReq, opts ...grpc.CallOption) (*BindWithdrawAccountRes, error) {
@@ -64,6 +88,10 @@ func (c *withdrawServiceClient) CreateWithdraw(ctx context.Context, in *CreateWi
 // All implementations must embed UnimplementedWithdrawServiceServer
 // for forward compatibility
 type WithdrawServiceServer interface {
+	// pay pass status
+	PayPassStatus(context.Context, *PayPassStatusReq) (*PayPassStatusRes, error)
+	// set pay password
+	SetPayPass(context.Context, *SetPayPassReq) (*SetPayPassRes, error)
 	// bind withdraw account
 	BindWithdrawAccount(context.Context, *BindWithdrawAccountReq) (*BindWithdrawAccountRes, error)
 	// create withdraw
@@ -75,6 +103,12 @@ type WithdrawServiceServer interface {
 type UnimplementedWithdrawServiceServer struct {
 }
 
+func (UnimplementedWithdrawServiceServer) PayPassStatus(context.Context, *PayPassStatusReq) (*PayPassStatusRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PayPassStatus not implemented")
+}
+func (UnimplementedWithdrawServiceServer) SetPayPass(context.Context, *SetPayPassReq) (*SetPayPassRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetPayPass not implemented")
+}
 func (UnimplementedWithdrawServiceServer) BindWithdrawAccount(context.Context, *BindWithdrawAccountReq) (*BindWithdrawAccountRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BindWithdrawAccount not implemented")
 }
@@ -92,6 +126,42 @@ type UnsafeWithdrawServiceServer interface {
 
 func RegisterWithdrawServiceServer(s grpc.ServiceRegistrar, srv WithdrawServiceServer) {
 	s.RegisterService(&WithdrawService_ServiceDesc, srv)
+}
+
+func _WithdrawService_PayPassStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayPassStatusReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WithdrawServiceServer).PayPassStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WithdrawService_PayPassStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WithdrawServiceServer).PayPassStatus(ctx, req.(*PayPassStatusReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WithdrawService_SetPayPass_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetPayPassReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WithdrawServiceServer).SetPayPass(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WithdrawService_SetPayPass_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WithdrawServiceServer).SetPayPass(ctx, req.(*SetPayPassReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _WithdrawService_BindWithdrawAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -137,6 +207,14 @@ var WithdrawService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "withdraw.WithdrawService",
 	HandlerType: (*WithdrawServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "PayPassStatus",
+			Handler:    _WithdrawService_PayPassStatus_Handler,
+		},
+		{
+			MethodName: "SetPayPass",
+			Handler:    _WithdrawService_SetPayPass_Handler,
+		},
 		{
 			MethodName: "BindWithdrawAccount",
 			Handler:    _WithdrawService_BindWithdrawAccount_Handler,

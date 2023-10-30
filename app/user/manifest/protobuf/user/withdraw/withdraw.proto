@@ -1,10 +1,23 @@
 syntax = "proto3";
 option go_package = ".;withdraw";
 package withdraw;
+message PayPassStatusReq{
+  int64 uid = 1;
+}
+message PayPassStatusRes{
+  string status = 1; // 0 not set , 1 already set
+}
+
+// set pay password
+message SetPayPassReq{
+  int64 uid = 1;
+  string pass = 2;
+}
+message SetPayPassRes{}
 
 // bind withdraw account
 message BindWithdrawAccountReq {
-  int64 amountItemId = 1; // amount item id
+  int64 bankId = 1; // bank id
   string address = 2; // card number
   string title = 3; // cardholder
   string pass = 4; // pay pass
@@ -20,9 +33,13 @@ message CreateWithdrawReq{
 message CreateWithdrawRes{}
 
 service WithdrawService{
+  // pay pass status
+  rpc PayPassStatus(PayPassStatusReq)returns(PayPassStatusRes);
+  // set pay password
+  rpc SetPayPass(SetPayPassReq)returns(SetPayPassRes);
+
   // bind withdraw account
   rpc BindWithdrawAccount(BindWithdrawAccountReq)returns(BindWithdrawAccountRes);
   // create withdraw
   rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
-
 }

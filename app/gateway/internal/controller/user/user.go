@@ -7,6 +7,7 @@ import (
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/ws"
 	"game/consts/event/user_event/deposit_event"
+	"game/consts/event/user_event/withdraw_event"
 
 	"game/app/user/api/user/user"
 	"game/consts/event/user_event"
@@ -26,6 +27,7 @@ func UserControllerInit() {
 	controller.Ctrl[deposit_event.ListDeposit] = listDeposit
 	controller.Ctrl[mailbox_event.ListMailBox] = listMailBox
 	controller.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
+	controller.Ctrl[withdraw_event.PayPassStatus] = payPassStatus
 }
 
 // 登录

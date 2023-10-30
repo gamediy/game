@@ -1,4 +1,11 @@
 "the recharge channel has been closed" = "充值通道已关闭"
 "the recharge amount is incorrect" = "充值金额不正确"
 "failed please try again" = "失败请重试"
-"processing"="处理中"
+"processing" = "处理中"
+"set pay password first" = "请先设置交易密码"
+"pay password is error" ="交易密码错误"
+
+## data not found
+"bank not found" = "银行信息不存在"
+"account not found" ="账户不存在"
+"data not found" ="数据不存在"
