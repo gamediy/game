@@ -69,3 +69,11 @@ func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithd
 	}
 	return &withdraw.CreateWithdrawRes{}, nil
 }
+
+func (*Controller) ListWithdrawMethod(ctx context.Context, req *withdraw.ListWithdrawMethodReq) (res *withdraw.ListWithdrawMethodRes, err error) {
+	x := withdraw_svc.ListWithdrawMethod{
+		Uid:  req.Uid,
+		Lang: req.Lang,
+	}
+	return x.Exec(ctx)
+}

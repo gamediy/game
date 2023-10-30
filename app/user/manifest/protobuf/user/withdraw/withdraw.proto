@@ -57,6 +57,32 @@ message ListWithdrawAccountRes{
   repeated WithdrawAccountItem list = 2;
 }
 
+// list withdrawal method
+message ListWithdrawMethodReq{
+  int64  uid = 1;
+  string  lang = 2;
+}
+message WithdrawBindInfo{
+  string address = 1;
+  string protocol = 2;
+}
+message AmountItem {
+  int64 id = 1;
+  string title = 2;
+  string detail = 3;
+  string logo = 4;
+  string country = 5;
+  string currency = 6;
+  string protocol = 7;
+  string address = 8;
+  double exchangeRate = 9;
+  string selectMoney = 10;
+  WithdrawBindInfo bind = 11; // if it's empty go to bind
+}
+message ListWithdrawMethodRes{
+  string tips = 1;
+  repeated AmountItem list = 2;
+}
 
 // create withdraw
 message CreateWithdrawReq{
@@ -79,6 +105,8 @@ service WithdrawService{
   rpc DelWithdrawAccount(DelWithdrawAccountReq)returns(DelWithdrawAccountRes);
   // list withdraw account
   rpc ListWithdrawAccount(ListWithdrawAccountReq)returns(ListWithdrawAccountRes);
+  // list withdraw method
+  rpc ListWithdrawMethod(ListWithdrawMethodReq)returns(ListWithdrawMethodRes);
   // create withdraw
   rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
 }

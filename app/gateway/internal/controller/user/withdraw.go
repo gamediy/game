@@ -75,3 +75,14 @@ func createWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*mod
 		Event: model.WrapEventResponse(withdraw_event.CreateWithdraw),
 		Body:  model.WrapMessage(res, err)}, nil
 }
+
+func listWithdrawMethod(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.ListWithdrawMethod(ctx, &withdraw.ListWithdrawMethodReq{
+		Uid:  wsclient.UserInfo.Uid,
+		Lang: wsclient.UserInfo.Lang,
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.ListWithdrawMethod),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}

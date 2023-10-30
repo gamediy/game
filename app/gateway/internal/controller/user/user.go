@@ -33,6 +33,7 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.DelWithdrawAccount] = delWithdrawAccountById
 	controller.Ctrl[withdraw_event.ListWithdrawAccount] = listWithdrawAccount
 	controller.Ctrl[withdraw_event.CreateWithdraw] = createWithdraw
+	controller.Ctrl[withdraw_event.ListWithdrawMethod] = listWithdrawMethod
 }
 
 // 登录

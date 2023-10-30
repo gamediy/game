@@ -10,3 +10,17 @@
   }
 }
 ```
+# res
+```json
+{
+  "event": "/user/withdraw/create_response",
+  "body": {
+    "code": 0,
+    "msg": "",
+    "data": {}
+  },
+  "query": null,
+  "tag": "",
+  "_": 0
+}
+```
