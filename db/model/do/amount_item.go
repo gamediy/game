@@ -32,4 +32,6 @@ type AmountItem struct {
 	Address          interface{} // 地址或卡号
 	ExchangeRate     interface{} // 汇率
 	SelectMoney      interface{} // 选择金额json [100,200]
+	Class            interface{} //
+	BankId           interface{} //
 }

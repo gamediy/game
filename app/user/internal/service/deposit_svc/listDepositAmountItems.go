@@ -58,6 +58,7 @@ func ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.DepositAmo
 					Max:      item.Max,
 					Min:      item.Min,
 					Detail:   item.Detail,
+					BankId:   item.BankId,
 				})
 			}
 

@@ -40,6 +40,8 @@ type AmountItemColumns struct {
 	Address          string // 地址或卡号
 	ExchangeRate     string // 汇率
 	SelectMoney      string // 选择金额json [100,200]
+	Class            string //
+	BankId           string //
 }
 
 // amountItemColumns holds the columns for table w_amount_item.
@@ -64,6 +66,8 @@ var amountItemColumns = AmountItemColumns{
 	Address:          "address",
 	ExchangeRate:     "exchange_rate",
 	SelectMoney:      "select_money",
+	Class:            "class",
+	BankId:           "bank_id",
 }
 
 // NewAmountItemDao creates and returns a new DAO object for table data access.

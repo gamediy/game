@@ -30,4 +30,6 @@ type AmountItem struct {
 	Address          string      `json:"address"          description:"地址或卡号"`
 	ExchangeRate     float64     `json:"exchangeRate"     description:"汇率"`
 	SelectMoney      string      `json:"selectMoney"      description:"选择金额json [100,200]"`
+	Class            string      `json:"class"            description:""`
+	BankId           int         `json:"bankId"           description:""`
 }

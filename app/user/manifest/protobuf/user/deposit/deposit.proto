@@ -27,6 +27,7 @@ message AmountItem {
   string created_at = 16;
   string updated_at = 17;
   string address = 18;
+  int64 bankId = 19;
 }
 message depositBox {
   string title = 1;

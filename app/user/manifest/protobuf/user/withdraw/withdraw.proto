@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = ".;withdraw";
+package withdraw;
+
+// bind withdraw account
+message BindWithdrawAccountReq {
+  int64 amountItemId = 1; // amount item id
+  string address = 2; // card number
+  string title = 3; // cardholder
+  string pass = 4; // pay pass
+}
+message BindWithdrawAccountRes{}
+
+// create withdraw
+message CreateWithdrawReq{
+  int64 amountItemId = 1;
+  double amount = 2;
+  int64 withdrawAccountId = 3;
+}
+message CreateWithdrawRes{}
+
+service WithdrawService{
+  // bind withdraw account
+  rpc BindWithdrawAccount(BindWithdrawAccountReq)returns(BindWithdrawAccountRes);
+  // create withdraw
+  rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
+
+}
