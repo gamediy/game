@@ -49,16 +49,18 @@ func ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.DepositAmo
 				}
 
 				depositList.Item = append(depositList.Item, &deposit.AmountItem{
-					Id:       item.Id,
-					Title:    item.Title,
-					Protocol: item.Protocol,
-					Logo:     fmt.Sprint(get.ImgPrefix(), item.Logo),
-					Currency: item.Currency,
-					Address:  item.Address,
-					Max:      item.Max,
-					Min:      item.Min,
-					Detail:   item.Detail,
-					BankId:   item.BankId,
+					Id:           item.Id,
+					Title:        item.Title,
+					Protocol:     item.Protocol,
+					Logo:         fmt.Sprint(get.ImgPrefix(), item.Logo),
+					Currency:     item.Currency,
+					Address:      item.Address,
+					Max:          item.Max,
+					Min:          item.Min,
+					Detail:       item.Detail,
+					BankId:       item.BankId,
+					ExchangeRate: item.ExchangeRate,
+					SelectMoney:  item.SelectMoney,
 				})
 			}
 
