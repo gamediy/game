@@ -27,8 +27,8 @@ func TestBindWithdrawAccount_Exec(t *testing.T) {
 			BankId:  1,
 			Address: "awefalfjdf",
 			Title:   "test",
-			Pass:    "",
-			Uid:     160,
+			Pass:    "123456",
+			Uid:     161,
 		}},
 	}
 	for _, tt := range tests {

@@ -34,6 +34,12 @@ func (s BindWithdrawAccount) Exec(ctx context.Context) error {
 	if !xpwd.ComparePassword(user.PayPass, s.Pass) {
 		return fmt.Errorf("pay password is error")
 	}
+	// check already bind
+	count, _ := dao.WithdrawAccount.Ctx(ctx).Count("address = ? and uid = ?", s.Address, user.Id)
+	if count != 0 {
+		return fmt.Errorf("this card has been bound")
+	}
+
 	d := entity.WithdrawAccount{}
 	d.Id = xuuid.GenSnowflakeUUID().Int64()
 	d.Net = bank.Net

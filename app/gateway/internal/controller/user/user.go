@@ -29,6 +29,7 @@ func UserControllerInit() {
 	controller.Ctrl[mailbox_event.MailBoxTotal] = countMailBoxTotal
 	controller.Ctrl[withdraw_event.PayPassStatus] = payPassStatus
 	controller.Ctrl[withdraw_event.SetPayPass] = setPayPass
+	controller.Ctrl[withdraw_event.BindWithdrawAccount] = bindWithdrawAccount
 }
 
 // 登录

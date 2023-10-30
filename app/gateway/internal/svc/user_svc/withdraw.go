@@ -11,3 +11,6 @@ func (userSvc) PayPassStatus(ctx context.Context, uid int64) (*withdraw.PayPassS
 func (userSvc) SetPayPass(ctx context.Context, in *withdraw.SetPayPassReq) (*withdraw.SetPayPassRes, error) {
 	return withdrawClient.SetPayPass(ctx, in)
 }
+func (userSvc) BindWithdrawAccount(ctx context.Context, in *withdraw.BindWithdrawAccountReq) (*withdraw.BindWithdrawAccountRes, error) {
+	return withdrawClient.BindWithdrawAccount(ctx, in)
+}

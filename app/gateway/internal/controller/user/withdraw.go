@@ -29,3 +29,17 @@ func setPayPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.W
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }
+
+func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.BindWithdrawAccount(ctx, &withdraw.BindWithdrawAccountReq{
+		Uid:     wsclient.UserInfo.Uid,
+		BankId:  gconv.Int64(query["bankId"]),
+		Address: gconv.String(query["address"]),
+		Title:   gconv.String(query["title"]),
+		Pass:    gconv.String(query["pass"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.BindWithdrawAccount),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}

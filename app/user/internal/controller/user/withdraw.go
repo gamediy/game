@@ -24,7 +24,17 @@ func (*Controller) SetPayPass(ctx context.Context, req *withdraw.SetPayPassReq) 
 }
 
 func (*Controller) BindWithdrawAccount(ctx context.Context, req *withdraw.BindWithdrawAccountReq) (res *withdraw.BindWithdrawAccountRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	x := withdraw_svc.BindWithdrawAccount{
+		BankId:  req.BankId,
+		Address: req.Address,
+		Title:   req.Title,
+		Pass:    req.Pass,
+		Uid:     req.Uid,
+	}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return &withdraw.BindWithdrawAccountRes{}, nil
 }
 
 func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithdrawReq) (res *withdraw.CreateWithdrawRes, err error) {
