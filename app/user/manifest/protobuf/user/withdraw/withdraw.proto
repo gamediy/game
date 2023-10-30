@@ -27,19 +27,6 @@ message BindWithdrawAccountReq {
 }
 message BindWithdrawAccountRes{}
 
-// list withdraw account
-message ListWithdrawAccountReq{
-  int64 page = 1;
-  int64 size = 2;
-  int64 uid = 3;
-}
-message withdrawAccountItem{
-  int64 id = 1;
-  string net = 2;
-  string protocol = 3;
-  int64 uid = 4;
-  string account = 5;
-}
 
 // del withdraw account
 message DelWithdrawAccountReq{
@@ -48,6 +35,28 @@ message DelWithdrawAccountReq{
   string payPass = 3;
 }
 message DelWithdrawAccountRes{}
+
+
+// list withdraw account
+message ListWithdrawAccountReq{
+  int64 page = 1;
+  int64 size = 2;
+  int64 uid = 3;
+}
+message WithdrawAccountItem{
+  int64 id = 1;
+  string net = 2;
+  string protocol = 3;
+  string address = 4;
+  string currency = 5;
+  string status = 6;
+  string title = 7;
+}
+message ListWithdrawAccountRes{
+  int64 total = 1;
+  repeated WithdrawAccountItem list = 2;
+}
+
 
 // create withdraw
 message CreateWithdrawReq{
@@ -66,6 +75,8 @@ service WithdrawService{
   rpc BindWithdrawAccount(BindWithdrawAccountReq)returns(BindWithdrawAccountRes);
   // del withdraw account
   rpc DelWithdrawAccount(DelWithdrawAccountReq)returns(DelWithdrawAccountRes);
+  // list withdraw account
+  rpc ListWithdrawAccount(ListWithdrawAccountReq)returns(ListWithdrawAccountRes);
   // create withdraw
   rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
 }

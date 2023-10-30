@@ -30,7 +30,8 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.PayPassStatus] = payPassStatus
 	controller.Ctrl[withdraw_event.SetPayPass] = setPayPass
 	controller.Ctrl[withdraw_event.BindWithdrawAccount] = bindWithdrawAccount
-	controller.Ctrl[withdraw_event.DelWithdrawAccount] = delWithdrawAccount
+	controller.Ctrl[withdraw_event.DelWithdrawAccount] = delWithdrawAccountById
+	controller.Ctrl[withdraw_event.ListWithdrawAccount] = listWithdrawAccount
 }
 
 // 登录

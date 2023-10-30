@@ -44,7 +44,7 @@ func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 	}, nil
 }
 
-func delWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+func delWithdrawAccountById(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	res, err := user_svc.Service.DelWithdrawAccount(ctx, &withdraw.DelWithdrawAccountReq{
 		Uid:     wsclient.UserInfo.Uid,
 		Id:      gconv.Int64(query["id"]),
@@ -52,6 +52,18 @@ func delWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.DelWithdrawAccount),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}
+
+func listWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.ListWithdrawAccount(ctx, &withdraw.ListWithdrawAccountReq{
+		Uid:  wsclient.UserInfo.Uid,
+		Page: gconv.Int64(query["page"]),
+		Size: gconv.Int64(query["size"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.ListWithdrawAccount),
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }

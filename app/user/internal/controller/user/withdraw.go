@@ -49,6 +49,15 @@ func (*Controller) DelWithdrawAccount(ctx context.Context, req *withdraw.DelWith
 	return &withdraw.DelWithdrawAccountRes{}, nil
 }
 
+func (*Controller) ListWithdrawAccount(ctx context.Context, req *withdraw.ListWithdrawAccountReq) (res *withdraw.ListWithdrawAccountRes, err error) {
+	x := withdraw_svc.ListWithdrawAccount{
+		Uid:  req.Uid,
+		Page: int(req.Page),
+		Size: int(req.Size),
+	}
+	return x.Exec(ctx)
+}
+
 func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithdrawReq) (res *withdraw.CreateWithdrawRes, err error) {
 	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

@@ -24,6 +24,7 @@ const (
 	WithdrawService_SetPayPass_FullMethodName          = "/withdraw.WithdrawService/SetPayPass"
 	WithdrawService_BindWithdrawAccount_FullMethodName = "/withdraw.WithdrawService/BindWithdrawAccount"
 	WithdrawService_DelWithdrawAccount_FullMethodName  = "/withdraw.WithdrawService/DelWithdrawAccount"
+	WithdrawService_ListWithdrawAccount_FullMethodName = "/withdraw.WithdrawService/ListWithdrawAccount"
 	WithdrawService_CreateWithdraw_FullMethodName      = "/withdraw.WithdrawService/CreateWithdraw"
 )
 
@@ -39,6 +40,8 @@ type WithdrawServiceClient interface {
 	BindWithdrawAccount(ctx context.Context, in *BindWithdrawAccountReq, opts ...grpc.CallOption) (*BindWithdrawAccountRes, error)
 	// del withdraw account
 	DelWithdrawAccount(ctx context.Context, in *DelWithdrawAccountReq, opts ...grpc.CallOption) (*DelWithdrawAccountRes, error)
+	// list withdraw account
+	ListWithdrawAccount(ctx context.Context, in *ListWithdrawAccountReq, opts ...grpc.CallOption) (*ListWithdrawAccountRes, error)
 	// create withdraw
 	CreateWithdraw(ctx context.Context, in *CreateWithdrawReq, opts ...grpc.CallOption) (*CreateWithdrawRes, error)
 }
@@ -87,6 +90,15 @@ func (c *withdrawServiceClient) DelWithdrawAccount(ctx context.Context, in *DelW
 	return out, nil
 }
 
+func (c *withdrawServiceClient) ListWithdrawAccount(ctx context.Context, in *ListWithdrawAccountReq, opts ...grpc.CallOption) (*ListWithdrawAccountRes, error) {
+	out := new(ListWithdrawAccountRes)
+	err := c.cc.Invoke(ctx, WithdrawService_ListWithdrawAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *withdrawServiceClient) CreateWithdraw(ctx context.Context, in *CreateWithdrawReq, opts ...grpc.CallOption) (*CreateWithdrawRes, error) {
 	out := new(CreateWithdrawRes)
 	err := c.cc.Invoke(ctx, WithdrawService_CreateWithdraw_FullMethodName, in, out, opts...)
@@ -108,6 +120,8 @@ type WithdrawServiceServer interface {
 	BindWithdrawAccount(context.Context, *BindWithdrawAccountReq) (*BindWithdrawAccountRes, error)
 	// del withdraw account
 	DelWithdrawAccount(context.Context, *DelWithdrawAccountReq) (*DelWithdrawAccountRes, error)
+	// list withdraw account
+	ListWithdrawAccount(context.Context, *ListWithdrawAccountReq) (*ListWithdrawAccountRes, error)
 	// create withdraw
 	CreateWithdraw(context.Context, *CreateWithdrawReq) (*CreateWithdrawRes, error)
 	mustEmbedUnimplementedWithdrawServiceServer()
@@ -128,6 +142,9 @@ func (UnimplementedWithdrawServiceServer) BindWithdrawAccount(context.Context, *
 }
 func (UnimplementedWithdrawServiceServer) DelWithdrawAccount(context.Context, *DelWithdrawAccountReq) (*DelWithdrawAccountRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DelWithdrawAccount not implemented")
+}
+func (UnimplementedWithdrawServiceServer) ListWithdrawAccount(context.Context, *ListWithdrawAccountReq) (*ListWithdrawAccountRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListWithdrawAccount not implemented")
 }
 func (UnimplementedWithdrawServiceServer) CreateWithdraw(context.Context, *CreateWithdrawReq) (*CreateWithdrawRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateWithdraw not implemented")
@@ -217,6 +234,24 @@ func _WithdrawService_DelWithdrawAccount_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WithdrawService_ListWithdrawAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListWithdrawAccountReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WithdrawServiceServer).ListWithdrawAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WithdrawService_ListWithdrawAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WithdrawServiceServer).ListWithdrawAccount(ctx, req.(*ListWithdrawAccountReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _WithdrawService_CreateWithdraw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateWithdrawReq)
 	if err := dec(in); err != nil {
@@ -257,6 +292,10 @@ var WithdrawService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DelWithdrawAccount",
 			Handler:    _WithdrawService_DelWithdrawAccount_Handler,
+		},
+		{
+			MethodName: "ListWithdrawAccount",
+			Handler:    _WithdrawService_ListWithdrawAccount_Handler,
 		},
 		{
 			MethodName: "CreateWithdraw",
