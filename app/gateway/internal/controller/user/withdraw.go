@@ -15,8 +15,7 @@ func payPassStatus(ctx context.Context, wsclient *ws.Client, query g.Map) (*mode
 	status, err := user_svc.Service.PayPassStatus(ctx, wsclient.UserInfo.Uid)
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.PayPassStatus),
-		Body:  model.WrapMessage(status, err),
-	}, nil
+		Body:  model.WrapMessage(status, err)}, nil
 }
 
 func setPayPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -26,8 +25,7 @@ func setPayPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.W
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.SetPayPass),
-		Body:  model.WrapMessage(res, err),
-	}, nil
+		Body:  model.WrapMessage(res, err)}, nil
 }
 
 func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -40,8 +38,7 @@ func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.BindWithdrawAccount),
-		Body:  model.WrapMessage(res, err),
-	}, nil
+		Body:  model.WrapMessage(res, err)}, nil
 }
 
 func delWithdrawAccountById(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -52,8 +49,7 @@ func delWithdrawAccountById(ctx context.Context, wsclient *ws.Client, query g.Ma
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.DelWithdrawAccount),
-		Body:  model.WrapMessage(res, err),
-	}, nil
+		Body:  model.WrapMessage(res, err)}, nil
 }
 
 func listWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -64,6 +60,18 @@ func listWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.ListWithdrawAccount),
-		Body:  model.WrapMessage(res, err),
-	}, nil
+		Body:  model.WrapMessage(res, err)}, nil
+}
+
+func createWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.CreateWithdraw(ctx, &withdraw.CreateWithdrawReq{
+		AmountItemId:      gconv.Int64(query["amountItemId"]),
+		Amount:            gconv.Float64(query["amount"]),
+		WithdrawAccountId: gconv.Int64(query["withdrawAccountId"]),
+		Lang:              wsclient.UserInfo.Lang,
+		Uid:               wsclient.UserInfo.Uid,
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.CreateWithdraw),
+		Body:  model.WrapMessage(res, err)}, nil
 }

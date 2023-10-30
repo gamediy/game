@@ -6,4 +6,5 @@ var (
 	BindWithdrawAccount = "/user/withdraw/bindWithdrawAccount"
 	DelWithdrawAccount  = "/user/withdraw/delWithdrawAccount"
 	ListWithdrawAccount = "/user/withdraw/listWithdrawAccount"
+	CreateWithdraw      = "/user/withdraw/create"
 )

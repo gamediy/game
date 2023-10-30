@@ -4,8 +4,6 @@ import (
 	"context"
 	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/withdraw_svc"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 func (*Controller) PayPassStatus(ctx context.Context, req *withdraw.PayPassStatusReq) (res *withdraw.PayPassStatusRes, err error) {
@@ -59,5 +57,15 @@ func (*Controller) ListWithdrawAccount(ctx context.Context, req *withdraw.ListWi
 }
 
 func (*Controller) CreateWithdraw(ctx context.Context, req *withdraw.CreateWithdrawReq) (res *withdraw.CreateWithdrawRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	x := withdraw_svc.CreateWithdraw{
+		AmountItemId:      int(req.AmountItemId),
+		Amount:            req.Amount,
+		WithdrawAccountId: int(req.WithdrawAccountId),
+		Lang:              req.Lang,
+		Uid:               req.Uid,
+	}
+	if err = x.Exec(ctx); err != nil {
+		return nil, err
+	}
+	return &withdraw.CreateWithdrawRes{}, nil
 }

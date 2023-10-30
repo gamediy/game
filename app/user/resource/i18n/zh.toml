@@ -7,6 +7,8 @@
 "pay pass has been set" = "支付密码已经设置"
 "this card has been bound" = "这张卡已经被绑定"
 "deleted" = "删除"
+"please do not resubmit" = "请不要重复提交"
+"bind the withdrawal account first" = "请先绑定提现账号"
 
 ## data not found
 "bank not found" = "银行信息不存在"

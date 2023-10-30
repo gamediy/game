@@ -2,7 +2,9 @@ package deposit_svc
 
 import (
 	"context"
+	"game/utility/utils/xpusher"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/os/gctx"
 	"testing"
 )
 
@@ -34,6 +36,7 @@ func TestCreateDeposit_Exec(t *testing.T) {
 			Uid:             161,
 		}},
 	}
+	xpusher.InitFromCfg(gctx.New())
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			input := CreateDeposit{

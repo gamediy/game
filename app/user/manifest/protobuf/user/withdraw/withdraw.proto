@@ -63,6 +63,8 @@ message CreateWithdrawReq{
   int64 amountItemId = 1;
   double amount = 2;
   int64 withdrawAccountId = 3;
+  string lang = 4;
+  int64  uid = 5;
 }
 message CreateWithdrawRes{}
 

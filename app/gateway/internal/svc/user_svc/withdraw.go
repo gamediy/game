@@ -20,3 +20,6 @@ func (userSvc) DelWithdrawAccount(ctx context.Context, in *withdraw.DelWithdrawA
 func (userSvc) ListWithdrawAccount(ctx context.Context, in *withdraw.ListWithdrawAccountReq) (*withdraw.ListWithdrawAccountRes, error) {
 	return withdrawClient.ListWithdrawAccount(ctx, in)
 }
+func (userSvc) CreateWithdraw(ctx context.Context, in *withdraw.CreateWithdrawReq) (*withdraw.CreateWithdrawRes, error) {
+	return withdrawClient.CreateWithdraw(ctx, in)
+}
