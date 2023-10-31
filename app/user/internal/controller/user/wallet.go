@@ -8,9 +8,10 @@ import (
 
 func (*Controller) ListChangeLog(ctx context.Context, req *wallet.ListChangeLogReq) (res *wallet.ListChangeLogRes, err error) {
 	x := wallet_svc.ListChangeLog{
-		Uid:  req.Uid,
-		Page: int(req.Page),
-		Size: int(req.Size),
+		Uid:       req.Uid,
+		Page:      int(req.Page),
+		Size:      int(req.Size),
+		TransCode: req.TransCode,
 	}
 	return x.Exec(ctx)
 }

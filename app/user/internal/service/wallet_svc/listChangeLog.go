@@ -7,15 +7,19 @@ import (
 )
 
 type ListChangeLog struct {
-	Uid  int64
-	Page int
-	Size int
+	Uid       int64
+	Page      int
+	Size      int
+	TransCode string
 }
 
 func (m *ListChangeLog) Exec(ctx context.Context) (*wallet.ListChangeLogRes, error) {
 	var res = &wallet.ListChangeLogRes{}
 	res.List = make([]*wallet.ChangeLogItem, 0)
 	db := dao.WalletChangeLog.Ctx(ctx).Where("uid", m.Uid)
+	if m.TransCode != "" {
+		db = db.Where("trans_code", m.TransCode)
+	}
 	count, err := db.Count()
 	if err != nil {
 		return nil, err
