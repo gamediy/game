@@ -85,3 +85,7 @@ func (*Controller) ListWithdraw(ctx context.Context, req *withdraw.ListWithdrawR
 	}
 	return x.Exec(ctx)
 }
+
+func (*Controller) ListPublicWithdraw(ctx context.Context, req *withdraw.ListPublicWithdrawReq) (res *withdraw.ListPublicWithdrawRes, err error) {
+	return withdraw_svc.ListPublicWithdraw(ctx)
+}

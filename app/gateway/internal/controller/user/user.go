@@ -21,7 +21,7 @@ import (
 func UserControllerInit() {
 	controller.Ctrl[user_event.Login] = login
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
-	controller.Ctrl[wallet_event.Wallet] = wallet
+	controller.Ctrl[wallet_event.Wallet] = walletInfo
 	controller.Ctrl[wallet_event.ListChangeLog] = listChangeLog
 	controller.Ctrl[wallet_event.ListTransType] = listTransType
 	controller.Ctrl[deposit_event.DepositAmountItems] = depositAmountItems
@@ -37,6 +37,7 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.CreateWithdraw] = createWithdraw
 	controller.Ctrl[withdraw_event.ListWithdrawMethod] = listWithdrawMethod
 	controller.Ctrl[withdraw_event.ListWithdraw] = listWithdraw
+	controller.Ctrl[withdraw_event.ListPublicWithdraw] = listPublicWithdraw
 }
 
 // 登录

@@ -28,6 +28,7 @@ const (
 	WithdrawService_ListWithdrawMethod_FullMethodName  = "/withdraw.WithdrawService/ListWithdrawMethod"
 	WithdrawService_CreateWithdraw_FullMethodName      = "/withdraw.WithdrawService/CreateWithdraw"
 	WithdrawService_ListWithdraw_FullMethodName        = "/withdraw.WithdrawService/ListWithdraw"
+	WithdrawService_ListPublicWithdraw_FullMethodName  = "/withdraw.WithdrawService/ListPublicWithdraw"
 )
 
 // WithdrawServiceClient is the client API for WithdrawService service.
@@ -50,6 +51,8 @@ type WithdrawServiceClient interface {
 	CreateWithdraw(ctx context.Context, in *CreateWithdrawReq, opts ...grpc.CallOption) (*CreateWithdrawRes, error)
 	// list withdraw
 	ListWithdraw(ctx context.Context, in *ListWithdrawReq, opts ...grpc.CallOption) (*ListWithdrawRes, error)
+	// list public withdraw
+	ListPublicWithdraw(ctx context.Context, in *ListPublicWithdrawReq, opts ...grpc.CallOption) (*ListPublicWithdrawRes, error)
 }
 
 type withdrawServiceClient struct {
@@ -132,6 +135,15 @@ func (c *withdrawServiceClient) ListWithdraw(ctx context.Context, in *ListWithdr
 	return out, nil
 }
 
+func (c *withdrawServiceClient) ListPublicWithdraw(ctx context.Context, in *ListPublicWithdrawReq, opts ...grpc.CallOption) (*ListPublicWithdrawRes, error) {
+	out := new(ListPublicWithdrawRes)
+	err := c.cc.Invoke(ctx, WithdrawService_ListPublicWithdraw_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WithdrawServiceServer is the server API for WithdrawService service.
 // All implementations must embed UnimplementedWithdrawServiceServer
 // for forward compatibility
@@ -152,6 +164,8 @@ type WithdrawServiceServer interface {
 	CreateWithdraw(context.Context, *CreateWithdrawReq) (*CreateWithdrawRes, error)
 	// list withdraw
 	ListWithdraw(context.Context, *ListWithdrawReq) (*ListWithdrawRes, error)
+	// list public withdraw
+	ListPublicWithdraw(context.Context, *ListPublicWithdrawReq) (*ListPublicWithdrawRes, error)
 	mustEmbedUnimplementedWithdrawServiceServer()
 }
 
@@ -182,6 +196,9 @@ func (UnimplementedWithdrawServiceServer) CreateWithdraw(context.Context, *Creat
 }
 func (UnimplementedWithdrawServiceServer) ListWithdraw(context.Context, *ListWithdrawReq) (*ListWithdrawRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListWithdraw not implemented")
+}
+func (UnimplementedWithdrawServiceServer) ListPublicWithdraw(context.Context, *ListPublicWithdrawReq) (*ListPublicWithdrawRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPublicWithdraw not implemented")
 }
 func (UnimplementedWithdrawServiceServer) mustEmbedUnimplementedWithdrawServiceServer() {}
 
@@ -340,6 +357,24 @@ func _WithdrawService_ListWithdraw_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WithdrawService_ListPublicWithdraw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPublicWithdrawReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WithdrawServiceServer).ListPublicWithdraw(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WithdrawService_ListPublicWithdraw_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WithdrawServiceServer).ListPublicWithdraw(ctx, req.(*ListPublicWithdrawReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WithdrawService_ServiceDesc is the grpc.ServiceDesc for WithdrawService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -378,6 +413,10 @@ var WithdrawService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListWithdraw",
 			Handler:    _WithdrawService_ListWithdraw_Handler,
+		},
+		{
+			MethodName: "ListPublicWithdraw",
+			Handler:    _WithdrawService_ListPublicWithdraw_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

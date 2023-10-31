@@ -26,6 +26,9 @@ func (userSvc) CreateWithdraw(ctx context.Context, in *withdraw.CreateWithdrawRe
 func (userSvc) ListWithdrawMethod(ctx context.Context, in *withdraw.ListWithdrawMethodReq) (*withdraw.ListWithdrawMethodRes, error) {
 	return withdrawClient.ListWithdrawMethod(ctx, in)
 }
-func (receiver userSvc) ListWithdraw(ctx context.Context, in *withdraw.ListWithdrawReq) (*withdraw.ListWithdrawRes, error) {
+func (userSvc) ListWithdraw(ctx context.Context, in *withdraw.ListWithdrawReq) (*withdraw.ListWithdrawRes, error) {
 	return withdrawClient.ListWithdraw(ctx, in)
+}
+func (userSvc) ListPublicWithdraw(ctx context.Context) (*withdraw.ListPublicWithdrawRes, error) {
+	return withdrawClient.ListPublicWithdraw(ctx, &withdraw.ListPublicWithdrawReq{})
 }

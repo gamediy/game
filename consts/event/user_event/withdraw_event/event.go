@@ -9,4 +9,5 @@ const (
 	CreateWithdraw      = "/user/withdraw/create"
 	ListWithdrawMethod  = "/user/withdraw/listWithdrawMethod"
 	ListWithdraw        = "/user/withdraw/listWithdraw"
+	ListPublicWithdraw  = "/user/withdraw/listPublicWithdraw"
 )

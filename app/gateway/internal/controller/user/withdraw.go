@@ -104,3 +104,11 @@ func listWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*model
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }
+
+func listPublicWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.ListPublicWithdraw(ctx)
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.ListPublicWithdraw),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}
