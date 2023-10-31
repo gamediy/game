@@ -23,6 +23,7 @@ func UserControllerInit() {
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
 	controller.Ctrl[wallet_event.Wallet] = wallet
 	controller.Ctrl[wallet_event.ListChangeLog] = listChangeLog
+	controller.Ctrl[wallet_event.ListTransType] = listTransType
 	controller.Ctrl[deposit_event.DepositAmountItems] = depositAmountItems
 	controller.Ctrl[deposit_event.CreateDeposit] = createDeposit
 	controller.Ctrl[deposit_event.ListDeposit] = listDeposit

@@ -23,6 +23,17 @@ message ListChangeLogRes{
   int64 total = 1;
   repeated ChangeLogItem list = 2;
 }
+message ListTransTypeReq {}
+message TransTypeItem{
+  string title = 1;
+  int64 code = 2;
+  string remark = 3;
+  int64 type = 4;
+}
+message ListTransTypeRes{
+  repeated TransTypeItem list = 1;
+}
 service WalletService{
   rpc ListChangeLog(ListChangeLogReq)returns(ListChangeLogRes);
+  rpc ListTransType(ListTransTypeReq) returns(ListTransTypeRes);
 }

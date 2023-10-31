@@ -12,3 +12,6 @@ func (userSvc) Wallet(ctx context.Context, req *user.WalletRequest) (*user.Walle
 func (userSvc) ListChangeLog(ctx context.Context, req *wallet.ListChangeLogReq) (*wallet.ListChangeLogRes, error) {
 	return walletClient.ListChangeLog(ctx, req)
 }
+func (userSvc) ListTransType(ctx context.Context, req *wallet.ListTransTypeReq) (*wallet.ListTransTypeRes, error) {
+	return walletClient.ListTransType(ctx, req)
+}

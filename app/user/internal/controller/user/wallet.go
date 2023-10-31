@@ -15,3 +15,7 @@ func (*Controller) ListChangeLog(ctx context.Context, req *wallet.ListChangeLogR
 	}
 	return x.Exec(ctx)
 }
+func (*Controller) ListTransType(ctx context.Context, req *wallet.ListTransTypeReq) (res *wallet.ListTransTypeRes, err error) {
+	x := wallet_svc.ListTransType{}
+	return x.Exec(ctx)
+}

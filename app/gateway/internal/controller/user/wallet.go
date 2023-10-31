@@ -47,3 +47,11 @@ func listChangeLog(ctx context.Context, wsclient *ws.Client, query g.Map) (*mode
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }
+
+func listTransType(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.ListTransType(ctx, &wallet2.ListTransTypeReq{})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(wallet_event.ListTransType),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}
