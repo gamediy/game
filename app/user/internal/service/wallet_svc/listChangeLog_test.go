@@ -10,9 +10,10 @@ import (
 
 func TestListChangeLog_Exec(t *testing.T) {
 	type fields struct {
-		Uid  int64
-		Page int
-		Size int
+		Uid       int64
+		Page      int
+		Size      int
+		TransCode string
 	}
 	type args struct {
 		ctx context.Context
@@ -25,15 +26,16 @@ func TestListChangeLog_Exec(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			fields: fields{Uid: 161, Size: 3},
+			fields: fields{Uid: 161, Size: 3, TransCode: "-100"},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			m := &ListChangeLog{
-				Uid:  tt.fields.Uid,
-				Page: tt.fields.Page,
-				Size: tt.fields.Size,
+				Uid:       tt.fields.Uid,
+				Page:      tt.fields.Page,
+				Size:      tt.fields.Size,
+				TransCode: tt.fields.TransCode,
 			}
 			got, err := m.Exec(tt.args.ctx)
 			if (err != nil) != tt.wantErr {
