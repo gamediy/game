@@ -6,7 +6,6 @@ server:
   jwtExpireDuration: "7D" # 7 days
   rootFilePath: "/resource/public/upload/"  # 文件上传路径
   clientMaxBodySize: "200MB"
-
 logger:
   level: "debug"
   stdout: true
@@ -15,30 +14,29 @@ database:
     level: "debug"
     stdout: true
   default:
-    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(192.168.0.160:3306)/soccer?loc=Local&parseTime=true"
+    link: "mysql:root:LE2RrzrMxx6Z4sbc@tcp(8.219.177.71:3306)/game?loc=Local&parseTime=true"
     debug: true
-
-
-gfToken:
-  name: "star_net_user"
-  cacheMode: 2 # 1 gcache  2 redis 3 file
-  cacheKey: "start_net_user_token:"
-  encryptKey: "koi29a83idakguqjq29asd9asd8a7jhq"
-  authFailMsg: "Login timed out, please log in again"
-  multiLogin: true
-  globalMiddleware: true
 redis:
   default:
     address: "192.168.0.160:63790"
     db: 1
     pass: "PqcG15w6#AX$ey0a+BYcCFIpUxLYoukAqhfnfGbnkMtYE"
 grpc:
-  name:             "gateway"  # 服务名称
-  address:          ":5002" # 自定义服务监听地址
-  logPath:          "./log" # 日志存储目录路径
-  logStdout:        true    # 日志是否输出到终端
-  errorLogEnabled:  true    # 是否开启错误日志记录
+  name: "gateway"  # 服务名称
+  address: ":5002" # 自定义服务监听地址
+  logPath: "./log" # 日志存储目录路径
+  logStdout: true    # 日志是否输出到终端
+  errorLogEnabled: true    # 是否开启错误日志记录
   accessLogEnabled: true    # 是否开启访问日志记录
-  errorStack:       true    # 当产生错误时，是否记录错误堆栈
+  errorStack: true    # 当产生错误时，是否记录错误堆栈
+
+cloudflare:
+  upload:
+    BucketName: "8429dbc0235a26dda82c90041aa831dd"
+    AccountId: "fire"
+    AccessKeyId: "093843554af5bbea77f54ed3ad157599"
+    AccessKeySecret: "d0de875d34365f6c1dc86ab44abb3b9a00131096fe0502a75e61fadc86d5c7e5"
+    MaxSize: 1 # unit M
+    filePrefix: "https://pub-e700c1631e3a4dedaf546e73002fac2f.r2.dev/"
 etcd:
-  address: ["8.219.177.71:2379"]
+  address: [ "8.219.177.71:2379" ]

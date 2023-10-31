@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"game/app/gateway/internal/controller"
+	"game/app/gateway/internal/controller/sys"
 	user2 "game/app/gateway/internal/controller/user"
 	"game/app/gateway/internal/svc/slot_svc"
 	"game/app/gateway/internal/svc/user_svc"
@@ -106,6 +107,7 @@ var (
 				message := model.WrapMessage(token, err)
 				r.Response.Write(message)
 			})
+			s.BindHandler("/api/sys/uploadFile", sys.UploadFile)
 			//第三方游戏
 			s.Group("/api/third", func(group *ghttp.RouterGroup) {
 				group.GET("/check_account", func(r *ghttp.Request) {

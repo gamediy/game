@@ -3,12 +3,16 @@ package xfile
 import (
 	"context"
 	"fmt"
+	"game/db/dao"
+	"game/db/model/entity"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/os/genv"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/grand"
 	"path/filepath"
@@ -20,6 +24,7 @@ type CloudFlare struct {
 	AccessKeyId     string
 	AccessKeySecret string
 	MaxSize         float64
+	ImgPrefix       string
 }
 
 func NewCloudFlareFromCtx(ctx context.Context) CloudFlare {
@@ -29,12 +34,24 @@ func NewCloudFlareFromCtx(ctx context.Context) CloudFlare {
 		AccessKeySecret: g.Cfg().MustGet(ctx, "cloudflare.upload.AccessKeySecret").String(),
 		AccessKeyId:     g.Cfg().MustGet(ctx, "cloudflare.upload.AccessKeyId").String(),
 		MaxSize:         g.Cfg().MustGet(ctx, "cloudflare.upload.MaxSize").Float64(),
+		ImgPrefix:       g.Cfg().MustGet(ctx, "cloudflare.upload.filePrefix").String(),
+	}
+	return x
+}
+
+func NewCloudFlareFromEnv() CloudFlare {
+	x := CloudFlare{
+		BucketName:      genv.Get("cloudflareUploadBucketName").String(),
+		AccountId:       genv.Get("cloudflareUploadAccountId").String(),
+		AccessKeySecret: genv.Get("cloudflareUploadAccessKeySecret").String(),
+		AccessKeyId:     genv.Get("cloudflareUploadAccessKeyId").String(),
+		MaxSize:         genv.Get("cloudflareUploadMaxSize").Float64(),
 	}
 	return x
 }
 
 // Upload group 1 系统 2 文件 3 凭证
-func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
+func (x CloudFlare) Upload(ctx context.Context, group int64) (string, error) {
 	if group == 0 {
 		return "", fmt.Errorf("请输入分组")
 	}
@@ -42,9 +59,7 @@ func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 		r = ghttp.RequestFromCtx(ctx)
 	)
 	file := r.GetUploadFile("file")
-	if file == nil {
-		return "", fmt.Errorf("file error")
-	}
+
 	fileSize := float64(file.Size)
 	maxFileSize := x.MaxSize * 1024 * 1024 // 0.5MB x bytes
 	// Check the file size
@@ -105,17 +120,31 @@ func (x CloudFlare) Upload(ctx context.Context, group int) (string, error) {
 		Body:        f,
 		ContentType: &contentType,
 	})
+
 	if err != nil {
 		return "", err
 	}
-
+	if err = x.SaveToDB(ctx, group, fileName); err != nil {
+		return "", err
+	}
 	return fileName, nil
+}
+
+func (x CloudFlare) SaveToDB(ctx context.Context, group int64, name string) error {
+	d := entity.File{
+		Group:  group,
+		Url:    name,
+		Status: 1,
+	}
+	if _, err := dao.File.Ctx(ctx).Insert(&d); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (x CloudFlare) Del(ctx context.Context, file string) error {
 	r2Resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		return aws.Endpoint{
-			//URL: fmt.Sprintf("https://%s.r2.cloudflarestorage.com", x.AccountId),
 			URL: fmt.Sprintf("https://r2.cloudflarestorage.com/%s", x.AccountId), // 从前端代码获取
 		}, nil
 	})
