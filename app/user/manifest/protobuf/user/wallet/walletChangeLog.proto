@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package = ".;wallet";
+package wallet;
+message ListChangeLogReq {
+  int64 uid = 1;
+  int64 page = 2;
+  int64 size = 3;
+  string transCode = 4;
+}
+message ChangeLogItem{
+  int64 id = 1;
+  string transId = 2;
+  int64 uid = 3;
+  int64 transCode = 4;
+  string title = 5;
+  double balanceBefore = 6;
+  double balanceAfter = 7;
+  double amount = 8;
+  string note = 9;
+  string createdAt = 10;
+}
+message ListChangeLogRes{
+  int64 total = 1;
+  repeated ChangeLogItem list = 2;
+}
+service WalletService{
+  rpc ListChangeLog(ListChangeLogReq)returns(ListChangeLogRes);
+}

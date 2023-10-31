@@ -5,10 +5,10 @@ import (
 	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
 	"game/app/user/api/user/user"
+	"game/app/user/api/user/wallet"
 	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -20,6 +20,7 @@ type Controller struct {
 	deposit.UnimplementedDepositServiceServer
 	mailbox.UnimplementedMailBoxServiceServer
 	withdraw.UnimplementedWithdrawServiceServer
+	wallet.UnimplementedWalletServiceServer
 }
 
 func Register(s *grpcx.GrpcServer) {
@@ -27,6 +28,7 @@ func Register(s *grpcx.GrpcServer) {
 	deposit.RegisterDepositServiceServer(s.Server, &Controller{})
 	mailbox.RegisterMailBoxServiceServer(s.Server, &Controller{})
 	withdraw.RegisterWithdrawServiceServer(s.Server, &Controller{})
+	wallet.RegisterWalletServiceServer(s.Server, &Controller{})
 }
 
 func (*Controller) Reg(ctx context.Context, req *user.RegRequest) (res *user.RegReply, err error) {

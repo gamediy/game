@@ -22,6 +22,7 @@ func UserControllerInit() {
 	controller.Ctrl[user_event.Login] = login
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
 	controller.Ctrl[wallet_event.Wallet] = wallet
+	controller.Ctrl[wallet_event.ListChangeLog] = listChangeLog
 	controller.Ctrl[deposit_event.DepositAmountItems] = depositAmountItems
 	controller.Ctrl[deposit_event.CreateDeposit] = createDeposit
 	controller.Ctrl[deposit_event.ListDeposit] = listDeposit
@@ -68,16 +69,4 @@ func heartbeat(ctx context.Context, client *ws.Client, query g.Map) (*model.WsMe
 		Body:  model.WrapMessage("ping", nil),
 	}, nil
 
-}
-
-// 钱包
-func wallet(ctx context.Context, client *ws.Client, query g.Map) (*model.WsMessage, error) {
-
-	wallet, err := user_svc.Service.Wallet(ctx, &user.WalletRequest{
-		Uid: client.UserInfo.Uid,
-	})
-	return &model.WsMessage{
-		Event: model.WrapEventResponse(wallet_event.Wallet),
-		Body:  model.WrapMessage(wallet, err),
-	}, nil
 }
