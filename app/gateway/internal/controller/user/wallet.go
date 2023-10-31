@@ -37,9 +37,10 @@ func wallet(ctx context.Context, client *ws.Client, query g.Map) (*model.WsMessa
 
 func listChangeLog(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	res, err := user_svc.Service.ListChangeLog(ctx, &wallet2.ListChangeLogReq{
-		Uid:  wsclient.UserInfo.Uid,
-		Page: gconv.Int64(query["page"]),
-		Size: gconv.Int64(query["size"]),
+		Uid:       wsclient.UserInfo.Uid,
+		Page:      gconv.Int64(query["page"]),
+		Size:      gconv.Int64(query["size"]),
+		TransCode: gconv.String(query["transCode"]),
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(wallet_event.ListChangeLog),
