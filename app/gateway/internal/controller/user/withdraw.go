@@ -14,8 +14,9 @@ import (
 func payPassStatus(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	status, err := user_svc.Service.PayPassStatus(ctx, wsclient.UserInfo.Uid)
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(withdraw_event.PayPassStatus),
-		Body:  model.WrapMessage(status, err)}, nil
+			Event: model.WrapEventResponse(withdraw_event.PayPassStatus),
+			Body:  model.WrapMessage(status, err)},
+		nil
 }
 
 func setPayPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -24,8 +25,9 @@ func setPayPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.W
 		Pass: gconv.String(query["pass"]),
 	})
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(withdraw_event.SetPayPass),
-		Body:  model.WrapMessage(res, err)}, nil
+			Event: model.WrapEventResponse(withdraw_event.SetPayPass),
+			Body:  model.WrapMessage(res, err)},
+		nil
 }
 
 func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -37,8 +39,9 @@ func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 		Pass:    gconv.String(query["pass"]),
 	})
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(withdraw_event.BindWithdrawAccount),
-		Body:  model.WrapMessage(res, err)}, nil
+			Event: model.WrapEventResponse(withdraw_event.BindWithdrawAccount),
+			Body:  model.WrapMessage(res, err)},
+		nil
 }
 
 func delWithdrawAccountById(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -48,8 +51,9 @@ func delWithdrawAccountById(ctx context.Context, wsclient *ws.Client, query g.Ma
 		PayPass: gconv.String(query["payPass"]),
 	})
 	return &model.WsMessage{
-		Event: model.WrapEventResponse(withdraw_event.DelWithdrawAccount),
-		Body:  model.WrapMessage(res, err)}, nil
+			Event: model.WrapEventResponse(withdraw_event.DelWithdrawAccount),
+			Body:  model.WrapMessage(res, err)},
+		nil
 }
 
 func listWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -60,7 +64,8 @@ func listWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.ListWithdrawAccount),
-		Body:  model.WrapMessage(res, err)}, nil
+		Body:  model.WrapMessage(res, err),
+	}, nil
 }
 
 func createWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -73,7 +78,8 @@ func createWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*mod
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.CreateWithdraw),
-		Body:  model.WrapMessage(res, err)}, nil
+		Body:  model.WrapMessage(res, err),
+	}, nil
 }
 
 func listWithdrawMethod(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
@@ -83,6 +89,18 @@ func listWithdrawMethod(ctx context.Context, wsclient *ws.Client, query g.Map) (
 	})
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(withdraw_event.ListWithdrawMethod),
+		Body:  model.WrapMessage(res, err),
+	}, nil
+}
+
+func listWithdraw(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.ListWithdraw(ctx, &withdraw.ListWithdrawReq{
+		Uid:  wsclient.UserInfo.Uid,
+		Page: gconv.Int64(query["page"]),
+		Size: gconv.Int64(query["size"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(withdraw_event.ListWithdraw),
 		Body:  model.WrapMessage(res, err),
 	}, nil
 }

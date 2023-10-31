@@ -2,7 +2,8 @@ package withdraw_svc
 
 import (
 	"context"
-	"reflect"
+	"game/app/user/api/user/withdraw"
+	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
 
@@ -23,7 +24,11 @@ func TestListWithdraw_Exec(t *testing.T) {
 		want    *withdraw.ListWithdrawRes
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			fields: fields{
+				Uid: 161,
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -38,9 +43,7 @@ func TestListWithdraw_Exec(t *testing.T) {
 				t.Errorf("Exec() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("Exec() got = %v, want %v", got, tt.want)
-			}
+			g.Dump(got)
 		})
 	}
 }

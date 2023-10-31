@@ -34,6 +34,7 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.ListWithdrawAccount] = listWithdrawAccount
 	controller.Ctrl[withdraw_event.CreateWithdraw] = createWithdraw
 	controller.Ctrl[withdraw_event.ListWithdrawMethod] = listWithdrawMethod
+	controller.Ctrl[withdraw_event.ListWithdraw] = listWithdraw
 }
 
 // 登录

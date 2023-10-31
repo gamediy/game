@@ -94,6 +94,33 @@ message CreateWithdrawReq{
 }
 message CreateWithdrawRes{}
 
+// list withdraw
+message ListWithdrawReq{
+  int64  uid = 1;
+  int64 page = 2;
+  int64 size = 3;
+}
+message WithdrawItem{
+  string orderNo = 1;
+  string uid = 2;
+  string status = 3; // 1 wait 2 success -1 fail
+  string finishAt = 4;
+  string detail = 5;
+  string statusRemark = 6;
+  string amount = 7;
+  string sysRemark = 8;
+  string address = 9;
+  string fee = 10;
+  string net = 11;
+  string currency = 12;
+  string protocol = 13;
+  string createdAt = 14;
+}
+message ListWithdrawRes{
+  int64 total = 1;
+  repeated WithdrawItem list = 2;
+}
+
 service WithdrawService{
   // pay pass status
   rpc PayPassStatus(PayPassStatusReq)returns(PayPassStatusRes);
@@ -109,4 +136,6 @@ service WithdrawService{
   rpc ListWithdrawMethod(ListWithdrawMethodReq)returns(ListWithdrawMethodRes);
   // create withdraw
   rpc CreateWithdraw(CreateWithdrawReq)returns(CreateWithdrawRes);
+  // list withdraw
+  rpc ListWithdraw(ListWithdrawReq)returns(ListWithdrawRes);
 }

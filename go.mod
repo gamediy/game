@@ -15,7 +15,6 @@ require (
 	github.com/dobyte/gf-casbin v0.1.1
 	github.com/elastic/go-elasticsearch/v7 v7.17.10
 	github.com/ethereum/go-ethereum v1.13.2
-	github.com/gogf/gf v1.16.9
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.3.2
 	github.com/gogf/gf/contrib/nosql/redis/v2 v2.5.4
 	github.com/gogf/gf/contrib/registry/etcd/v2 v2.5.3

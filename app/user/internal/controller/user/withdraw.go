@@ -77,3 +77,11 @@ func (*Controller) ListWithdrawMethod(ctx context.Context, req *withdraw.ListWit
 	}
 	return x.Exec(ctx)
 }
+func (*Controller) ListWithdraw(ctx context.Context, req *withdraw.ListWithdrawReq) (res *withdraw.ListWithdrawRes, err error) {
+	x := withdraw_svc.ListWithdraw{
+		Uid:  req.Uid,
+		Page: int(req.Page),
+		Size: int(req.Size),
+	}
+	return x.Exec(ctx)
+}
