@@ -2,6 +2,9 @@
 
 ```json
 {
-  "event":"/user/wallet/list_change_log"
+  "event": "/user/wallet/listChangeLog",
+  "query": {
+    "transCode": "-100"
+  }
 }
 ```
