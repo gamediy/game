@@ -10,7 +10,7 @@ import (
 
 // Withdraw is the golang structure for table withdraw.
 type Withdraw struct {
-	OrderNo       int64       `json:"orderNo"       description:"订单号"`
+	Id            int64       `json:"id"            description:"订单号"`
 	Account       string      `json:"account"       description:"账号"`
 	Uid           int64       `json:"uid"           description:"UID"`
 	Pid           int64       `json:"pid"           description:"上级ID"`

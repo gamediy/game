@@ -20,7 +20,7 @@ type WithdrawDao struct {
 
 // WithdrawColumns defines and stores column names for table w_withdraw.
 type WithdrawColumns struct {
-	OrderNo       string // 订单号
+	Id            string // 订单号
 	Account       string // 账号
 	Uid           string // UID
 	Pid           string // 上级ID
@@ -49,7 +49,7 @@ type WithdrawColumns struct {
 
 // withdrawColumns holds the columns for table w_withdraw.
 var withdrawColumns = WithdrawColumns{
-	OrderNo:       "order_no",
+	Id:            "id",
 	Account:       "account",
 	Uid:           "uid",
 	Pid:           "pid",

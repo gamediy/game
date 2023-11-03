@@ -51,7 +51,7 @@ func (m *CreateWithdraw) Exec(ctx context.Context) error {
 	if count > 0 {
 		return fmt.Errorf("please do not resubmit")
 	}
-	order.OrderNo = xuuid.GenSnowflakeUUID().Int64()
+	order.Id = xuuid.GenSnowflakeUUID().Int64()
 	order.Uid = u.Id
 	order.Account = u.Account
 	order.Status = consts.DepositStatusPending
@@ -73,7 +73,7 @@ func (m *CreateWithdraw) Exec(ctx context.Context) error {
 	update.Uid = u.Id
 	update.Amount = order.Amount
 
-	update.OrderNoRelation = order.OrderNo
+	update.OrderNoRelation = order.Id
 	update.Note = fmt.Sprintf("%s_%s", order.Protocol, order.Address)
 	update.TransCode = wallet.Withdraw
 	return update.Update(ctx, func(ctx context.Context, tx gdb.TX) error {

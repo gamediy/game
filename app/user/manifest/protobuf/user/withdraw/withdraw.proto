@@ -101,7 +101,7 @@ message ListWithdrawReq{
   int64 size = 3;
 }
 message WithdrawItem{
-  string orderNo = 1;
+  string id = 1;
   string uid = 2;
   string status = 3; // 1 wait 2 success -1 fail
   string finishAt = 4;
@@ -124,7 +124,7 @@ message ListWithdrawRes{
 // list public withdraw
 message ListPublicWithdrawReq{}
 message PublicWithdrawItem{
-  string orderNo = 1;
+  string id = 1;
   string uid = 2;
   string status = 3; // 1 wait 2 success -1 fail
   string finishAt = 4;
