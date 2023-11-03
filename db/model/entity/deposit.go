@@ -10,7 +10,7 @@ import (
 
 // Deposit is the golang structure for table deposit.
 type Deposit struct {
-	OrderNo         int64       `json:"orderNo"         description:"订单号"`
+	Id              int64       `json:"id"              description:"订单号"`
 	Account         string      `json:"account"         description:"账号"`
 	Uid             int         `json:"uid"             description:"UID"`
 	Pid             int         `json:"pid"             description:"上级ID"`

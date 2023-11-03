@@ -39,7 +39,7 @@ func (input CreateDeposit) Exec(ctx context.Context) (int64, error) {
 	}
 
 	order := entity.Deposit{}
-	order.OrderNo = xuuid.GenSnowflakeUUID().Int64()
+	order.Id = xuuid.GenSnowflakeUUID().Int64()
 	order.Uid = int(userInfo.Id)
 	order.Account = userInfo.Account
 	order.Status = consts.DepositStatusPending
@@ -82,5 +82,5 @@ func (input CreateDeposit) Exec(ctx context.Context) (int64, error) {
 	if err = message.Trigger(sync.ChannelAdmin, sync.EventDeposit); err != nil {
 		return 0, err
 	}
-	return order.OrderNo, nil
+	return order.Id, nil
 }

@@ -20,7 +20,7 @@ type DepositDao struct {
 
 // DepositColumns defines and stores column names for table w_deposit.
 type DepositColumns struct {
-	OrderNo         string // 订单号
+	Id              string // 订单号
 	Account         string // 账号
 	Uid             string // UID
 	Pid             string // 上级ID
@@ -47,7 +47,7 @@ type DepositColumns struct {
 
 // depositColumns holds the columns for table w_deposit.
 var depositColumns = DepositColumns{
-	OrderNo:         "order_no",
+	Id:              "id",
 	Account:         "account",
 	Uid:             "uid",
 	Pid:             "pid",
