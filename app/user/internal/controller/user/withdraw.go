@@ -26,7 +26,6 @@ func (*Controller) BindWithdrawAccount(ctx context.Context, req *withdraw.BindWi
 		BankId:  req.BankId,
 		Address: req.Address,
 		Title:   req.Title,
-		Pass:    req.Pass,
 		Uid:     req.Uid,
 	}
 	if err = x.Exec(ctx); err != nil {

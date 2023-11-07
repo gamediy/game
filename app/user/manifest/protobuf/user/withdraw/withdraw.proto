@@ -21,8 +21,7 @@ message BindWithdrawAccountReq {
   int64 bankId = 1; // bank id
   string address = 2; // card number
   string title = 3; // cardholder
-  string pass = 4; // pay pass
-  int64  uid = 5;
+  int64  uid = 4;
 
 }
 message BindWithdrawAccountRes{}

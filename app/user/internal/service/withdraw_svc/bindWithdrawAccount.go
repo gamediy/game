@@ -14,7 +14,6 @@ type BindWithdrawAccount struct {
 	BankId  int64  `v:"required#银行ID不能为空" dc:"银行ID"`
 	Address string `v:"required#收款地址不能为空"`
 	Title   string `json:"title" dc:"持卡人" v:"required#持卡人不能为空"`
-	Pass    string `json:"pass"`
 	Uid     int64
 }
 
@@ -26,13 +25,6 @@ func (s BindWithdrawAccount) Exec(ctx context.Context) error {
 	user, err := get.UserById(ctx, s.Uid)
 	if err != nil {
 		return err
-	}
-	// check password
-	if user.PayPass == "" {
-		return fmt.Errorf("set pay password first")
-	}
-	if !xpwd.ComparePassword(user.PayPass, s.Pass) {
-		return fmt.Errorf("pay password is error")
 	}
 	// check already bind
 	count, _ := dao.WithdrawAccount.Ctx(ctx).Count("address = ? and uid = ?", s.Address, user.Id)
