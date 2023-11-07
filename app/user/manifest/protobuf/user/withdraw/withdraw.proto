@@ -78,6 +78,7 @@ message AmountItem {
   double exchangeRate = 9;
   string selectMoney = 10;
   WithdrawBindInfo bind = 11; // if it's empty go to bind
+  string bankId = 12;
 }
 message ListWithdrawMethodRes{
   string tips = 1;
