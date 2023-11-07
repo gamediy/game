@@ -64,6 +64,7 @@ message ListWithdrawMethodReq{
 message WithdrawBindInfo{
   string address = 1;
   string protocol = 2;
+  string withdrawAccountId = 3;
 }
 message AmountItem {
   int64 id = 1;

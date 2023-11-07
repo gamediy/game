@@ -38,6 +38,7 @@ func (m *ListWithdrawMethod) Exec(ctx context.Context) (*withdraw.ListWithdrawMe
 			if account.Protocol == item.Protocol {
 				bind.Address = account.Address
 				bind.Protocol = account.Protocol
+				bind.WithdrawAccountId = fmt.Sprint(account.Id)
 			}
 		}
 		imgPrefix := get.ImgPrefix()
