@@ -21,8 +21,7 @@ message BindWithdrawAccountReq {
   int64 bankId = 1; // bank id
   string address = 2; // card number
   string title = 3; // cardholder
-  string pass = 4; // pay pass
-  int64  uid = 5;
+  int64  uid = 4;
 
 }
 message BindWithdrawAccountRes{}
@@ -65,6 +64,7 @@ message ListWithdrawMethodReq{
 message WithdrawBindInfo{
   string address = 1;
   string protocol = 2;
+  string withdrawAccountId = 3;
 }
 message AmountItem {
   int64 id = 1;
@@ -78,6 +78,7 @@ message AmountItem {
   double exchangeRate = 9;
   string selectMoney = 10;
   WithdrawBindInfo bind = 11; // if it's empty go to bind
+  string bankId = 12;
 }
 message ListWithdrawMethodRes{
   string tips = 1;

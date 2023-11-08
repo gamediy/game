@@ -9,6 +9,7 @@ import (
 	"game/pure/get"
 	"game/utility/utils/xtrans"
 	"github.com/gogf/gf/v2/text/gstr"
+	"strconv"
 )
 
 type ListWithdrawMethod struct {
@@ -37,6 +38,7 @@ func (m *ListWithdrawMethod) Exec(ctx context.Context) (*withdraw.ListWithdrawMe
 			if account.Protocol == item.Protocol {
 				bind.Address = account.Address
 				bind.Protocol = account.Protocol
+				bind.WithdrawAccountId = fmt.Sprint(account.Id)
 			}
 		}
 		imgPrefix := get.ImgPrefix()
@@ -51,6 +53,7 @@ func (m *ListWithdrawMethod) Exec(ctx context.Context) (*withdraw.ListWithdrawMe
 			ExchangeRate: item.ExchangeRate,
 			SelectMoney:  item.SelectMoney,
 			Bind:         bind,
+			BankId:       strconv.Itoa(item.BankId),
 		})
 	}
 	return res, nil

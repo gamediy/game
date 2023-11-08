@@ -37,7 +37,6 @@ func TestBindWithdrawAccount_Exec(t *testing.T) {
 				BankId:  tt.fields.BankId,
 				Address: tt.fields.Address,
 				Title:   tt.fields.Title,
-				Pass:    tt.fields.Pass,
 				Uid:     tt.fields.Uid,
 			}
 			if err := s.Exec(tt.args.ctx); (err != nil) != tt.wantErr {

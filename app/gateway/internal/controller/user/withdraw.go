@@ -36,7 +36,6 @@ func bindWithdrawAccount(ctx context.Context, wsclient *ws.Client, query g.Map) 
 		BankId:  gconv.Int64(query["bankId"]),
 		Address: gconv.String(query["address"]),
 		Title:   gconv.String(query["title"]),
-		Pass:    gconv.String(query["pass"]),
 	})
 	return &model.WsMessage{
 			Event: model.WrapEventResponse(withdraw_event.BindWithdrawAccount),
