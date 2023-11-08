@@ -23,7 +23,7 @@ var (
 func Cq9() {
 	s := g.Server("cq9")
 	s.SetPort(9001)
-	s.BindHandler("/test", func(r *ghttp.Request) {
+	s.BindHandler("//player/check/:account", func(r *ghttp.Request) {
 
 		r.Response.Write(("cq9"))
 	})
