@@ -2,8 +2,6 @@ package cmd
 
 import (
 	"context"
-	"game/app/third/internal/controller/echo"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -15,15 +13,19 @@ var (
 		Usage: "main",
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
-			s := g.Server()
-			s.Group("/", func(group *ghttp.RouterGroup) {
-				group.Middleware(ghttp.MiddlewareHandlerResponse)
-				group.Bind(
-					echo.New(),
-				)
-			})
-			s.Run()
+			Cq9()
+			g.Wait()
 			return nil
 		},
 	}
 )
+
+func Cq9() {
+	s := g.Server("cq9")
+	s.SetPort(9001)
+	s.BindHandler("/test", func(r *ghttp.Request) {
+
+		r.Response.Write(("cq9"))
+	})
+	s.Start()
+}
