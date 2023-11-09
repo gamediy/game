@@ -9,14 +9,14 @@ import (
 )
 
 func main() {
-	cpuProfile, err := os.Create("./pprof/cpu_profile")
+	cpuProfile, err := os.Create("cpu_profile")
 	if err != nil {
 		fmt.Printf("创建文件失败:%s", err.Error())
 		return
 	}
 	defer cpuProfile.Close()
 
-	memProfile, err := os.Create("./pprof/mem_profile")
+	memProfile, err := os.Create("mem_profile")
 	if err != nil {
 		fmt.Printf("创建文件失败:%s", err.Error())
 		return
