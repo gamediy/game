@@ -111,6 +111,7 @@ func (c *Client) Write(ctx context.Context) {
 				fmt.Println("writer msg ", message)
 				err := c.Socket.WriteJSON(message)
 				if err != nil {
+					c.Socket.Close()
 					fmt.Println("write msg error", err)
 					return
 				}
