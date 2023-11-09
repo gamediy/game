@@ -95,7 +95,8 @@ func (manager *ClientManager) EventUnregister(client *Client) {
 
 // ClearTimeoutConnections 定时清理超时连接
 func (manager *ClientManager) clearTimeoutConnections() {
-
+	manager.Lock.RLock()
+	defer manager.Lock.RUnlock()
 	time := gtime.Now()
 	for _, client := range manager.Clients {
 		if client.IsHeartbeatTimeout(time) {

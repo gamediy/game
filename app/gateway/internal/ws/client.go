@@ -48,7 +48,7 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (c
 }
 func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
 	defer func() {
-		c.Close()
+
 		if r := recover(); r != nil {
 			fmt.Println("read stop", string(debug.Stack()), r)
 		}
@@ -57,6 +57,7 @@ func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *m
 	for {
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
+			c.Close()
 			return
 		}
 		// 处理程序
@@ -89,6 +90,7 @@ func (c *Client) Write(ctx context.Context) {
 				err := c.Socket.WriteJSON(message)
 				if err != nil {
 					fmt.Println("write msg error", err)
+					c.Close()
 					return
 				}
 
