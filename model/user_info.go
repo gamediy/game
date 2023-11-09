@@ -8,4 +8,5 @@ type UserInfo struct {
 	Lang       string `json:"lang"`
 	Pid        int64  `json:"pid"`
 	ParentPath string `json:"parentPath"`
+	Phone      string `json:"phone"`
 }
