@@ -33,6 +33,7 @@ var (
 
 // NewClient 初始化
 func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (client *Client) {
+
 	client = &Client{
 		Addr:          addr,
 		UserInfo:      userInfo,
@@ -47,14 +48,10 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (c
 }
 func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
 	defer func() {
-		if r := recover(); r != nil {
-			fmt.Println("write stop", string(debug.Stack()), r)
-		}
-	}()
-
-	defer func() {
-		Manager.Unregister <- c
 		c.Close()
+		if r := recover(); r != nil {
+			fmt.Println("read stop", string(debug.Stack()), r)
+		}
 	}()
 
 	for {
@@ -77,14 +74,12 @@ func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *m
 // 向客户端写数据
 func (c *Client) Write(ctx context.Context) {
 	defer func() {
+		_ = c.Close
 		if r := recover(); r != nil {
 			fmt.Println("write stop", string(debug.Stack()), r)
 		}
 	}()
-	defer func() {
-		Manager.Unregister <- c
-		_ = c.Close
-	}()
+
 	for {
 		select {
 		case message := <-c.WriteChn:
