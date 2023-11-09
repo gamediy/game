@@ -71,7 +71,7 @@ var (
 					glog.Error(ctx, err)
 					r.Exit()
 				}
-				client := ws.NewClient(r.GetClientIp(), userInfo, socket.Conn)
+				client := ws.NewClient(r.GetClientIp(), userInfo, socket)
 				go client.Read(ctx, func(ctx context.Context, msg *model.WsMessage, wsclient *ws.Client, query g.Map) {
 					c, ok := controller.Ctrl[msg.Event]
 					if ok {

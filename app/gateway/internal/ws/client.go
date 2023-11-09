@@ -7,9 +7,9 @@ import (
 	"game/model"
 	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gorilla/websocket"
 	"runtime/debug"
 	"time"
 )
@@ -17,7 +17,7 @@ import (
 type Client struct {
 	Addr     string
 	Sid      string
-	Socket   *websocket.Conn
+	Socket   *ghttp.WebSocket
 	WriteChn chan *model.WsMessage
 
 	UserInfo      *model.UserInfo
@@ -32,7 +32,7 @@ var (
 )
 
 // NewClient 初始化
-func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (client *Client) {
+func NewClient(addr string, userInfo *model.UserInfo, socket *ghttp.WebSocket) (client *Client) {
 
 	client = &Client{
 		Addr:          addr,
