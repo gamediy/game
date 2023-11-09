@@ -1,6 +1,6 @@
 app: "gateway"
 server:
-  address: ":5003"
+  address: ":5004"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   jwtExpireDuration: "7D" # 7 days

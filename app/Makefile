@@ -22,7 +22,7 @@ start-app1: $(APP1_SOURCE_FILES)
 
 # 启动应用程序 2
 start-app2: $(APP2_SOURCE_FILES)
-	@$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) > app2.log 2>&1 &
+	@$(GOCMD) $(APP2_SOURCE_FILES) $(APP_ARGS) >app2.log 2>&1 &
 
 # 启动应用程序 3
 start-app3: $(APP3_SOURCE_FILES)
@@ -32,7 +32,7 @@ start-app3: $(APP3_SOURCE_FILES)
 start-app4: $(APP4_SOURCE_FILES)
 	@$(GOCMD) $(APP4_SOURCE_FILES) $(APP_ARGS) >app4.log 2>&1 &
 # 端口列表
-PORTS := 5000 5001 5002 5003
+PORTS := 5000 5001 5002 5004
 
 stop:
 	@echo "Stopping programs on ports $(PORTS)..."
