@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-	cmd.Main.Run(gctx.GetInitCtx())
 	cpuProfile, err := os.Create("./pprof/cpu_profile")
 	if err != nil {
 		fmt.Printf("创建文件失败:%s", err.Error())
@@ -33,5 +32,6 @@ func main() {
 	for i := 0; i < 100; i++ {
 		fmt.Println("pprof 工具型测试")
 	}
+	cmd.Main.Run(gctx.GetInitCtx())
 
 }
