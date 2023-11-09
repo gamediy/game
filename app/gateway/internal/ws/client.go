@@ -48,7 +48,7 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *websocket.Conn) (c
 }
 func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
 	defer func() {
-
+		c.Close()
 		if r := recover(); r != nil {
 			fmt.Println("read stop", string(debug.Stack()), r)
 		}
@@ -75,7 +75,7 @@ func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *m
 // 向客户端写数据
 func (c *Client) Write(ctx context.Context) {
 	defer func() {
-		_ = c.Close
+		c.Close()
 		if r := recover(); r != nil {
 			fmt.Println("write stop", string(debug.Stack()), r)
 		}
