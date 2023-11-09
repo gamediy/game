@@ -1,0 +1,4 @@
+- gateway 5000
+- user 5001
+- slot 5002
+- game 5003
