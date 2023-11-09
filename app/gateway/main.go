@@ -1,37 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"game/app/gateway/internal/cmd"
+	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gctx"
-	"os"
-	"runtime/pprof"
+	"runtime"
 )
 
 func main() {
-	cpuProfile, err := os.Create("cpu_profile")
-	if err != nil {
-		fmt.Printf("创建文件失败:%s", err.Error())
-		return
-	}
-	defer cpuProfile.Close()
-
-	memProfile, err := os.Create("mem_profile")
-	if err != nil {
-		fmt.Printf("创建文件失败:%s", err.Error())
-		return
-	}
-	defer memProfile.Close()
-	//采集CPU信息
-	pprof.StartCPUProfile(cpuProfile)
-	defer pprof.StopCPUProfile()
-
-	//采集内存信息
-	pprof.WriteHeapProfile(memProfile)
-
-	for i := 0; i < 100; i++ {
-		fmt.Println("pprof 工具型测试")
-	}
+	runtime.SetMutexProfileFraction(1) // (非必需)开启对锁调用的跟踪
+	runtime.SetBlockProfileRate(1)
+	go ghttp.StartPProfServer(8199)
 	cmd.Main.Run(gctx.GetInitCtx())
 
 }
