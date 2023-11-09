@@ -12,6 +12,7 @@ message LoginRequest{
   string xid = 5;
   string ip = 6;
 
+
 }
 
 message RegRequest{
@@ -45,6 +46,7 @@ message UserInfoReply{
   string lang = 5;
   int32 pid = 6;
   string parentPath = 7;
+  string phone = 8;
 }
 
 message WalletRequest{
