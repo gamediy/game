@@ -138,6 +138,7 @@ func (c *Client) Close() {
 	if c.SendClose {
 		return
 	}
+
 	c.Socket.Close()
 	Manager.DelUsers(c)
 	fmt.Println("在线：", Manager.GetUsersLen())
