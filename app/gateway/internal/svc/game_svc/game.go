@@ -9,16 +9,20 @@ import (
 
 var (
 	conn       *grpc.ClientConn
-	Service    = &gameSvc{}
 	gameClient game.GameServiceClient
 )
-
-type gameSvc struct{}
 
 func GameClientInit() {
 	conn = grpcx.Client.MustNewGrpcClientConn("game_svc", grpcx.Balancer.WithRandom())
 	gameClient = game.NewGameServiceClient(conn)
 }
-func (gameSvc) ListBanner(ctx context.Context) (*game.BannerRes, error) {
+func ListBanner(ctx context.Context) (*game.BannerRes, error) {
 	return gameClient.ListBanner(ctx, &game.BannerReq{})
+}
+
+func ListGameCategory(ctx context.Context) (*game.ListGameCategoryRes, error) {
+	return gameClient.ListGameCategory(ctx, &game.ListGameCategoryReq{})
+}
+func ListGame(ctx context.Context, req *game.ListGameReq) (*game.ListGameRes, error) {
+	return gameClient.ListGame(ctx, req)
 }

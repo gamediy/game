@@ -14,7 +14,7 @@ func TestGameClientInit(t *testing.T) {
 	xetcd.InitEtcd(ctx)
 	grpcx.Resolver.Register(etcd.NewWithClient(xetcd.Client))
 	GameClientInit()
-	banner, err := Service.ListBanner(ctx)
+	banner, err := ListBanner(ctx)
 	if err != nil {
 		t.Fatal(err)
 	}

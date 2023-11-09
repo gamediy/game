@@ -20,7 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GameService_ListBanner_FullMethodName = "/game.GameService/ListBanner"
+	GameService_ListBanner_FullMethodName       = "/game.GameService/ListBanner"
+	GameService_ListGameCategory_FullMethodName = "/game.GameService/ListGameCategory"
+	GameService_ListGame_FullMethodName         = "/game.GameService/ListGame"
 )
 
 // GameServiceClient is the client API for GameService service.
@@ -28,6 +30,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GameServiceClient interface {
 	ListBanner(ctx context.Context, in *BannerReq, opts ...grpc.CallOption) (*BannerRes, error)
+	ListGameCategory(ctx context.Context, in *ListGameCategoryReq, opts ...grpc.CallOption) (*ListGameCategoryRes, error)
+	ListGame(ctx context.Context, in *ListGameReq, opts ...grpc.CallOption) (*ListGameRes, error)
 }
 
 type gameServiceClient struct {
@@ -47,11 +51,31 @@ func (c *gameServiceClient) ListBanner(ctx context.Context, in *BannerReq, opts 
 	return out, nil
 }
 
+func (c *gameServiceClient) ListGameCategory(ctx context.Context, in *ListGameCategoryReq, opts ...grpc.CallOption) (*ListGameCategoryRes, error) {
+	out := new(ListGameCategoryRes)
+	err := c.cc.Invoke(ctx, GameService_ListGameCategory_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gameServiceClient) ListGame(ctx context.Context, in *ListGameReq, opts ...grpc.CallOption) (*ListGameRes, error) {
+	out := new(ListGameRes)
+	err := c.cc.Invoke(ctx, GameService_ListGame_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GameServiceServer is the server API for GameService service.
 // All implementations must embed UnimplementedGameServiceServer
 // for forward compatibility
 type GameServiceServer interface {
 	ListBanner(context.Context, *BannerReq) (*BannerRes, error)
+	ListGameCategory(context.Context, *ListGameCategoryReq) (*ListGameCategoryRes, error)
+	ListGame(context.Context, *ListGameReq) (*ListGameRes, error)
 	mustEmbedUnimplementedGameServiceServer()
 }
 
@@ -61,6 +85,12 @@ type UnimplementedGameServiceServer struct {
 
 func (UnimplementedGameServiceServer) ListBanner(context.Context, *BannerReq) (*BannerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBanner not implemented")
+}
+func (UnimplementedGameServiceServer) ListGameCategory(context.Context, *ListGameCategoryReq) (*ListGameCategoryRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGameCategory not implemented")
+}
+func (UnimplementedGameServiceServer) ListGame(context.Context, *ListGameReq) (*ListGameRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListGame not implemented")
 }
 func (UnimplementedGameServiceServer) mustEmbedUnimplementedGameServiceServer() {}
 
@@ -93,6 +123,42 @@ func _GameService_ListBanner_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_ListGameCategory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGameCategoryReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).ListGameCategory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_ListGameCategory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).ListGameCategory(ctx, req.(*ListGameCategoryReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GameService_ListGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListGameReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).ListGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GameService_ListGame_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).ListGame(ctx, req.(*ListGameReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GameService_ServiceDesc is the grpc.ServiceDesc for GameService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -103,6 +169,14 @@ var GameService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListBanner",
 			Handler:    _GameService_ListBanner_Handler,
+		},
+		{
+			MethodName: "ListGameCategory",
+			Handler:    _GameService_ListGameCategory_Handler,
+		},
+		{
+			MethodName: "ListGame",
+			Handler:    _GameService_ListGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

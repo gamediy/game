@@ -177,6 +177,383 @@ func (x *BannerRes) GetList() []*BannerItem {
 	return nil
 }
 
+type ListGameCategoryReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ListGameCategoryReq) Reset() {
+	*x = ListGameCategoryReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListGameCategoryReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGameCategoryReq) ProtoMessage() {}
+
+func (x *ListGameCategoryReq) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGameCategoryReq.ProtoReflect.Descriptor instead.
+func (*ListGameCategoryReq) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{3}
+}
+
+type GameCategoryItem struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Logo string `protobuf:"bytes,2,opt,name=logo,proto3" json:"logo,omitempty"`
+	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *GameCategoryItem) Reset() {
+	*x = GameCategoryItem{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GameCategoryItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GameCategoryItem) ProtoMessage() {}
+
+func (x *GameCategoryItem) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GameCategoryItem.ProtoReflect.Descriptor instead.
+func (*GameCategoryItem) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GameCategoryItem) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *GameCategoryItem) GetLogo() string {
+	if x != nil {
+		return x.Logo
+	}
+	return ""
+}
+
+func (x *GameCategoryItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type ListGameCategoryRes struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	List []*GameCategoryItem `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+}
+
+func (x *ListGameCategoryRes) Reset() {
+	*x = ListGameCategoryRes{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListGameCategoryRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGameCategoryRes) ProtoMessage() {}
+
+func (x *ListGameCategoryRes) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGameCategoryRes.ProtoReflect.Descriptor instead.
+func (*ListGameCategoryRes) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ListGameCategoryRes) GetList() []*GameCategoryItem {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
+type ListGameReq struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+}
+
+func (x *ListGameReq) Reset() {
+	*x = ListGameReq{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListGameReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGameReq) ProtoMessage() {}
+
+func (x *ListGameReq) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGameReq.ProtoReflect.Descriptor instead.
+func (*ListGameReq) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListGameReq) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+type GameItem struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code          string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Name          string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Status        string `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	GameType      string `protobuf:"bytes,4,opt,name=gameType,proto3" json:"gameType,omitempty"`
+	Sort          string `protobuf:"bytes,5,opt,name=sort,proto3" json:"sort,omitempty"`
+	CategoryCode  string `protobuf:"bytes,6,opt,name=categoryCode,proto3" json:"categoryCode,omitempty"`
+	Number        string `protobuf:"bytes,7,opt,name=number,proto3" json:"number,omitempty"`
+	Length        string `protobuf:"bytes,8,opt,name=length,proto3" json:"length,omitempty"`
+	RandomRange   string `protobuf:"bytes,9,opt,name=randomRange,proto3" json:"randomRange,omitempty"`
+	PlayType      string `protobuf:"bytes,10,opt,name=playType,proto3" json:"playType,omitempty"`
+	ThirdId       string `protobuf:"bytes,11,opt,name=thirdId,proto3" json:"thirdId,omitempty"`
+	ThirdGameCode string `protobuf:"bytes,12,opt,name=thirdGameCode,proto3" json:"thirdGameCode,omitempty"`
+}
+
+func (x *GameItem) Reset() {
+	*x = GameItem{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GameItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GameItem) ProtoMessage() {}
+
+func (x *GameItem) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GameItem.ProtoReflect.Descriptor instead.
+func (*GameItem) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GameItem) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *GameItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GameItem) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *GameItem) GetGameType() string {
+	if x != nil {
+		return x.GameType
+	}
+	return ""
+}
+
+func (x *GameItem) GetSort() string {
+	if x != nil {
+		return x.Sort
+	}
+	return ""
+}
+
+func (x *GameItem) GetCategoryCode() string {
+	if x != nil {
+		return x.CategoryCode
+	}
+	return ""
+}
+
+func (x *GameItem) GetNumber() string {
+	if x != nil {
+		return x.Number
+	}
+	return ""
+}
+
+func (x *GameItem) GetLength() string {
+	if x != nil {
+		return x.Length
+	}
+	return ""
+}
+
+func (x *GameItem) GetRandomRange() string {
+	if x != nil {
+		return x.RandomRange
+	}
+	return ""
+}
+
+func (x *GameItem) GetPlayType() string {
+	if x != nil {
+		return x.PlayType
+	}
+	return ""
+}
+
+func (x *GameItem) GetThirdId() string {
+	if x != nil {
+		return x.ThirdId
+	}
+	return ""
+}
+
+func (x *GameItem) GetThirdGameCode() string {
+	if x != nil {
+		return x.ThirdGameCode
+	}
+	return ""
+}
+
+type ListGameRes struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	List []*GameItem `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+}
+
+func (x *ListGameRes) Reset() {
+	*x = ListGameRes{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_game_game_game_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListGameRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListGameRes) ProtoMessage() {}
+
+func (x *ListGameRes) ProtoReflect() protoreflect.Message {
+	mi := &file_game_game_game_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListGameRes.ProtoReflect.Descriptor instead.
+func (*ListGameRes) Descriptor() ([]byte, []int) {
+	return file_game_game_game_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ListGameRes) GetList() []*GameItem {
+	if x != nil {
+		return x.List
+	}
+	return nil
+}
+
 var File_game_game_game_proto protoreflect.FileDescriptor
 
 var file_game_game_game_proto_rawDesc = []byte{
@@ -191,12 +568,57 @@ var file_game_game_game_proto_rawDesc = []byte{
 	0x09, 0x52, 0x04, 0x6c, 0x69, 0x6e, 0x6b, 0x22, 0x31, 0x0a, 0x09, 0x42, 0x61, 0x6e, 0x6e, 0x65,
 	0x72, 0x52, 0x65, 0x73, 0x12, 0x24, 0x0a, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03,
 	0x28, 0x0b, 0x32, 0x10, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72,
-	0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x32, 0x3d, 0x0a, 0x0b, 0x47, 0x61,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x22, 0x15, 0x0a, 0x13, 0x4c, 0x69,
+	0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65,
+	0x71, 0x22, 0x4e, 0x0a, 0x10, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72,
+	0x79, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6c, 0x6f, 0x67,
+	0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x6f, 0x12, 0x12, 0x0a,
+	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x22, 0x41, 0x0a, 0x13, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x73, 0x12, 0x2a, 0x0a, 0x04, 0x6c, 0x69, 0x73, 0x74,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x61,
+	0x6d, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x04,
+	0x6c, 0x69, 0x73, 0x74, 0x22, 0x21, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65,
+	0x52, 0x65, 0x71, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x22, 0xcc, 0x02, 0x0a, 0x08, 0x47, 0x61, 0x6d, 0x65,
+	0x49, 0x74, 0x65, 0x6d, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x16, 0x0a, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x1a, 0x0a, 0x08, 0x67, 0x61, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x67, 0x61, 0x6d, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x12, 0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x73, 0x6f, 0x72, 0x74, 0x12, 0x22, 0x0a, 0x0c, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79,
+	0x43, 0x6f, 0x64, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x63, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x43, 0x6f, 0x64, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62,
+	0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x12, 0x16, 0x0a, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12, 0x20, 0x0a, 0x0b, 0x72, 0x61, 0x6e, 0x64,
+	0x6f, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x72,
+	0x61, 0x6e, 0x64, 0x6f, 0x6d, 0x52, 0x61, 0x6e, 0x67, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x6c,
+	0x61, 0x79, 0x54, 0x79, 0x70, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x6c,
+	0x61, 0x79, 0x54, 0x79, 0x70, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x74, 0x68, 0x69, 0x72, 0x64, 0x49,
+	0x64, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x74, 0x68, 0x69, 0x72, 0x64, 0x49, 0x64,
+	0x12, 0x24, 0x0a, 0x0d, 0x74, 0x68, 0x69, 0x72, 0x64, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x6f, 0x64,
+	0x65, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x74, 0x68, 0x69, 0x72, 0x64, 0x47, 0x61,
+	0x6d, 0x65, 0x43, 0x6f, 0x64, 0x65, 0x22, 0x31, 0x0a, 0x0b, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61,
+	0x6d, 0x65, 0x52, 0x65, 0x73, 0x12, 0x22, 0x0a, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x47, 0x61, 0x6d, 0x65, 0x49,
+	0x74, 0x65, 0x6d, 0x52, 0x04, 0x6c, 0x69, 0x73, 0x74, 0x32, 0xb9, 0x01, 0x0a, 0x0b, 0x47, 0x61,
 	0x6d, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x2e, 0x0a, 0x0a, 0x4c, 0x69, 0x73,
 	0x74, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x12, 0x0f, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x42,
 	0x61, 0x6e, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x0f, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e,
-	0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x3b, 0x67,
-	0x61, 0x6d, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x42, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x12, 0x48, 0x0a, 0x10, 0x4c, 0x69, 0x73,
+	0x74, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x12, 0x19, 0x2e,
+	0x67, 0x61, 0x6d, 0x65, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74,
+	0x65, 0x67, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x1a, 0x19, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79,
+	0x52, 0x65, 0x73, 0x12, 0x30, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x12,
+	0x11, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61, 0x6d, 0x65, 0x52,
+	0x65, 0x71, 0x1a, 0x11, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x47, 0x61,
+	0x6d, 0x65, 0x52, 0x65, 0x73, 0x42, 0x08, 0x5a, 0x06, 0x2e, 0x3b, 0x67, 0x61, 0x6d, 0x65, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -211,21 +633,33 @@ func file_game_game_game_proto_rawDescGZIP() []byte {
 	return file_game_game_game_proto_rawDescData
 }
 
-var file_game_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_game_game_game_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_game_game_game_proto_goTypes = []interface{}{
-	(*BannerReq)(nil),  // 0: game.BannerReq
-	(*BannerItem)(nil), // 1: game.BannerItem
-	(*BannerRes)(nil),  // 2: game.BannerRes
+	(*BannerReq)(nil),           // 0: game.BannerReq
+	(*BannerItem)(nil),          // 1: game.BannerItem
+	(*BannerRes)(nil),           // 2: game.BannerRes
+	(*ListGameCategoryReq)(nil), // 3: game.ListGameCategoryReq
+	(*GameCategoryItem)(nil),    // 4: game.GameCategoryItem
+	(*ListGameCategoryRes)(nil), // 5: game.ListGameCategoryRes
+	(*ListGameReq)(nil),         // 6: game.ListGameReq
+	(*GameItem)(nil),            // 7: game.GameItem
+	(*ListGameRes)(nil),         // 8: game.ListGameRes
 }
 var file_game_game_game_proto_depIdxs = []int32{
 	1, // 0: game.BannerRes.list:type_name -> game.BannerItem
-	0, // 1: game.GameService.ListBanner:input_type -> game.BannerReq
-	2, // 2: game.GameService.ListBanner:output_type -> game.BannerRes
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	4, // 1: game.ListGameCategoryRes.list:type_name -> game.GameCategoryItem
+	7, // 2: game.ListGameRes.list:type_name -> game.GameItem
+	0, // 3: game.GameService.ListBanner:input_type -> game.BannerReq
+	3, // 4: game.GameService.ListGameCategory:input_type -> game.ListGameCategoryReq
+	6, // 5: game.GameService.ListGame:input_type -> game.ListGameReq
+	2, // 6: game.GameService.ListBanner:output_type -> game.BannerRes
+	5, // 7: game.GameService.ListGameCategory:output_type -> game.ListGameCategoryRes
+	8, // 8: game.GameService.ListGame:output_type -> game.ListGameRes
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_game_game_game_proto_init() }
@@ -270,6 +704,78 @@ func file_game_game_game_proto_init() {
 				return nil
 			}
 		}
+		file_game_game_game_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListGameCategoryReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_game_game_game_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GameCategoryItem); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_game_game_game_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListGameCategoryRes); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_game_game_game_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListGameReq); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_game_game_game_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GameItem); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_game_game_game_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListGameRes); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -277,7 +783,7 @@ func file_game_game_game_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_game_game_game_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -12,6 +12,41 @@ message BannerItem{
 message BannerRes{
   repeated BannerItem list = 1;
 }
+
+message ListGameCategoryReq{}
+message GameCategoryItem{
+  string code = 1;
+  string logo = 2;
+  string name = 3;
+}
+message ListGameCategoryRes{
+  repeated GameCategoryItem list = 1;
+}
+
+message ListGameReq {
+  string code = 1;
+}
+message GameItem{
+  string code = 1;
+  string name = 2;
+  string status = 3;
+  string gameType = 4;
+  string sort = 5;
+  string categoryCode = 6;
+  string number = 7;
+  string length = 8;
+  string randomRange = 9;
+  string playType = 10;
+  string thirdId = 11;
+  string thirdGameCode = 12;
+}
+message ListGameRes{
+  repeated  GameItem list = 1;
+}
+
 service GameService{
   rpc ListBanner(BannerReq)returns(BannerRes);
+  rpc ListGameCategory(ListGameCategoryReq)returns(ListGameCategoryRes);
+  rpc ListGame(ListGameReq) returns(ListGameRes);
+
 }
