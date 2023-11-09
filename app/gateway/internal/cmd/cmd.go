@@ -119,7 +119,6 @@ var (
 				})
 			})
 
-			s.SetPort(5000)
 			s.Run()
 			return nil
 		},
