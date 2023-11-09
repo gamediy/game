@@ -20,6 +20,7 @@ func (s *UserInfo) Get(ctx context.Context) *model.UserInfo {
 		mu.Account = user.Account
 		mu.ParentPath = user.ParentPath
 		mu.Pid = user.Pid
+		mu.Phone = user.Phone
 	}
 	return &mu
 }
