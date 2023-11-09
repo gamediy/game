@@ -6,8 +6,6 @@ import (
 	"game/app/game/internal/service/gamesvc"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
-	"github.com/gogf/gf/v2/errors/gcode"
-	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 type Controller struct {
@@ -27,5 +25,5 @@ func (*Controller) ListGameCategory(ctx context.Context, req *game.ListGameCateg
 }
 
 func (*Controller) ListGame(ctx context.Context, req *game.ListGameReq) (res *game.ListGameRes, err error) {
-	return nil, gerror.NewCode(gcode.CodeNotImplemented)
+	return gamesvc.ListGame(ctx, req.Code)
 }
