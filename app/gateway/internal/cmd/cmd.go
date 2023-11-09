@@ -4,8 +4,10 @@ import (
 	"context"
 	"fmt"
 	"game/app/gateway/internal/controller"
+	"game/app/gateway/internal/controller/game"
 	"game/app/gateway/internal/controller/sys"
 	user2 "game/app/gateway/internal/controller/user"
+	"game/app/gateway/internal/svc/game_svc"
 	"game/app/gateway/internal/svc/slot_svc"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
@@ -34,6 +36,7 @@ var (
 
 			user_svc.UserClientInit()
 			slot_svc.SlotClientInit()
+			game_svc.GameClientInit()
 
 			g.Log().Info(ctx, `gateway start`)
 			s := g.Server()
@@ -41,6 +44,7 @@ var (
 
 			sync.Router(ctx)
 			user2.UserControllerInit()
+			game.ControllerInit()
 			s.BindMiddlewareDefault(func(r *ghttp.Request) {
 				r.Response.CORSDefault()
 				r.Middleware.Next()

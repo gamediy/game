@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = ".;game";
+package game;
+
+message BannerReq {}
+message BannerItem{
+  string id = 1;
+  string title = 2;
+  string image = 3;
+  string link = 4;
+}
+message BannerRes{
+  repeated BannerItem list = 1;
+}
+service GameService{
+  rpc ListBanner(BannerReq)returns(BannerRes);
+}

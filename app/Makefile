@@ -8,6 +8,7 @@ GOCMD = $(GO) run
 APP1_SOURCE_FILES = gateway/main.go
 APP2_SOURCE_FILES = slot/main.go
 APP3_SOURCE_FILES = user/main.go
+APP4_SOURCE_FILES = game/main.go
 
 # 启动参数
 APP_ARGS = --gf.gcfg.file=config-dev.yaml
@@ -27,8 +28,11 @@ start-app2: $(APP2_SOURCE_FILES)
 start-app3: $(APP3_SOURCE_FILES)
 	@$(GOCMD) $(APP3_SOURCE_FILES) $(APP_ARGS) >app3.log 2>&1 &
 
+# 启动应用程序 4
+start-app4: $(APP4_SOURCE_FILES)
+	@$(GOCMD) $(APP4_SOURCE_FILES) $(APP_ARGS) >app4.log 2>&1 &
 # 端口列表
-PORTS := 5000 5001 5002
+PORTS := 5000 5001 5002 5003
 
 stop:
 	@echo "Stopping programs on ports $(PORTS)..."
