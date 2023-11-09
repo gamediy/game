@@ -77,15 +77,12 @@ func (c *Client) Loop(ctx context.Context) {
 func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
 	defer func() {
 		c.Close()
-		if r := recover(); r != nil {
-			fmt.Println("read stop", string(debug.Stack()), r)
-		}
+
 	}()
 
 	for {
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
-			c.Close()
 			return
 		}
 		// 处理程序
@@ -102,23 +99,19 @@ func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *m
 
 // 向客户端写数据
 func (c *Client) Write(ctx context.Context) {
-	defer func() {
-		c.Close()
-		if r := recover(); r != nil {
-			fmt.Println("write stop", string(debug.Stack()), r)
-		}
-	}()
 
 	for {
 		select {
-		case message := <-c.WriteChn:
+		case message, ok := <-c.WriteChn:
+			if !ok {
+				return
+			}
 			if message != nil {
 				fmt.Println("uid ", c.UserInfo.Uid)
 				fmt.Println("writer msg ", message)
 				err := c.Socket.WriteJSON(message)
 				if err != nil {
 					fmt.Println("write msg error", err)
-					c.Close()
 					return
 				}
 
@@ -171,6 +164,7 @@ func (c *Client) Close() {
 	fmt.Println("在线：", Manager.GetUsersLen())
 	c.SendClose = true
 	close(c.WriteChn)
+	c.Socket.Close()
 
 }
 

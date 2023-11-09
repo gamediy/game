@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"game/app/gateway/internal/controller"
 	"game/app/gateway/internal/controller/game"
 	"game/app/gateway/internal/controller/sys"
 	user2 "game/app/gateway/internal/controller/user"
@@ -71,21 +72,21 @@ var (
 					r.Exit()
 				}
 				client := ws.NewClient(r.GetClientIp(), userInfo, socket)
-				go client.Loop(ctx)
-				//client.Read(ctx, func(ctx context.Context, msg *model.WsMessage, wsclient *ws.Client, query g.Map) {
-				//	c, ok := controller.Ctrl[msg.Event]
-				//	if ok {
-				//		m, e := c(ctx, client, query)
-				//		if e != nil {
-				//			g.Log().Error(ctx, e)
-				//		}
-				//		if m != nil {
-				//			client.WriteChn <- m
-				//		}
-				//	}
-				//
-				//})
-				client.Write(ctx)
+				//go client.Loop(ctx)
+				go client.Read(ctx, func(ctx context.Context, msg *model.WsMessage, wsclient *ws.Client, query g.Map) {
+					c, ok := controller.Ctrl[msg.Event]
+					if ok {
+						m, e := c(ctx, client, query)
+						if e != nil {
+							g.Log().Error(ctx, e)
+						}
+						if m != nil {
+							client.WriteChn <- m
+						}
+					}
+
+				})
+				go client.Write(ctx)
 
 			})
 			s.BindHandler("/api/login", func(r *ghttp.Request) {
