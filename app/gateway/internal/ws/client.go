@@ -49,14 +49,40 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *ghttp.WebSocket) (
 
 func (c *Client) Loop(ctx context.Context) {
 
-	for {
-		defer func() {
-			c.Close()
-			if r := recover(); r != nil {
-				fmt.Println("read stop", string(debug.Stack()), r)
-			}
-		}()
+	//defer func() {
+	//	c.Close()
+	//	if r := recover(); r != nil {
+	//		fmt.Println("read stop", string(debug.Stack()), r)
+	//	}
+	//}()
 
+	for {
+		_, message, err := c.Socket.ReadMessage()
+		if err != nil {
+			//c.Close()
+			return
+		}
+		// 处理程序
+		fmt.Println(string(message))
+		msg := model.WsMessage{}
+		err = json.Unmarshal(message, &msg)
+		if err != nil {
+			return
+		}
+		//m2 := gconv.Map(msg.Query)
+		//ctrl(ctx, &msg, c, m2)
+	}
+
+}
+func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
+	defer func() {
+		c.Close()
+		if r := recover(); r != nil {
+			fmt.Println("read stop", string(debug.Stack()), r)
+		}
+	}()
+
+	for {
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
 			c.Close()
@@ -69,14 +95,9 @@ func (c *Client) Loop(ctx context.Context) {
 		if err != nil {
 			return
 		}
-		gconv.Map(msg.Query)
-		//ctrl(ctx, &msg, c, m2)
-
+		m2 := gconv.Map(msg.Query)
+		ctrl(ctx, &msg, c, m2)
 	}
-
-}
-func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
-
 }
 
 // 向客户端写数据
