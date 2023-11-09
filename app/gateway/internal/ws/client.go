@@ -46,15 +46,17 @@ func NewClient(addr string, userInfo *model.UserInfo, socket *ghttp.WebSocket) (
 	client.Heartbeat()
 	return
 }
-func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
-	defer func() {
-		c.Close()
-		if r := recover(); r != nil {
-			fmt.Println("read stop", string(debug.Stack()), r)
-		}
-	}()
+
+func (c *Client) Loop(ctx context.Context) {
 
 	for {
+		defer func() {
+			c.Close()
+			if r := recover(); r != nil {
+				fmt.Println("read stop", string(debug.Stack()), r)
+			}
+		}()
+
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
 			c.Close()
@@ -67,9 +69,14 @@ func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *m
 		if err != nil {
 			return
 		}
-		m2 := gconv.Map(msg.Query)
-		ctrl(ctx, &msg, c, m2)
+		gconv.Map(msg.Query)
+		//ctrl(ctx, &msg, c, m2)
+
 	}
+
+}
+func (c *Client) Read(ctx context.Context, ctrl func(ctx context.Context, msg *model.WsMessage, wsclient *Client, query g.Map)) {
+
 }
 
 // 向客户端写数据
@@ -139,7 +146,6 @@ func (c *Client) Close() {
 		return
 	}
 
-	c.Socket.Close()
 	Manager.DelUsers(c)
 	fmt.Println("在线：", Manager.GetUsersLen())
 	c.SendClose = true
