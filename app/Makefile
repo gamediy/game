@@ -14,7 +14,7 @@ APP4_SOURCE_FILES = game/main.go
 APP_ARGS = --gf.gcfg.file=config-dev.yaml
 
 # 默认目标，启动所有三个应用程序
-all: start-app1 start-app2 start-app3
+all: start-app1 start-app2 start-app3 start-app4
 
 # 启动应用程序 1
 start-app1: $(APP1_SOURCE_FILES)
