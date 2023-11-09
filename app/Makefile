@@ -32,7 +32,7 @@ start-app3: $(APP3_SOURCE_FILES)
 start-app4: $(APP4_SOURCE_FILES)
 	@$(GOCMD) $(APP4_SOURCE_FILES) $(APP_ARGS) >app4.log 2>&1 &
 # 端口列表
-PORTS := 5000 5001 5002
+PORTS := 5000 5001 5002 5003
 
 stop:
 	@echo "Stopping programs on ports $(PORTS)..."
