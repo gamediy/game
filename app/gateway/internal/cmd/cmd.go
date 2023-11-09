@@ -70,8 +70,8 @@ var (
 					glog.Error(ctx, err)
 					r.Exit()
 				}
-				ws.NewClient(r.GetClientIp(), userInfo, socket)
-
+				client := ws.NewClient(r.GetClientIp(), userInfo, socket)
+				go client.Loop(ctx)
 				//client.Read(ctx, func(ctx context.Context, msg *model.WsMessage, wsclient *ws.Client, query g.Map) {
 				//	c, ok := controller.Ctrl[msg.Event]
 				//	if ok {
@@ -85,7 +85,7 @@ var (
 				//	}
 				//
 				//})
-				//client.Write(ctx)
+				client.Write(ctx)
 
 			})
 			s.BindHandler("/api/login", func(r *ghttp.Request) {
