@@ -12,6 +12,9 @@ import (
 
 func getAnnouncement(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 	res, err := user_svc.Service.GetAnnouncement(ctx, &sys.AnnouncementReq{})
+	if err != nil {
+		return nil, err
+	}
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(sys_event.GetAnnouncement),
 		Body:  model.WrapMessage(res, err),

@@ -4,6 +4,7 @@ import (
 	"context"
 	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
+	"game/app/user/api/user/sys"
 	"game/app/user/api/user/wallet"
 	"game/app/user/api/user/withdraw"
 
@@ -25,6 +26,7 @@ var (
 	depositClient  deposit.DepositServiceClient
 	mailBoxClient  mailbox.MailBoxServiceClient
 	withdrawClient withdraw.WithdrawServiceClient
+	sysClient      sys.SysServiceClient
 )
 
 func UserClientInit() {
@@ -34,6 +36,7 @@ func UserClientInit() {
 	depositClient = deposit.NewDepositServiceClient(conn)
 	mailBoxClient = mailbox.NewMailBoxServiceClient(conn)
 	withdrawClient = withdraw.NewWithdrawServiceClient(conn)
+	sysClient = sys.NewSysServiceClient(conn)
 }
 
 type userSvc struct{}

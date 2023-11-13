@@ -4,6 +4,7 @@ import (
 	"context"
 	"game/app/user/api/user/deposit"
 	"game/app/user/api/user/mailbox"
+	"game/app/user/api/user/sys"
 	"game/app/user/api/user/user"
 	"game/app/user/api/user/wallet"
 	"game/app/user/api/user/withdraw"
@@ -22,6 +23,7 @@ type Controller struct {
 	mailbox.UnimplementedMailBoxServiceServer
 	withdraw.UnimplementedWithdrawServiceServer
 	wallet.UnimplementedWalletServiceServer
+	sys.UnimplementedSysServiceServer
 }
 
 func Register(s *grpcx.GrpcServer) {
@@ -30,6 +32,7 @@ func Register(s *grpcx.GrpcServer) {
 	mailbox.RegisterMailBoxServiceServer(s.Server, &Controller{})
 	withdraw.RegisterWithdrawServiceServer(s.Server, &Controller{})
 	wallet.RegisterWalletServiceServer(s.Server, &Controller{})
+	sys.RegisterSysServiceServer(s.Server, &Controller{})
 }
 
 func (*Controller) Reg(ctx context.Context, req *user.RegRequest) (res *user.RegReply, err error) {
