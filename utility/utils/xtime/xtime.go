@@ -45,13 +45,13 @@ func EndOfDateStr(date string) time.Time {
 	return t
 }
 
-// 获取传入的时间所在月份的第一天，即某月第一天的0点。如传入time.Now(), 返回当前月份的第一天0点时间。
+// 获取传入的时间所在月份的第一天，即某月第一天的0点。如传入time.NowForISO8601(), 返回当前月份的第一天0点时间。
 func BeginDateOfMonth(d time.Time) time.Time {
 	d = d.AddDate(0, 0, -d.Day()+1)
 	return ZeroTime(d)
 }
 
-// 获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.Now(), 返回当前月份的最后一天0点时间。
+// 获取传入的时间所在月份的最后一天，即某月最后一天的0点。如传入time.NowForISO8601(), 返回当前月份的最后一天0点时间。
 func EndDateOfMonth(d time.Time) time.Time {
 	return BeginDateOfMonth(d).AddDate(0, 1, -1)
 }
@@ -98,4 +98,8 @@ func TopicTime(in interface{}) string {
 	default:
 		return t.String()
 	}
+}
+
+func NowForISO8601() string {
+	return time.Now().Format("2006-01-02T15:04:05.000Z07:00")
 }

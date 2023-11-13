@@ -2,3 +2,5 @@
 - user 5001
 - slot 5002
 - game 5003
+- third rpc 5004
+- third http 5005

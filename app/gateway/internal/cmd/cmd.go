@@ -84,7 +84,6 @@ var (
 							client.WriteChn <- m
 						}
 					}
-
 				})
 				go client.Write(ctx)
 

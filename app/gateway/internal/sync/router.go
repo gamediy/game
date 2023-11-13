@@ -18,8 +18,8 @@ func Router(ctx context.Context) {
 			model := model.WsMessage{}
 			err := json.Unmarshal(event.Kv.Value, &model)
 			if err != nil {
-				continue
 				g.Log().Error(ctx, err)
+				continue
 			}
 			ws.Send(&model)
 		}

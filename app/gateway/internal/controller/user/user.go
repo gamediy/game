@@ -7,6 +7,7 @@ import (
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/ws"
 	"game/consts/event/user_event/deposit_event"
+	"game/consts/event/user_event/sys_event"
 	"game/consts/event/user_event/withdraw_event"
 
 	"game/app/user/api/user/user"
@@ -38,6 +39,7 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.ListWithdrawMethod] = listWithdrawMethod
 	controller.Ctrl[withdraw_event.ListWithdraw] = listWithdraw
 	controller.Ctrl[withdraw_event.ListPublicWithdraw] = listPublicWithdraw
+	controller.Ctrl[sys_event.GetAnnouncement] = getAnnouncement
 }
 
 // 登录

@@ -1,0 +1,10 @@
+syntax = "proto3";
+option go_package = ".;sys";
+package sys;
+message AnnouncementReq {}
+message AnnouncementRes{
+  string announcement = 1;
+}
+service SysService{
+  rpc GetAnnouncement(AnnouncementReq)returns(AnnouncementRes);
+}

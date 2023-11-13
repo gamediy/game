@@ -18,6 +18,15 @@ func Wallet(ctx context.Context, uid int64) (*entity.Wallet, error) {
 	}
 	return &d, nil
 }
+
+func WalletByAccount(ctx context.Context, account string) (*entity.Wallet, error) {
+	var d entity.Wallet
+	_ = dao.Wallet.Ctx(ctx).Scan(&d, "account", account)
+	if d.Uid == 0 {
+		return nil, consts.ErrDataNotFound
+	}
+	return &d, nil
+}
 func TransactionTypeFromCache(ctx context.Context, code int) (*entity.TransactionType, error) {
 	var d entity.TransactionType
 	one, err := gcache.GetOrSetFunc(ctx, fmt.Sprint("transType", code), func(ctx context.Context) (value interface{}, err error) {

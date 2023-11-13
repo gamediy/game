@@ -1,8 +1,15 @@
 package cq9
 
-import "context"
+import (
+	"context"
+	"game/pure/get"
+)
 
-func CheckPlayer(ctx context.Context, account string) (data interface{}, err error) {
+func CheckPlayer(ctx context.Context, account string) bool {
+	_, err := get.User(ctx, account)
+	if err != nil {
+		return false
+	}
 
-	return nil, err
+	return true
 }

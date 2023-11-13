@@ -1,0 +1,7 @@
+###  checkplayer
+GET {{url}}/player/check/test001
+wtoken: {{token}}
+
+### balance
+GET {{url}}/transaction/balance/test001
+wtoken: {{token}}
