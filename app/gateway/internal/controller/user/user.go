@@ -46,7 +46,7 @@ func UserControllerInit() {
 func login(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
 
 	ws.Manager.AddUsers(wsclient)
-	wallet, _ := user_svc.Service.Wallet(ctx, &user.WalletRequest{
+	wallet, err := user_svc.Service.Wallet(ctx, &user.WalletRequest{
 		Uid: wsclient.UserInfo.Uid,
 	})
 	data := struct {
@@ -58,7 +58,7 @@ func login(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMess
 	}
 	return &model.WsMessage{
 		Event: model.WrapEventResponse(user_event.Login),
-		Body:  model.WrapMessage(data, nil),
+		Body:  model.WrapMessage(data, err),
 	}, nil
 }
 
