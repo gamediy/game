@@ -22,15 +22,15 @@ package report
 //		date := gtime.Now().Format("Y-m-d")
 //		ctx := context.TODO()
 //		entity := entity.ReportWalletDay{}
-//		dao.ReportWalletDay.Ctx(ctx).Where("date=? and uid=? and balance_code=?", date, this.User.Id, this.BalanceCodeEntity.Code).Scan(&entity)
-//		if entity.Id == 0 {
+//		dao.ReportWalletDay.Ctx(ctx).Where("date=? and uid=? and balance_code=?", date, this.User.Code, this.BalanceCodeEntity.Code).Scan(&entity)
+//		if entity.Code == 0 {
 //			entity.Amount = this.Amount
-//			entity.Id = xuuid.GenSnowflakeUUID().Int64()
+//			entity.Code = xuuid.GenSnowflakeUUID().Int64()
 //			entity.BalanceCode = this.BalanceCodeEntity.Code
 //			entity.ParentPath = this.User.ParentPath
 //			entity.Pid = this.User.Pid
 //			entity.Account = this.User.Account
-//			entity.Uid = this.User.Id
+//			entity.Uid = this.User.Code
 //			entity.Count = 1
 //			entity.Title = this.BalanceCodeEntity.Title
 //			entity.Date = gtime.NewFromStr(date)
@@ -42,7 +42,7 @@ package report
 //		} else {
 //			entity.Amount += this.Amount
 //			entity.Count += 1
-//			_, err := dao.ReportWalletDay.Ctx(ctx).Update(&entity, dao.ReportWalletDay.Columns().Id, entity.Id)
+//			_, err := dao.ReportWalletDay.Ctx(ctx).Update(&entity, dao.ReportWalletDay.Columns().Code, entity.Code)
 //			if err != nil {
 //				g.Log().Error(ctx, err)
 //				return err

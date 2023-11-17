@@ -71,7 +71,7 @@ import (
 //		if err := tx.Model(dao.Wallet.Table()).Where("uid", this.Uid).Scan(&wallet); err != nil {
 //			return err
 //		}
-//		if user.Id == 0 || wallet.Uid == 0 {
+//		if user.Code == 0 || wallet.Uid == 0 {
 //			return fmt.Errorf("NO such user")
 //		}
 //		if this.BalanceCode == Unfreeze {
@@ -89,7 +89,7 @@ import (
 //		walletLog := &entity.WalletLog{}
 //		walletLog.OrderNo = orderNo.Int64()
 //		walletLog.OrderNoRelation = this.OrderNoRelation
-//		walletLog.Uid = user.Id
+//		walletLog.Uid = user.Code
 //		walletLog.Pid = user.Pid
 //		walletLog.Account = user.Account
 //		walletLog.ParentPath = user.ParentPath
@@ -142,7 +142,7 @@ import (
 //			"total_withdraw": wallet.TotalWithdraw,
 //			"total_gift":     wallet.TotalGift,
 //			//"total_freeze":   wallet.TotalFreeze,
-//		}).Where("uid=? and balance!=?", user.Id, walletLog.BalanceAfter*precision).Update()
+//		}).Where("uid=? and balance!=?", user.Code, walletLog.BalanceAfter*precision).Update()
 //		if err != nil {
 //			return err
 //		}
