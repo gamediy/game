@@ -63,10 +63,10 @@ func (userSvc) UserInfo(ctx context.Context, in *user.UserInfoRequest) (*user.Us
 	return &reply, err
 }
 
-func (s userSvc) UpdateLoginPass(ctx context.Context, u *user.UpdateLoginPassReq) (interface{}, error) {
-	return userClient.UpdateLoginPass(ctx, u)
+func (s userSvc) UpdateLoginPass(ctx context.Context, in *user.UpdateLoginPassReq) (interface{}, error) {
+	return userClient.UpdateLoginPass(ctx, in)
 }
 
-func (s userSvc) SendSmsCode(ctx context.Context, u *user.SendMsgCodeReq) (interface{}, error) {
-	return userClient.SendMsgCode(ctx, u)
+func (s userSvc) SendSmsCode(ctx context.Context, in *user.SendMsgCodeReq) (interface{}, error) {
+	return userClient.SendMsgCode(ctx, in)
 }
