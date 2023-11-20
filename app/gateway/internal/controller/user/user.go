@@ -6,15 +6,14 @@ import (
 	"game/app/gateway/internal/controller"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/ws"
-	"game/consts/event/user_event/deposit_event"
-	"game/consts/event/user_event/sys_event"
-	"game/consts/event/user_event/withdraw_event"
-	"github.com/gogf/gf/v2/util/gconv"
-
 	"game/app/user/api/user/user"
 	"game/consts/event/user_event"
+	"game/consts/event/user_event/deposit_event"
 	"game/consts/event/user_event/mailbox_event"
+	"game/consts/event/user_event/sys_event"
 	"game/consts/event/user_event/wallet_event"
+	"game/consts/event/user_event/withdraw_event"
+	"github.com/gogf/gf/v2/util/gconv"
 
 	"game/model"
 	"github.com/gogf/gf/v2/frame/g"
@@ -42,6 +41,17 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.ListWithdraw] = listWithdraw
 	controller.Ctrl[withdraw_event.ListPublicWithdraw] = listPublicWithdraw
 	controller.Ctrl[sys_event.GetAnnouncement] = getAnnouncement
+	controller.Ctrl[sys_event.SendSmsCode] = sendSmsCode
+}
+
+func sendSmsCode(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.SendSmsCode(ctx, &user.SendMsgCodeReq{
+		Phone: gconv.String(query["phone"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(sys_event.SendSmsCode),
+		Body:  model.WrapMessage(res, err),
+	}, nil
 }
 
 func updateLoginPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {

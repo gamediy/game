@@ -9,8 +9,9 @@
 "deleted" = "删除"
 "please do not resubmit" = "请不要重复提交"
 "bind the withdrawal account first" = "请先绑定提现账号"
-"withdrawal prompt get the configuration file" ="提现提示，取配置文件"
+"withdrawal prompt get the configuration file" = "提现提示，取配置文件"
 "old password not match" = "旧密码不匹配"
+"please wait a minute and try again" = "请一分钟后再试"
 
 ## data not found
 "bank not found" = "银行信息不存在"

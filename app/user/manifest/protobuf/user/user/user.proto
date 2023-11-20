@@ -65,6 +65,11 @@ message UpdateLoginPassReq{
 }
 message UpdateLoginPassRes{}
 
+message SendMsgCodeReq{
+  string phone = 1;
+}
+message SendMsgCodeRes{}
+
 
 service UserService{
   rpc Reg(RegRequest) returns(RegReply);
@@ -72,4 +77,5 @@ service UserService{
   rpc UserInfo(UserInfoRequest) returns(UserInfoReply);
   rpc Wallet(WalletRequest) returns(WalletReply);
   rpc UpdateLoginPass(UpdateLoginPassReq)returns(UpdateLoginPassRes);
+  rpc SendMsgCode(SendMsgCodeReq)returns(SendMsgCodeRes);
 }
