@@ -9,6 +9,7 @@ import (
 	"game/consts/event/user_event/deposit_event"
 	"game/consts/event/user_event/sys_event"
 	"game/consts/event/user_event/withdraw_event"
+	"github.com/gogf/gf/v2/util/gconv"
 
 	"game/app/user/api/user/user"
 	"game/consts/event/user_event"
@@ -22,6 +23,7 @@ import (
 func UserControllerInit() {
 	controller.Ctrl[user_event.Login] = login
 	controller.Ctrl[user_event.Heartbeat] = heartbeat
+	controller.Ctrl[user_event.UpdateLoginPass] = updateLoginPass
 	controller.Ctrl[wallet_event.Wallet] = walletInfo
 	controller.Ctrl[wallet_event.ListChangeLog] = listChangeLog
 	controller.Ctrl[wallet_event.ListTransType] = listTransType
@@ -40,6 +42,18 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.ListWithdraw] = listWithdraw
 	controller.Ctrl[withdraw_event.ListPublicWithdraw] = listPublicWithdraw
 	controller.Ctrl[sys_event.GetAnnouncement] = getAnnouncement
+}
+
+func updateLoginPass(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.UpdateLoginPass(ctx, &user.UpdateLoginPassReq{
+		Uid:     wsclient.UserInfo.Uid,
+		OldPass: gconv.String(query["oldPass"]),
+		NewPass: gconv.String(query["newPass"]),
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(user_event.UpdateLoginPass),
+		Body:  model.WrapMessage(res, err),
+	}, nil
 }
 
 // 登录

@@ -23,6 +23,7 @@ func ImgPrefix() string {
 	ctx := context.TODO()
 	v, err := gcache.GetOrSetFuncLock(ctx, "", func(ctx context.Context) (value interface{}, err error) {
 		dict, err := Dict(ctx, "cloudflare_pub")
+
 		return dict.V, err
 	}, time.Minute*consts.NormalCacheTime)
 	if err != nil {

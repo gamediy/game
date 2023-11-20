@@ -8,7 +8,9 @@
 "this card has been bound" = "this card already has been bind"
 "deleted" = "deleted"
 "please do not resubmit" = "please do not resubmit"
-"withdrawal prompt get the configuration file" ="withdrawal prompt get the configuration file"
+"bind the withdrawal account first" = "bind the withdrawwal account first"
+"withdrawal prompt get the configuration file" = "withdrawal prompt get the configuration file"
+"old password not match" = "old password not match"
 
 ## data not found
 "bank not found" = "bank not found"

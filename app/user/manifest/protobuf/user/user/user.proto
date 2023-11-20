@@ -58,7 +58,12 @@ message WalletReply{
   double  freeze = 2;
   double  totalProfit = 3;
 }
-
+message UpdateLoginPassReq{
+  string oldPass = 1;
+  string newPass = 2;
+  int64 uid = 3;
+}
+message UpdateLoginPassRes{}
 
 
 service UserService{
@@ -66,5 +71,5 @@ service UserService{
   rpc Login(LoginRequest) returns(LoginReply);
   rpc UserInfo(UserInfoRequest) returns(UserInfoReply);
   rpc Wallet(WalletRequest) returns(WalletReply);
-
+  rpc UpdateLoginPass(UpdateLoginPassReq)returns(UpdateLoginPassRes);
 }

@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_Reg_FullMethodName      = "/user.UserService/Reg"
-	UserService_Login_FullMethodName    = "/user.UserService/Login"
-	UserService_UserInfo_FullMethodName = "/user.UserService/UserInfo"
-	UserService_Wallet_FullMethodName   = "/user.UserService/Wallet"
+	UserService_Reg_FullMethodName             = "/user.UserService/Reg"
+	UserService_Login_FullMethodName           = "/user.UserService/Login"
+	UserService_UserInfo_FullMethodName        = "/user.UserService/UserInfo"
+	UserService_Wallet_FullMethodName          = "/user.UserService/Wallet"
+	UserService_UpdateLoginPass_FullMethodName = "/user.UserService/UpdateLoginPass"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -34,6 +35,7 @@ type UserServiceClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
 	UserInfo(ctx context.Context, in *UserInfoRequest, opts ...grpc.CallOption) (*UserInfoReply, error)
 	Wallet(ctx context.Context, in *WalletRequest, opts ...grpc.CallOption) (*WalletReply, error)
+	UpdateLoginPass(ctx context.Context, in *UpdateLoginPassReq, opts ...grpc.CallOption) (*UpdateLoginPassRes, error)
 }
 
 type userServiceClient struct {
@@ -80,6 +82,15 @@ func (c *userServiceClient) Wallet(ctx context.Context, in *WalletRequest, opts 
 	return out, nil
 }
 
+func (c *userServiceClient) UpdateLoginPass(ctx context.Context, in *UpdateLoginPassReq, opts ...grpc.CallOption) (*UpdateLoginPassRes, error) {
+	out := new(UpdateLoginPassRes)
+	err := c.cc.Invoke(ctx, UserService_UpdateLoginPass_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -88,6 +99,7 @@ type UserServiceServer interface {
 	Login(context.Context, *LoginRequest) (*LoginReply, error)
 	UserInfo(context.Context, *UserInfoRequest) (*UserInfoReply, error)
 	Wallet(context.Context, *WalletRequest) (*WalletReply, error)
+	UpdateLoginPass(context.Context, *UpdateLoginPassReq) (*UpdateLoginPassRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -106,6 +118,9 @@ func (UnimplementedUserServiceServer) UserInfo(context.Context, *UserInfoRequest
 }
 func (UnimplementedUserServiceServer) Wallet(context.Context, *WalletRequest) (*WalletReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Wallet not implemented")
+}
+func (UnimplementedUserServiceServer) UpdateLoginPass(context.Context, *UpdateLoginPassReq) (*UpdateLoginPassRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLoginPass not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -192,6 +207,24 @@ func _UserService_Wallet_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_UpdateLoginPass_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLoginPassReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpdateLoginPass(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_UpdateLoginPass_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpdateLoginPass(ctx, req.(*UpdateLoginPassReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -214,6 +247,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Wallet",
 			Handler:    _UserService_Wallet_Handler,
+		},
+		{
+			MethodName: "UpdateLoginPass",
+			Handler:    _UserService_UpdateLoginPass_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

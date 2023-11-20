@@ -62,3 +62,7 @@ func (userSvc) UserInfo(ctx context.Context, in *user.UserInfoRequest) (*user.Us
 	gconv.Struct(userInfo, &reply)
 	return &reply, err
 }
+
+func (s userSvc) UpdateLoginPass(ctx context.Context, u *user.UpdateLoginPassReq) (interface{}, error) {
+	return userClient.UpdateLoginPass(ctx, u)
+}

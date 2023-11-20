@@ -10,7 +10,6 @@ import (
 	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -76,4 +75,8 @@ func (*Controller) UserInfo(ctx context.Context, req *user.UserInfoRequest) (res
 
 func (*Controller) Wallet(ctx context.Context, req *user.WalletRequest) (res *user.WalletReply, err error) {
 	return wallet_svc.Wallet(ctx, req)
+}
+
+func (*Controller) UpdateLoginPass(ctx context.Context, req *user.UpdateLoginPassReq) (res *user.UpdateLoginPassRes, err error) {
+	return nil, user_svc.UpdateLoginPass(ctx, req)
 }
