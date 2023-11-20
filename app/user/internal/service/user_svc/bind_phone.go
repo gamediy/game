@@ -12,9 +12,11 @@ import (
 
 func BindPhone(ctx context.Context, in *user.BindPhoneReq) (res *user.BindPhoneRes, err error) {
 	code := &entity.SmsVerification{}
-	_ = dao.SmsVerification.Ctx(ctx).Limit(1).
+	_ = dao.SmsVerification.Ctx(ctx).
 		Where("phone", in.Phone).
 		WhereLTE("expiration", gtime.Now()).
+		Limit(1).
+		Order("id desc").
 		Scan(&code)
 	if code.Id == 0 {
 		return nil, fmt.Errorf("verification code has expired")
