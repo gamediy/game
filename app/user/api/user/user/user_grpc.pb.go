@@ -26,6 +26,7 @@ const (
 	UserService_Wallet_FullMethodName          = "/user.UserService/Wallet"
 	UserService_UpdateLoginPass_FullMethodName = "/user.UserService/UpdateLoginPass"
 	UserService_SendMsgCode_FullMethodName     = "/user.UserService/SendMsgCode"
+	UserService_BindPhone_FullMethodName       = "/user.UserService/BindPhone"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -38,6 +39,7 @@ type UserServiceClient interface {
 	Wallet(ctx context.Context, in *WalletRequest, opts ...grpc.CallOption) (*WalletReply, error)
 	UpdateLoginPass(ctx context.Context, in *UpdateLoginPassReq, opts ...grpc.CallOption) (*UpdateLoginPassRes, error)
 	SendMsgCode(ctx context.Context, in *SendMsgCodeReq, opts ...grpc.CallOption) (*SendMsgCodeRes, error)
+	BindPhone(ctx context.Context, in *BindPhoneReq, opts ...grpc.CallOption) (*BindPhoneRes, error)
 }
 
 type userServiceClient struct {
@@ -102,6 +104,15 @@ func (c *userServiceClient) SendMsgCode(ctx context.Context, in *SendMsgCodeReq,
 	return out, nil
 }
 
+func (c *userServiceClient) BindPhone(ctx context.Context, in *BindPhoneReq, opts ...grpc.CallOption) (*BindPhoneRes, error) {
+	out := new(BindPhoneRes)
+	err := c.cc.Invoke(ctx, UserService_BindPhone_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -112,6 +123,7 @@ type UserServiceServer interface {
 	Wallet(context.Context, *WalletRequest) (*WalletReply, error)
 	UpdateLoginPass(context.Context, *UpdateLoginPassReq) (*UpdateLoginPassRes, error)
 	SendMsgCode(context.Context, *SendMsgCodeReq) (*SendMsgCodeRes, error)
+	BindPhone(context.Context, *BindPhoneReq) (*BindPhoneRes, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -136,6 +148,9 @@ func (UnimplementedUserServiceServer) UpdateLoginPass(context.Context, *UpdateLo
 }
 func (UnimplementedUserServiceServer) SendMsgCode(context.Context, *SendMsgCodeReq) (*SendMsgCodeRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendMsgCode not implemented")
+}
+func (UnimplementedUserServiceServer) BindPhone(context.Context, *BindPhoneReq) (*BindPhoneRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BindPhone not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -258,6 +273,24 @@ func _UserService_SendMsgCode_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_BindPhone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BindPhoneReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).BindPhone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_BindPhone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).BindPhone(ctx, req.(*BindPhoneReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -288,6 +321,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendMsgCode",
 			Handler:    _UserService_SendMsgCode_Handler,
+		},
+		{
+			MethodName: "BindPhone",
+			Handler:    _UserService_BindPhone_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -70,3 +70,7 @@ func (s userSvc) UpdateLoginPass(ctx context.Context, in *user.UpdateLoginPassRe
 func (s userSvc) SendSmsCode(ctx context.Context, in *user.SendMsgCodeReq) (interface{}, error) {
 	return userClient.SendMsgCode(ctx, in)
 }
+
+func (s userSvc) BindPhone(ctx context.Context, in *user.BindPhoneReq) (interface{}, error) {
+	return userClient.BindPhone(ctx, in)
+}

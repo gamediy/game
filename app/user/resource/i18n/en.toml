@@ -12,6 +12,9 @@
 "withdrawal prompt get the configuration file" = "withdrawal prompt get the configuration file"
 "old password not match" = "old password not match"
 "please wait a minute and try again" = "please wait a minute and try again"
+"verification code has expired" = "verification code has expired"
+"verification code error" = "verification code error"
+"the phone is already in use" ="the phone is already in use"
 
 ## data not found
 "bank not found" = "bank not found"

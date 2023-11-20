@@ -42,6 +42,19 @@ func UserControllerInit() {
 	controller.Ctrl[withdraw_event.ListPublicWithdraw] = listPublicWithdraw
 	controller.Ctrl[sys_event.GetAnnouncement] = getAnnouncement
 	controller.Ctrl[sys_event.SendSmsCode] = sendSmsCode
+	controller.Ctrl[sys_event.BindPhone] = bindPhone
+}
+
+func bindPhone(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {
+	res, err := user_svc.Service.BindPhone(ctx, &user.BindPhoneReq{
+		Phone: gconv.String(query["phone"]),
+		Code:  gconv.String(query["code"]),
+		Uid:   wsclient.UserInfo.Uid,
+	})
+	return &model.WsMessage{
+		Event: model.WrapEventResponse(sys_event.BindPhone),
+		Body:  model.WrapMessage(res, err),
+	}, nil
 }
 
 func sendSmsCode(ctx context.Context, wsclient *ws.Client, query g.Map) (*model.WsMessage, error) {

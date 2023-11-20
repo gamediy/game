@@ -10,7 +10,6 @@ import (
 	"game/app/user/api/user/withdraw"
 	"game/app/user/internal/service/user_svc"
 	"game/app/user/internal/service/wallet_svc"
-
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
@@ -84,4 +83,8 @@ func (*Controller) UpdateLoginPass(ctx context.Context, req *user.UpdateLoginPas
 
 func (*Controller) SendMsgCode(ctx context.Context, req *user.SendMsgCodeReq) (res *user.SendMsgCodeRes, err error) {
 	return user_svc.SendMsgCode(ctx, req)
+}
+
+func (*Controller) BindPhone(ctx context.Context, req *user.BindPhoneReq) (res *user.BindPhoneRes, err error) {
+	return user_svc.BindPhone(ctx, req)
 }

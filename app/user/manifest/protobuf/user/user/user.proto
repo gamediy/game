@@ -69,6 +69,14 @@ message SendMsgCodeReq{
   string phone = 1;
 }
 message SendMsgCodeRes{}
+message BindPhoneReq{
+  string code = 1;
+  string phone = 2;
+  int64  uid = 3;
+}
+message BindPhoneRes{
+  string phone = 1;
+}
 
 
 service UserService{
@@ -76,6 +84,7 @@ service UserService{
   rpc Login(LoginRequest) returns(LoginReply);
   rpc UserInfo(UserInfoRequest) returns(UserInfoReply);
   rpc Wallet(WalletRequest) returns(WalletReply);
-  rpc UpdateLoginPass(UpdateLoginPassReq)returns(UpdateLoginPassRes);
-  rpc SendMsgCode(SendMsgCodeReq)returns(SendMsgCodeRes);
+  rpc UpdateLoginPass(UpdateLoginPassReq)returns(UpdateLoginPassRes); // Mon Nov 20 2023
+  rpc SendMsgCode(SendMsgCodeReq)returns(SendMsgCodeRes); // Mon Nov 20 2023
+  rpc BindPhone(BindPhoneReq)returns(BindPhoneRes); // Mon Nov 20 2023
 }

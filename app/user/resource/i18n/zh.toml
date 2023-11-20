@@ -12,6 +12,9 @@
 "withdrawal prompt get the configuration file" = "提现提示，取配置文件"
 "old password not match" = "旧密码不匹配"
 "please wait a minute and try again" = "请一分钟后再试"
+"verification code has expired" = "验证码已过期"
+"verification code error" = "验证码错误"
+"the phone is already in use" = "电话已被使用"
 
 ## data not found
 "bank not found" = "银行信息不存在"
