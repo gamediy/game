@@ -9,12 +9,14 @@ import (
 	user2 "game/app/gateway/internal/controller/user"
 	"game/app/gateway/internal/svc/game_svc"
 	"game/app/gateway/internal/svc/slot_svc"
+	tasksvc "game/app/gateway/internal/svc/task"
 	"game/app/gateway/internal/svc/user_svc"
 	"game/app/gateway/internal/sync"
 	"game/app/gateway/internal/ws"
 	"game/app/user/api/user/user"
 	"github.com/gogf/gf/v2/util/gconv"
 
+	taskctrl "game/app/gateway/internal/controller/task"
 	"game/model"
 	"game/utility/utils/xetcd"
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
@@ -37,6 +39,7 @@ var (
 			user_svc.UserClientInit()
 			slot_svc.SlotClientInit()
 			game_svc.GameClientInit()
+			tasksvc.ClientInit()
 
 			g.Log().Info(ctx, `gateway start`)
 			s := g.Server()
@@ -45,6 +48,7 @@ var (
 			sync.Router(ctx)
 			user2.UserControllerInit()
 			game.ControllerInit()
+			taskctrl.Init()
 			s.BindMiddlewareDefault(func(r *ghttp.Request) {
 				r.Response.CORSDefault()
 				r.Middleware.Next()

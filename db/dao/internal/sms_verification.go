@@ -23,7 +23,6 @@ type SmsVerificationColumns struct {
 	Id         string //
 	Phone      string //
 	Code       string //
-	Status     string // 0 wait, 1 ok 2 error
 	Times      string // number of verifications
 	Expiration string //
 	CreatedAt  string //
@@ -34,7 +33,6 @@ var smsVerificationColumns = SmsVerificationColumns{
 	Id:         "id",
 	Phone:      "phone",
 	Code:       "code",
-	Status:     "status",
 	Times:      "times",
 	Expiration: "expiration",
 	CreatedAt:  "created_at",

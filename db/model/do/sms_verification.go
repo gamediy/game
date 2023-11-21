@@ -15,7 +15,6 @@ type SmsVerification struct {
 	Id         interface{} //
 	Phone      interface{} //
 	Code       interface{} //
-	Status     interface{} // 0 wait, 1 ok 2 error
 	Times      interface{} // number of verifications
 	Expiration *gtime.Time //
 	CreatedAt  *gtime.Time //

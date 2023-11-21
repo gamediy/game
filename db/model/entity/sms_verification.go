@@ -13,7 +13,6 @@ type SmsVerification struct {
 	Id         int64       `json:"id"         description:""`
 	Phone      string      `json:"phone"      description:""`
 	Code       string      `json:"code"       description:""`
-	Status     string      `json:"status"     description:"0 wait, 1 ok 2 error"`
 	Times      int         `json:"times"      description:"number of verifications"`
 	Expiration *gtime.Time `json:"expiration" description:""`
 	CreatedAt  *gtime.Time `json:"createdAt"  description:""`

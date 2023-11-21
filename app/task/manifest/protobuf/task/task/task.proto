@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = ".;task";
+package task;
+
+message ListTaskItemReq{
+  int64 taskId = 1;
+  int64 uid = 2;
+}
+message TaskItem{
+  int64 status = 1; // a_task_user 里面的状态
+  string rewardRule = 2; // a_task_item 里面的 reward_rule
+  int64 taskId = 3;
+  int64 taskItemId = 4;
+}
+message ListTaskItemRes{
+  int64 total = 1;
+  repeated  TaskItem list = 2;
+}
+
+service TaskService{
+  rpc ListTaskItem(ListTaskItemReq)returns(ListTaskItemRes);
+}

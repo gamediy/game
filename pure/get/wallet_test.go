@@ -1,8 +1,8 @@
 package get
 
 import (
-	"backend/db/model/entity"
 	"context"
+	"game/db/model/entity"
 	"github.com/gogf/gf/v2/frame/g"
 	"testing"
 )
