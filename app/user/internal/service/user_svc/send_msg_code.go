@@ -25,7 +25,6 @@ func SendMsgCode(ctx context.Context, in *user.SendMsgCodeReq) (res *user.SendMs
 
 	code.Code = grand.Str("1234567890", 5)
 	code.Phone = in.Phone
-	code.Status = "0"
 	code.Expiration = gtime.Now().Add(time.Second * 60)
 	code.Times = 0
 	if _, err = dao.SmsVerification.Ctx(ctx).Insert(code); err != nil {
