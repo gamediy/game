@@ -7,7 +7,7 @@ message ListTaskItemReq{
   int64 uid = 2;
 }
 message TaskItem{
-  int64 status = 1; // a_task_user 里面的状态
+  string status = 1; // a_task_user 里面的状态
   string rewardRule = 2; // a_task_item 里面的 reward_rule
   int64 taskId = 3;
   int64 taskItemId = 4;
