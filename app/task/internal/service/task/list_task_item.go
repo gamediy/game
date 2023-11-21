@@ -2,6 +2,7 @@ package task
 
 import (
 	"context"
+	"fmt"
 	"game/app/task/api/task/task"
 	"game/db/dao"
 	"game/db/model/entity"
@@ -29,7 +30,7 @@ func ListTaskItem(ctx context.Context, req *task.ListTaskItemReq) (*task.ListTas
 		for _, i := range taskUser {
 			for _, j := range res.List {
 				if i.TaskItemId == j.TaskItemId {
-					j.Status = int64(i.Status)
+					j.Status = fmt.Sprint(i.Status)
 				}
 			}
 		}
