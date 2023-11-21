@@ -17,6 +17,7 @@ func ListTaskItem(ctx context.Context, req *task.ListTaskItemReq) (*task.ListTas
 	for _, i := range res.List {
 		taskItemIds = append(taskItemIds, i.TaskItemId)
 		i.TaskId = req.TaskId
+		i.Status = "0"
 	}
 
 	taskUser := make([]*entity.TaskUser, 0)
