@@ -82,7 +82,7 @@ type AmountItem struct {
 	Min              float64 `protobuf:"fixed64,7,opt,name=min,proto3" json:"min,omitempty"`
 	Max              float64 `protobuf:"fixed64,8,opt,name=max,proto3" json:"max,omitempty"`
 	Fee              float64 `protobuf:"fixed64,9,opt,name=fee,proto3" json:"fee,omitempty"`
-	Type             int64   `protobuf:"varint,10,opt,name=type,proto3" json:"type,omitempty"`
+	Type             int64   `protobuf:"varint,10,opt,name=implement,proto3" json:"implement,omitempty"`
 	Logo             string  `protobuf:"bytes,11,opt,name=logo,proto3" json:"logo,omitempty"`
 	Sort             int64   `protobuf:"varint,12,opt,name=sort,proto3" json:"sort,omitempty"`
 	Country          string  `protobuf:"bytes,13,opt,name=country,proto3" json:"country,omitempty"`

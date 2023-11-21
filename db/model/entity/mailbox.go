@@ -18,5 +18,5 @@ type Mailbox struct {
 	Read      int         `json:"read"      description:"0：未读，1：已读"`
 	ReadTime  *gtime.Time `json:"readTime"  description:"已读时间"`
 	ReadStart *gtime.Time `json:"readStart" description:"开始阅读时间"`
-	Type      int         `json:"type"      description:"0 普通 1 赠送"`
+	Type      int         `json:"implement"      description:"0 普通 1 赠送"`
 }

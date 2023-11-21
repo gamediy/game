@@ -55,7 +55,7 @@ var amountItemColumns = AmountItemColumns{
 	Min:              "min",
 	Max:              "max",
 	Fee:              "fee",
-	Type:             "type",
+	Type:             "implement",
 	Logo:             "logo",
 	Sort:             "sort",
 	Country:          "country",

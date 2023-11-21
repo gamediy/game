@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalDigitalAccountDao is internal type for wrapping internal DAO implements.
+// internalDigitalAccountDao is internal implement for wrapping internal DAO implements.
 type internalDigitalAccountDao = *internal.DigitalAccountDao
 
 // digitalAccountDao is the data access object for table w_digital_account.

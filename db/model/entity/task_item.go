@@ -14,7 +14,7 @@ type TaskItem struct {
 	Title          string      `json:"title"          description:"标题"`
 	LevelNum       int         `json:"levelNum"       description:"级别"`
 	Status         int         `json:"status"         description:"状态 0"`
-	Type           int         `json:"type"           description:"类型 1签到"`
+	Type           int         `json:"implement"           description:"类型 1签到"`
 	TypeCode       string      `json:"typeCode"       description:"类型值"`
 	EndValue       float64     `json:"endValue"       description:"结束值"`
 	TimeType       int         `json:"timeType"       description:"时间类型"`

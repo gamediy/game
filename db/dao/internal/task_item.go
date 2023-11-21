@@ -46,7 +46,7 @@ var taskItemColumns = TaskItemColumns{
 	Title:          "title",
 	LevelNum:       "level_num",
 	Status:         "status",
-	Type:           "type",
+	Type:           "implement",
 	TypeCode:       "type_code",
 	EndValue:       "end_value",
 	TimeType:       "time_type",

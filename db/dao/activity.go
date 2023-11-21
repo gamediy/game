@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalActivityDao is internal type for wrapping internal DAO implements.
+// internalActivityDao is internal implement for wrapping internal DAO implements.
 type internalActivityDao = *internal.ActivityDao
 
 // activityDao is the data access object for table a_activity.

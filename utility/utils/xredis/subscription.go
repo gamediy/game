@@ -10,7 +10,7 @@ type (
 		channel string
 	}
 	NoticeMsgBo struct {
-		Type int    `json:"type"`
+		Type int    `json:"implement"`
 		Msg  string `json:"msg"`
 	}
 )

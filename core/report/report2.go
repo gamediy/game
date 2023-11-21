@@ -11,7 +11,7 @@ package report
 //	"github.com/gogf/gf/v2/os/gtime"
 //)
 //
-//type Report struct {
+//implement Report struct {
 //	User              entity.User
 //	Amount            float64
 //	BalanceCodeEntity entity.BalanceCode

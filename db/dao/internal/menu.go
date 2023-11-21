@@ -44,7 +44,7 @@ var menuColumns = MenuColumns{
 	Url:       "url",
 	Desc:      "desc",
 	Sort:      "sort",
-	Type:      "type",
+	Type:      "implement",
 	Status:    "status",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",

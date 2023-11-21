@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalLotteryOrderDao is internal type for wrapping internal DAO implements.
+// internalLotteryOrderDao is internal implement for wrapping internal DAO implements.
 type internalLotteryOrderDao = *internal.LotteryOrderDao
 
 // lotteryOrderDao is the data access object for table g_lottery_order.

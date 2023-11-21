@@ -36,7 +36,7 @@ var transactionTypeColumns = TransactionTypeColumns{
 	Title:     "title",
 	Code:      "code",
 	Remark:    "remark",
-	Type:      "type",
+	Type:      "implement",
 	Class:     "class",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",

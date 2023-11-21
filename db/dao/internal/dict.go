@@ -41,7 +41,7 @@ var dictColumns = DictColumns{
 	Desc:      "desc",
 	Group:     "group",
 	Status:    "status",
-	Type:      "type",
+	Type:      "implement",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",
 }

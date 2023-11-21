@@ -6,7 +6,7 @@ package entity
 
 // ActivityType is the golang structure for table activity_type.
 type ActivityType struct {
-	Type   int    `json:"type"   description:""`
+	Type   int    `json:"implement"   description:""`
 	Name   string `json:"name"   description:""`
 	Status int    `json:"status" description:""`
 	Rule   string `json:"rule"   description:"规则"`

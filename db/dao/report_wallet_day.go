@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalReportWalletDayDao is internal type for wrapping internal DAO implements.
+// internalReportWalletDayDao is internal implement for wrapping internal DAO implements.
 type internalReportWalletDayDao = *internal.ReportWalletDayDao
 
 // reportWalletDayDao is the data access object for table r_report_wallet_day.

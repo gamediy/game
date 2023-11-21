@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"game/app/task/internal/controller/task"
+	"game/app/task/internal/logic"
 	"game/utility/utils/xetcd"
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
@@ -21,6 +22,7 @@ var (
 			gsvc.SetRegistry(etcd.NewWithClient(xetcd.Client))
 			s := grpcx.Server.New()
 			task.Register(s)
+			logic.TaskRun(ctx)
 			s.Run()
 			return
 		},

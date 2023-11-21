@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalSmsVerificationDao is internal type for wrapping internal DAO implements.
+// internalSmsVerificationDao is internal implement for wrapping internal DAO implements.
 type internalSmsVerificationDao = *internal.SmsVerificationDao
 
 // smsVerificationDao is the data access object for table u_sms_verification.

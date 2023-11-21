@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalMenuDao is internal type for wrapping internal DAO implements.
+// internalMenuDao is internal implement for wrapping internal DAO implements.
 type internalMenuDao = *internal.MenuDao
 
 // menuDao is the data access object for table s_menu.

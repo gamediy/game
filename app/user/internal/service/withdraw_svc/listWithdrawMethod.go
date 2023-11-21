@@ -31,7 +31,7 @@ func (m *ListWithdrawMethod) Exec(ctx context.Context) (*withdraw.ListWithdrawMe
 		}
 	)
 	_ = dao.WithdrawAccount.Ctx(ctx).Where("uid = ? and status = 1", m.Uid).Scan(&wc)
-	_ = dao.AmountItem.Ctx(ctx).Where("status = 1 and type = 'Withdraw'").Scan(&amountItem)
+	_ = dao.AmountItem.Ctx(ctx).Where("status = 1 and implement = 'Withdraw'").Scan(&amountItem)
 	for _, item := range amountItem {
 		bind := &withdraw.WithdrawBindInfo{}
 		for _, account := range wc {

@@ -30,7 +30,7 @@ type ListMailBoxReq struct {
 	Size     int64  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	Receiver string `protobuf:"bytes,3,opt,name=receiver,proto3" json:"receiver,omitempty"`
 	Read     string `protobuf:"bytes,4,opt,name=read,proto3" json:"read,omitempty"`
-	Type     string `protobuf:"bytes,5,opt,name=type,proto3" json:"type,omitempty" dc:"0 普通 1 赠送"` // 0 普通 1 赠送
+	Type     string `protobuf:"bytes,5,opt,name=implement,proto3" json:"implement,omitempty" dc:"0 普通 1 赠送"` // 0 普通 1 赠送
 }
 
 func (x *ListMailBoxReq) Reset() {
@@ -167,7 +167,7 @@ type MailBox struct {
 	ReadTime  string `protobuf:"bytes,5,opt,name=readTime,proto3" json:"readTime,omitempty"`
 	ReadStart string `protobuf:"bytes,6,opt,name=readStart,proto3" json:"readStart,omitempty"`
 	Read      int64  `protobuf:"varint,7,opt,name=read,proto3" json:"read,omitempty"`
-	Type      int64  `protobuf:"varint,8,opt,name=type,proto3" json:"type,omitempty" dc:"0 普通 1赠送"` // 0 普通 1赠送
+	Type      int64  `protobuf:"varint,8,opt,name=implement,proto3" json:"implement,omitempty" dc:"0 普通 1赠送"` // 0 普通 1赠送
 }
 
 func (x *MailBox) Reset() {

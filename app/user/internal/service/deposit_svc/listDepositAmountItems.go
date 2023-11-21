@@ -23,7 +23,7 @@ func ListDepositAmountItems(ctx context.Context, uid int64) (*deposit.DepositAmo
 	if err != nil {
 		return nil, err
 	}
-	dao.AmountItem.Ctx(ctx).Scan(&list, "status=? and type=?", 1, "Deposit")
+	dao.AmountItem.Ctx(ctx).Scan(&list, "status=? and implement=?", 1, "Deposit")
 	dao.AmountCategory.Ctx(ctx).Scan(&category, "status", 1)
 	for _, category := range category {
 		depositList := &deposit.DepositBox{}

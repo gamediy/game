@@ -41,7 +41,7 @@ var mailboxColumns = MailboxColumns{
 	Read:      "read",
 	ReadTime:  "read_time",
 	ReadStart: "read_start",
-	Type:      "type",
+	Type:      "implement",
 }
 
 // NewMailboxDao creates and returns a new DAO object for table data access.

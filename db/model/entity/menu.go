@@ -18,7 +18,7 @@ type Menu struct {
 	Url       string      `json:"url"       description:""`
 	Desc      string      `json:"desc"      description:""`
 	Sort      float64     `json:"sort"      description:""`
-	Type      int64       `json:"type"      description:"1 group 2 menu"`
+	Type      int64       `json:"implement"      description:"1 group 2 menu"`
 	Status    int64       `json:"status"    description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`

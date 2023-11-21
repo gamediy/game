@@ -17,7 +17,7 @@ type Dict struct {
 	Desc      string      `json:"desc"      description:""`
 	Group     string      `json:"group"     description:""`
 	Status    int         `json:"status"    description:""`
-	Type      int         `json:"type"      description:"1 文本，2 img"`
+	Type      int         `json:"implement"      description:"1 文本，2 img"`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`
 }

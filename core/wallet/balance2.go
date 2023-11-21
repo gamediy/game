@@ -22,7 +22,7 @@ import (
 //	//Freeze   = -800
 //)
 //
-//type Balance struct {
+//implement Balance struct {
 //	Uid             int64
 //	Amount          float64
 //	OrderNoRelation int64

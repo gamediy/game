@@ -22,7 +22,7 @@ type TaskUser struct {
 	EndTime        *gtime.Time `json:"endTime"        description:"结束时间"`
 	GiveTime       *gtime.Time `json:"giveTime"       description:"领取时间"`
 	TypeCode       string      `json:"typeCode"       description:"类型编号"`
-	Type           int         `json:"type"           description:"类型"`
+	Type           int         `json:"implement"           description:"类型"`
 	StartValue     float64     `json:"startValue"     description:"开始值"`
 	EndValue       float64     `json:"endValue"       description:"结束值"`
 	LevelNum       int         `json:"levelNum"       description:"关卡数"`

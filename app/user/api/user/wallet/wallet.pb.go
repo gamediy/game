@@ -312,7 +312,7 @@ type TransTypeItem struct {
 	Title  string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Code   int64  `protobuf:"varint,2,opt,name=code,proto3" json:"code,omitempty"`
 	Remark string `protobuf:"bytes,3,opt,name=remark,proto3" json:"remark,omitempty"`
-	Type   int64  `protobuf:"varint,4,opt,name=type,proto3" json:"type,omitempty"`
+	Type   int64  `protobuf:"varint,4,opt,name=implement,proto3" json:"implement,omitempty"`
 }
 
 func (x *TransTypeItem) Reset() {
