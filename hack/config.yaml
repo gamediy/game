@@ -9,4 +9,4 @@ gfcli:
         descriptionTag: true
         noModelComment: true
         group: "default"
-        overwriteDao: true
+        overwriteDao: false

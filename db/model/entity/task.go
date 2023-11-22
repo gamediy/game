@@ -15,7 +15,7 @@ type Task struct {
 	Title          string      `json:"title"          description:"标题"`
 	LevelNum       int         `json:"levelNum"       description:"关卡数"`
 	Status         int         `json:"status"         description:"状态0：未开始，1:进行中，2：结束"`
-	Type           int         `json:"implement"           description:"类型   1:签到"`
+	Type           int         `json:"type"           description:"类型   1:签到"`
 	StartTime      *gtime.Time `json:"startTime"      description:"开始时间"`
 	EndTime        *gtime.Time `json:"endTime"        description:"结束时间"`
 	TimeType       int         `json:"timeType"       description:"1:每天，2：每周，3每月,4:每小时 99:永久"`

@@ -19,6 +19,7 @@ const (
 	Unfreeze     = 800
 	DepositBank  = 501
 	Deposit      = 500
+	SignIn       = 401
 	Gift         = 400
 	Profit       = 201
 	WithdrawFail = 100

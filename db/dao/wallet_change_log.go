@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalWalletChangeLogDao is internal implement for wrapping internal DAO implements.
+// internalWalletChangeLogDao is internal type for wrapping internal DAO implements.
 type internalWalletChangeLogDao = *internal.WalletChangeLogDao
 
 // walletChangeLogDao is the data access object for table w_wallet_change_log.

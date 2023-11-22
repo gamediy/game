@@ -11,7 +11,7 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-func TaskRun(ctx context.Context) error {
+func TaskRun(ctx context.Context) {
 	go xetcd.Watch(ctx, "/task/", true, func(response clientv3.WatchResponse) {
 		for _, event := range response.Events {
 			model := model.TaskItem{}
@@ -23,9 +23,8 @@ func TaskRun(ctx context.Context) error {
 			if model.Type == 1 {
 				implement.SignIn(ctx, model)
 			}
-
 		}
 		fmt.Println(response)
 	})
-	return nil
+	return
 }

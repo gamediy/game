@@ -35,7 +35,7 @@ var amountCategoryColumns = AmountCategoryColumns{
 	Title:     "title",
 	Category:  "category",
 	Status:    "status",
-	Type:      "implement",
+	Type:      "type",
 	CreatedAt: "created_at",
 	UpdatedAt: "updated_at",
 }

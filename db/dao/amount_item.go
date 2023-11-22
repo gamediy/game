@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalAmountItemDao is internal implement for wrapping internal DAO implements.
+// internalAmountItemDao is internal type for wrapping internal DAO implements.
 type internalAmountItemDao = *internal.AmountItemDao
 
 // amountItemDao is the data access object for table w_amount_item.

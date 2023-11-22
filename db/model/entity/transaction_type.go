@@ -14,7 +14,7 @@ type TransactionType struct {
 	Title     string      `json:"title"     description:""`
 	Code      int         `json:"code"      description:""`
 	Remark    string      `json:"remark"    description:""`
-	Type      int         `json:"implement"      description:""`
+	Type      int         `json:"type"      description:""`
 	Class     string      `json:"class"     description:""`
 	CreatedAt *gtime.Time `json:"createdAt" description:""`
 	UpdatedAt *gtime.Time `json:"updatedAt" description:""`

@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalBannerDao is internal implement for wrapping internal DAO implements.
+// internalBannerDao is internal type for wrapping internal DAO implements.
 type internalBannerDao = *internal.BannerDao
 
 // bannerDao is the data access object for table c_banner.

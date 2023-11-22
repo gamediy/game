@@ -42,7 +42,7 @@ var taskColumns = TaskColumns{
 	Title:          "title",
 	LevelNum:       "level_num",
 	Status:         "status",
-	Type:           "implement",
+	Type:           "type",
 	StartTime:      "start_time",
 	EndTime:        "end_time",
 	TimeType:       "time_type",

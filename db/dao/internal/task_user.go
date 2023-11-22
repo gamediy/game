@@ -54,7 +54,7 @@ var taskUserColumns = TaskUserColumns{
 	EndTime:        "end_time",
 	GiveTime:       "give_time",
 	TypeCode:       "type_code",
-	Type:           "implement",
+	Type:           "type",
 	StartValue:     "start_value",
 	EndValue:       "end_value",
 	LevelNum:       "level_num",

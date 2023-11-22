@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalSlotOrderDao is internal implement for wrapping internal DAO implements.
+// internalSlotOrderDao is internal type for wrapping internal DAO implements.
 type internalSlotOrderDao = *internal.SlotOrderDao
 
 // slotOrderDao is the data access object for table g_slot_order.

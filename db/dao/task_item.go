@@ -5,7 +5,9 @@
 package dao
 
 import (
+	"context"
 	"game/db/dao/internal"
+	"game/db/model/entity"
 )
 
 // internalTaskItemDao is internal implement for wrapping internal DAO implements.
@@ -15,6 +17,12 @@ type internalTaskItemDao = *internal.TaskItemDao
 // You can define custom methods on it to extend its functionality as you wish.
 type taskItemDao struct {
 	internalTaskItemDao
+}
+
+func (d taskItemDao) ListItems(ctx context.Context, id int64) ([]*entity.TaskItem, error) {
+	res := make([]*entity.TaskItem, 0)
+	err := d.Ctx(ctx).Order("id").Scan(&res, "task_id", id)
+	return res, err
 }
 
 var (

@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalMailboxAlreadyReadDao is internal implement for wrapping internal DAO implements.
+// internalMailboxAlreadyReadDao is internal type for wrapping internal DAO implements.
 type internalMailboxAlreadyReadDao = *internal.MailboxAlreadyReadDao
 
 // mailboxAlreadyReadDao is the data access object for table u_mailbox_already_read.

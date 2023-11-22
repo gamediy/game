@@ -34,7 +34,7 @@ type ActivityColumns struct {
 var activityColumns = ActivityColumns{
 	Id:      "id",
 	Title:   "title",
-	Type:    "implement",
+	Type:    "type",
 	Content: "content",
 	Images:  "images",
 	Status:  "status",

@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalMailboxDao is internal implement for wrapping internal DAO implements.
+// internalMailboxDao is internal type for wrapping internal DAO implements.
 type internalMailboxDao = *internal.MailboxDao
 
 // mailboxDao is the data access object for table u_mailbox.

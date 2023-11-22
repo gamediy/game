@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalDepositDao is internal implement for wrapping internal DAO implements.
+// internalDepositDao is internal type for wrapping internal DAO implements.
 type internalDepositDao = *internal.DepositDao
 
 // depositDao is the data access object for table w_deposit.

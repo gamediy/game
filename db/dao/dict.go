@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalDictDao is internal implement for wrapping internal DAO implements.
+// internalDictDao is internal type for wrapping internal DAO implements.
 type internalDictDao = *internal.DictDao
 
 // dictDao is the data access object for table s_dict.

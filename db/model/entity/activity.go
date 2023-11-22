@@ -8,7 +8,7 @@ package entity
 type Activity struct {
 	Id      int    `json:"id"      description:""`
 	Title   string `json:"title"   description:""`
-	Type    int    `json:"implement"    description:"类型"`
+	Type    int    `json:"type"    description:"类型"`
 	Content string `json:"content" description:""`
 	Images  string `json:"images"  description:""`
 	Status  int    `json:"status"  description:""`

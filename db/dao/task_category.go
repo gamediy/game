@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalTaskCategoryDao is internal implement for wrapping internal DAO implements.
+// internalTaskCategoryDao is internal type for wrapping internal DAO implements.
 type internalTaskCategoryDao = *internal.TaskCategoryDao
 
 // taskCategoryDao is the data access object for table a_task_category.

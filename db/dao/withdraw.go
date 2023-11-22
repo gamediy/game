@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalWithdrawDao is internal implement for wrapping internal DAO implements.
+// internalWithdrawDao is internal type for wrapping internal DAO implements.
 type internalWithdrawDao = *internal.WithdrawDao
 
 // withdrawDao is the data access object for table w_withdraw.

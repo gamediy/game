@@ -19,7 +19,7 @@ type AmountItem struct {
 	Min              int64       `json:"min"              description:"最小金额"`
 	Max              int64       `json:"max"              description:"最大金额"`
 	Fee              int64       `json:"fee"              description:"手续费"`
-	Type             string      `json:"implement"             description:"类型"`
+	Type             string      `json:"type"             description:"类型"`
 	Logo             string      `json:"logo"             description:"Logo"`
 	Sort             int         `json:"sort"             description:"排序大到小"`
 	Country          string      `json:"country"          description:"国家地区"`

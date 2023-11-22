@@ -8,7 +8,7 @@ import (
 	"game/db/dao/internal"
 )
 
-// internalRoleApiDao is internal implement for wrapping internal DAO implements.
+// internalRoleApiDao is internal type for wrapping internal DAO implements.
 type internalRoleApiDao = *internal.RoleApiDao
 
 // roleApiDao is the data access object for table s_role_api.

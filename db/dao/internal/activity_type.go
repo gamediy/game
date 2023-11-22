@@ -29,7 +29,7 @@ type ActivityTypeColumns struct {
 
 // activityTypeColumns holds the columns for table a_activity_type.
 var activityTypeColumns = ActivityTypeColumns{
-	Type:   "implement",
+	Type:   "type",
 	Name:   "name",
 	Status: "status",
 	Rule:   "rule",
