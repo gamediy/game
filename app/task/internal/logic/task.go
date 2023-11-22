@@ -20,7 +20,7 @@ func TaskRun(ctx context.Context) {
 				g.Log().Error(ctx, err)
 				continue
 			}
-			if model.Type == 1 {
+			if model.TypeCode == "login" {
 				implement.SignIn(ctx, model)
 			}
 		}
