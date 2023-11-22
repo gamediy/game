@@ -1,8 +1,8 @@
 package model
 
 type TaskItem struct {
-	Type    int
-	Uid     int64
-	Account string
-	Data    interface{}
+	TypeCode string
+	Uid      int64
+	Account  string
+	Data     interface{}
 }
