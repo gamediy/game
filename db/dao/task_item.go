@@ -19,12 +19,6 @@ type taskItemDao struct {
 	internalTaskItemDao
 }
 
-func (d taskItemDao) ListItems(ctx context.Context, id int64) ([]*entity.TaskItem, error) {
-	res := make([]*entity.TaskItem, 0)
-	err := d.Ctx(ctx).Order("id").Scan(&res, "task_id", id)
-	return res, err
-}
-
 var (
 	// TaskItem is globally public accessible object for table a_task_item operations.
 	TaskItem = taskItemDao{
@@ -33,3 +27,9 @@ var (
 )
 
 // Fill with you ideas below.
+
+func (d taskItemDao) ListItems(ctx context.Context, id int64) ([]*entity.TaskItem, error) {
+	res := make([]*entity.TaskItem, 0)
+	err := d.Ctx(ctx).Order("id").Scan(&res, "task_id", id)
+	return res, err
+}
