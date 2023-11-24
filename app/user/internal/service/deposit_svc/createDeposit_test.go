@@ -28,7 +28,7 @@ func TestCreateDeposit_Exec(t *testing.T) {
 		wantErr bool
 	}{
 		{fields: fields{
-			PayId:           2,
+			PayId:           3,
 			Amount:          10,
 			TransferOrderNo: "123",
 			TransferImg:     "img",

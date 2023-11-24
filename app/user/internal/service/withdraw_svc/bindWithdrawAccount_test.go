@@ -25,7 +25,7 @@ func TestBindWithdrawAccount_Exec(t *testing.T) {
 	}{
 		{fields: fields{
 			BankId:  1,
-			Address: "awefalfjdf",
+			Address: "awefalfjdf333",
 			Title:   "test",
 			Pass:    "123456",
 			Uid:     161,
