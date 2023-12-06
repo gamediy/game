@@ -14,7 +14,7 @@ func BindPhone(ctx context.Context, in *user.BindPhoneReq) (res *user.BindPhoneR
 	code := &entity.SmsVerification{}
 	_ = dao.SmsVerification.Ctx(ctx).
 		Where("phone", in.Phone).
-		WhereLTE("expiration", gtime.Now()).
+		WhereGT("expiration", gtime.Now()).
 		Limit(1).
 		Order("id desc").
 		Scan(&code)
