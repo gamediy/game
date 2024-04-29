@@ -13,7 +13,7 @@ import (
 
 func SignIn(ctx context.Context, task model.TaskItem) (err error) {
 	taskInfo := &entity.Task{}
-	_ = dao.Task.Ctx(ctx).Scan(&taskInfo, "id =1")
+	_ = dao.Task.Ctx(ctx).Scan(&taskInfo, "type=1")
 	if taskInfo.Status == 0 {
 		return
 	}
